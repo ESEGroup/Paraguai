@@ -1,0 +1,26 @@
+{% extends "layout.html" %}
+{% block body %}
+<form action="/recursos/listar" method="POST">
+  <div class="form-group">
+    <label for="nome">Nome</label>
+    <input type="text" class="form-control" id="nome" name="nome" placeholder="Nome">
+  </div>
+  <div class="form-group">
+    <label for="categoria">Categoria</label>
+    <input type="text" class="form-control" id="categoria" placeholder="Categoria">
+  </div>
+  <div class="form-group">
+    <label for="initialDate">Disponível em</label>
+    <div class='input-group date' id='datetimepicker1'>
+        <input name="initialDate" type='text' class="form-control" />
+        <span class="input-group-addon">
+            <span class="glyphicon glyphicon-calendar"></span>
+        </span>
+    </div>
+  </div>
+  <button type="submit" class="btn btn-primary">Buscar</button>
+</form>
+<script>
+    $('#datetimepicker1').datetimepicker();
+</script>
+{% endblock body %}

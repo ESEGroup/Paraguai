@@ -11,7 +11,8 @@ crud_recurso = ServicoCRUDRecurso(repositorio_recurso)
 
 # Criando menu
 def gerarMenu():
-    menu = [("Listar","/"),
+    menu = [("Listar Recursos","/"),
+            ("Buscar Recurso","/recursos/buscar"),
             ("Criar Novo Recurso","/recursos/novo")]
     return [(label,url,url == request.url_rule.rule) for (label,url) in menu]
 
@@ -20,19 +21,28 @@ def index():
     return render_template("recursos.html", recursos=crud_recurso.todos(), menu=gerarMenu())
 
 @App.route("/css/<path>")
-def serveStylesheet(path):
-    print("CSS!!! ->", path)
+def serve_stylesheet(path):
     return send_from_directory("./css",path)
 
 @App.route("/js/<path>")
-def serveScript(path):
-    print("JS!!! ->", path)
+def serve_script(path):
     return send_from_directory("./js",path)
 
+@App.route("/recursos/listar")
+def lista_recurso():
+    return render_template("recursos.html", recursos=crud_recurso.todos(), menu=gerarMenu())
+
+@App.route("/recursos/listar", methods=["POST"])
+def lista_busca_recurso():
+    return render_template("recursos.html", recursos=crud_recurso.todos(), menu=gerarMenu())
 
 @App.route("/recursos/novo")
 def novo_recurso():
     return render_template("form_recurso.html", recurso=Recurso(), menu=gerarMenu())
+
+@App.route("/recursos/buscar")
+def form_busca_recurso():
+    return render_template("form_buscar_recurso.html", menu=gerarMenu())
 
 @App.route("/recursos", methods=["POST"])
 def criar_recurso():
