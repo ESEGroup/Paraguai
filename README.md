@@ -10,7 +10,7 @@ Primeiro, instale o Python 3 e o virtualenv.
 2. Vá para a pasta do projeto
 3. Crie um ambiente usando `virtualenv ./env`
 4. Inicie o ambiente virtual usando `source ./env/bin/activate`
-5. Instale as dependencias usando `pip -r requirements.txt`
+5. Instale as dependencias usando `pip install -r requirements.txt`
 
 # Rodando o servidor
 
