@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect
+from flask import Flask, render_template, request, redirect, send_from_directory
 from domain import ServicoCRUDRecurso, Recurso
 from .RepositorioRecursoEmMemoria import RepositorioRecursoEmMemoria
 App = Flask(__name__)
@@ -18,6 +18,17 @@ def gerarMenu():
 @App.route("/")
 def index():
     return render_template("recursos.html", recursos=crud_recurso.todos(), menu=gerarMenu())
+
+@App.route("/css/<path>")
+def serveStylesheet(path):
+    print("CSS!!! ->", path)
+    return send_from_directory("./css",path)
+
+@App.route("/js/<path>")
+def serveScript(path):
+    print("JS!!! ->", path)
+    return send_from_directory("./js",path)
+
 
 @App.route("/recursos/novo")
 def novo_recurso():
