@@ -9,13 +9,19 @@ repositorio_recurso = RepositorioRecursoEmMemoria()
 # Instanciando serviço hexagonal
 crud_recurso = ServicoCRUDRecurso(repositorio_recurso)
 
+# Criando menu
+def gerarMenu():
+    menu = [("Listar","/"),
+            ("Criar Novo Recurso","/recursos/novo")]
+    return [(label,url,url == request.url_rule.rule) for (label,url) in menu]
+
 @App.route("/")
 def index():
-    return render_template("recursos.html", recursos=crud_recurso.todos())
+    return render_template("recursos.html", recursos=crud_recurso.todos(), menu=gerarMenu())
 
 @App.route("/recursos/novo")
 def novo_recurso():
-    return render_template("form_recurso.html", recurso=Recurso())
+    return render_template("form_recurso.html", recurso=Recurso(), menu=gerarMenu())
 
 @App.route("/recursos", methods=["POST"])
 def criar_recurso():
