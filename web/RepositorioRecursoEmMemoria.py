@@ -1,8 +1,10 @@
-from domain import RepositorioRecurso
+from domain import RepositorioRecurso, Recurso
 
 class RepositorioRecursoEmMemoria(RepositorioRecurso):
     def __init__(self):
-        self.recursos = []
+        teste = Recurso("Recurso Teste")
+        teste.id = 1
+        self.recursos = [teste]
 
     def criar(self, recurso):
         recurso.id = len(self.recursos) + 1

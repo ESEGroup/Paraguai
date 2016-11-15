@@ -1,3 +1,3 @@
-from domain.Recurso import Recurso
-from domain.ServicoCRUDRecurso import ServicoCRUDRecurso
-from domain.RepositorioRecurso import RepositorioRecurso
+from .Recurso import Recurso
+from .ServicoCRUDRecurso import ServicoCRUDRecurso
+from .RepositorioRecurso import RepositorioRecurso

@@ -4,9 +4,14 @@ class ServicoCRUDRecurso():
     def __init__(self, repositorio):
         self.repositorio = repositorio
 
+    # UC07 - Cadastrar Recurso
     def criar(self, nome):
-        recurso = Recurso(name)
-        self.repositorio.criar(recurso)
+        recurso = Recurso(nome)
+        return self.repositorio.criar(recurso)
+
+    # UC01 - Buscar Recurso
+    def buscar(self, categoria=None):
+        pass
 
     def todos(self):
         return self.repositorio.todos()

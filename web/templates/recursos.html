@@ -1,0 +1,20 @@
+{% extends "layout.html" %}
+{% block body %}
+  <table class="table">
+    <th>
+      <tr>
+        <td>Id</td>
+        <td>Nome</td>
+      </tr>
+    </th>
+    <tbody>
+      {% for recurso in recursos %}
+        <tr>
+          <td>{{ recurso.id }}</td>
+          <td>{{ recurso.nome }}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  <a href="/recursos/novo" class="btn btn-primary">Criar Recurso</a>
+{% endblock body %}
