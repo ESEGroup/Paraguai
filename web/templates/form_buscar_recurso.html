@@ -10,13 +10,19 @@
     </select>
   </div>
   <div class="form-group">
-    <label for="categoria">Categoria</label>
+    <label for="categoria">Localização</label>
     <input type="text" class="form-control" id="categoria" placeholder="Categoria">
   </div>
   <div class="form-group">
-    <label for="initialDate">Disponível em</label>
+    <label for="initialDate">Disponível entre:</label>
     <div class='input-group date' id='datetimepicker1'>
         <input name="initialDate" type='text' class="form-control" />
+        <span class="input-group-addon">
+            <span class="glyphicon glyphicon-calendar"></span>
+        </span>
+    </div>
+    <div class='input-group date' id='datetimepicker2'>
+        <input name="finalDate" type='text' class="form-control" />
         <span class="input-group-addon">
             <span class="glyphicon glyphicon-calendar"></span>
         </span>
@@ -26,5 +32,6 @@
 </form>
 <script>
     $('#datetimepicker1').datetimepicker();
+    $('#datetimepicker2').datetimepicker();
 </script>
 {% endblock body %}
