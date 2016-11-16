@@ -15,3 +15,6 @@ class ServicoCRUDRecurso():
 
     def todos(self):
         return self.repositorio.todos()
+
+    def tipos(self):
+        return self.repositorio.tipos()
