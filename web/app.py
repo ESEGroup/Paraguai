@@ -42,7 +42,7 @@ def novo_recurso():
 
 @App.route("/recursos/buscar")
 def form_busca_recurso():
-    return render_template("form_buscar_recurso.html", menu=gerarMenu())
+    return render_template("form_buscar_recurso.html", tipos_recurso=[(tipo.nome,tipo.id) for tipo in crud_recurso.tipos()], menu=gerarMenu())
 
 @App.route("/recursos", methods=["POST"])
 def criar_recurso():
