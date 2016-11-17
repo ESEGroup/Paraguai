@@ -3,8 +3,9 @@
   <table class="table">
     <th>
       <tr>
-        <td>Id</td>
+        <td>Código</td>
         <td>Nome</td>
+        <td>Categoria</td>
       </tr>
     </th>
     <tbody>
@@ -12,6 +13,7 @@
         <tr>
           <td>{{ recurso.id }}</td>
           <td>{{ recurso.nome }}</td>
+          <td>{{ recurso.tipo.nome }}</td>
         </tr>
       {% endfor %}
     </tbody>
