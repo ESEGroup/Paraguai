@@ -1,13 +1,17 @@
-from domain import Recurso
+from domain import Recurso, TipoRecurso
 
 class ServicoCRUDRecurso():
     def __init__(self, repositorio):
         self.repositorio = repositorio
 
     # UC07 - Cadastrar Recurso
-    def criar(self, nome):
-        recurso = Recurso(nome)
-        return self.repositorio.criar(recurso)
+    def criar(self, fonte):
+        # TODO - Validar criação
+        tipoRecurso = self.repositorio.tipoPorId(id = fonte["categoria"])
+        novoRecurso = Recurso(nome = fonte["nome"],
+                      local = fonte["local"],
+                      tipo = tipoRecurso )
+        return self.repositorio.criar(novoRecurso)
 
     # UC01 - Buscar Recurso
     def buscar(self, categoria=None):

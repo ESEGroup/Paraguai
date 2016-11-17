@@ -1,4 +1,4 @@
-class TipoRecurso:
+class TipoRecurso():
     def __init__(self, nome=None, id=None):
         self.id = id
         self.nome = nome

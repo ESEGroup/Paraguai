@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, redirect, send_from_directory
-from domain import ServicoCRUDRecurso, Recurso
+from domain import ServicoCRUDRecurso, Recurso, TipoRecurso
 from .RepositorioRecursoEmMemoria import RepositorioRecursoEmMemoria
 App = Flask(__name__)
 
@@ -38,7 +38,7 @@ def lista_busca_recurso():
 
 @App.route("/recursos/novo")
 def novo_recurso():
-    return render_template("form_recurso.html", recurso=Recurso(), menu=gerarMenu())
+    return render_template("form_recurso.html", tipos_recurso=[(tipo.nome,tipo.id) for tipo in crud_recurso.tipos()], recurso=Recurso(), menu=gerarMenu())
 
 @App.route("/recursos/buscar")
 def form_busca_recurso():
@@ -46,6 +46,6 @@ def form_busca_recurso():
 
 @App.route("/recursos", methods=["POST"])
 def criar_recurso():
-    recurso = crud_recurso.criar(request.form["nome"])
+    recurso = crud_recurso.criar(request.form)
     return redirect("/")
 
