@@ -44,6 +44,20 @@ def novo_recurso():
 def form_busca_recurso():
     return render_template("form_buscar_recurso.html", tipos_recurso=[(tipo.nome,tipo.id) for tipo in crud_recurso.tipos()], menu=gerarMenu())
 
+@App.route("/recursos/buscar/", methods=["POST"])
+def form_busca_recurso_por_id():
+    # TODO - Melhore-me
+    if not request.form["id-recurso"]:
+        return redirect("/")
+    return redirect("/recurso/" + request.form["id-recurso"])
+
+@App.route("/recurso/<id>")
+def recurso(id):
+    if not id:
+        # TODO - Add 404
+        return redirect("/recursos/buscar/")
+    return render_template("recursos.html", recursos=crud_recurso.todos(), menu=gerarMenu())
+
 @App.route("/recursos", methods=["POST"])
 def criar_recurso():
     recurso = crud_recurso.criar(request.form)

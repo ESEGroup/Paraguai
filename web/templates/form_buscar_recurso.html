@@ -38,7 +38,14 @@
 {% block notification %}
 <div class="row">
     <div id="search-by-id-box" class="col-sm-12 alert alert-info" align="center">
-        <i class="fa fa-info-circle" aria-hidden="true"></i>  Também é possível buscar por <strong>código do recurso</strong> <a href="/">clicando aqui.</a>
+        <i class="fa fa-info-circle" aria-hidden="true"></i>  Também é possível acessar um recurso diretamente através do <strong>código do recurso</strong></a>
+        <form class="form-inline" action="/recursos/buscar/" method="POST">
+          <div class="form-group">
+            <label for="id-recurso" class="sr-only">Código do Recurso</label>
+	    <input type="text" class="form-control" name="id-recurso" id="id-recurso" placeholder="Código do Recurso"/>
+	    <button type="submit" class="btn btn-primary"><i class="fa fa-search" aria-hidden="true"></i></button>
+	  </div>
+	</form>
     </div>
 </div>
 {% endblock notification %}
