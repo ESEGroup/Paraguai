@@ -6,6 +6,7 @@ Repositório do grupo de desenvolvedores do Sistema de Agendamento UFRJ.
 OBS: Em algumas distros, os comandos do virtualenv, pip, etc, para o Python3 tem um 3 na frente: virtualenv3, pip3, python3
 
 Primeiro, instale o Python 3 e o virtualenv.
+
 1. Instale o Python 3 e o virtualenv.
 2. Vá para a pasta do projeto
 3. Crie um ambiente usando `virtualenv ./env`
