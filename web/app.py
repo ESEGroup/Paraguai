@@ -63,3 +63,8 @@ def criar_recurso():
     recurso = crud_recurso.criar(request.form)
     return redirect("/")
 
+# Adicionar verificação de permissão em algum ponto
+@App.route("/admin/buscarUsuario")
+def form_busca_usuario():
+    return render_template("form_buscar_usuario.html", menu=gerarMenu(), departamento=[("DEL",1),("PESC",2),("IF",3)])
+
