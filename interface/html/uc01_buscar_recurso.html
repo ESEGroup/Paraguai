@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html >
+<head>
+  <meta charset="UTF-8">
+  <title>Awesome Bootstrap 3 Sidebar Navigation</title>
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+
+  <link rel='stylesheet prefetch' href='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css'>
+
+      <link rel="stylesheet" href="css/style.css">
+
+  
+</head>
+
+<body>
+      <div id="wrapper">
+        <div class="overlay"></div>
+    
+        <!-- Sidebar -->
+        <nav class="navbar navbar-inverse navbar-fixed-top" id="sidebar-wrapper" role="navigation">
+            <ul class="nav sidebar-nav">
+                <li class="sidebar-brand">
+                    <a href="#">
+                       UFRJ
+                    </a>
+                </li>
+                <li>
+                    <a href="#"><i class="fa fa-fw fa-home"></i> Início</a>
+                </li>
+                <li>
+                    <a href="#"><i class="fa fa-fw fa-folder"></i> Ação 1</a>
+                </li>
+                <li>
+                    <a href="#"><i class="fa fa-fw fa-file-o"></i> Ação 2</a>
+                </li>
+                <li>
+                    <a href="#"><i class="fa fa-fw fa-cog"></i> Ação 3</a>
+                </li>
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-fw fa-plus"></i> Manutenção <span class="caret"></span></a>
+                  <ul class="dropdown-menu" role="menu">
+                    <li class="dropdown-header">Ações de manutenção</li>
+                    <li><a href="#">Ação 1</a></li>
+                    <li><a href="#">Ação 2</a></li>
+                    <li><a href="#">Ação 3</a></li>
+                  </ul>
+                </li>
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-fw fa-plus"></i> Administrador <span class="caret"></span></a>
+                  <ul class="dropdown-menu" role="menu">
+                    <li class="dropdown-header">Ações de administração</li>
+                    <li><a href="#">Ação 1</a></li>
+                    <li><a href="#">Ação 2</a></li>
+                    <li><a href="#">Ação 3</a></li>
+                  </ul>
+                </li>
+                <li>
+                    <a href="#"><i class="fa fa-fw fa-dropbox"></i> Sobre</a>
+                </li>
+                <li>
+                    <a href="#"><i class="fa fa-fw fa-twitter"></i> Ajuda</a>
+                </li>
+                <li>
+                    <a href="#"><i class="fa fa-fw fa-twitter"></i> Ajuda</a>
+                </li>
+                <li>
+                    <a href="#"><i class="fa fa-fw fa-bank"></i> Mapa do site</a>
+                </li>
+            </ul>
+        </nav>
+        <!-- /#sidebar-wrapper -->
+
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+          <button type="button" class="hamburger is-closed animated fadeInLeft" data-toggle="offcanvas">
+            <span class="hamb-top"></span>
+            <span class="hamb-middle"></span>
+            <span class="hamb-bottom"></span>
+          </button>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 col-lg-offset-2">
+                    
+                        <!-- ----------------------------------------------------------------------------- -->
+                        <!-- CÓDIGO DE FORM COPIADO E ADAPTADO DO TEMPLATE DE FORM -->
+                        <!-- ----------------------------------------------------------------------------- -->
+                        
+                        <form class="well form-horizontal" action=" " method="post"  id="contact_form">
+<fieldset>
+
+<!-- Form Name -->
+<legend>UC01 - Buscar Recurso</legend>
+
+<!-- Select Basic -->
+   
+<div class="form-group"> 
+  <label class="col-md-4 control-label">Categoria</label>
+    <div class="col-md-4 selectContainer">
+    <div class="input-group">
+        <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
+    <select name="categoria" class="form-control selectpicker" >
+      <option value=" " >Selecione a categoria</option>
+      <option>Cat 1</option>
+      <option>Cat 2</option>
+      <option>Cat 3</option>
+      <option>Cat 4</option>
+    </select>
+  </div>
+</div>
+</div>
+
+<!-- Select Basic -->
+   
+<div class="form-group"> 
+  <label class="col-md-4 control-label">Localização</label>
+    <div class="col-md-4 selectContainer">
+    <div class="input-group">
+        <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
+    <select name="localizacao" class="form-control selectpicker" >
+      <option value=" " >Selecione a localização</option>
+      <option>Loc 1</option>
+      <option>Loc 2</option>
+      <option>Loc 3</option>
+      <option>Loc 4</option>
+    </select>
+  </div>
+</div>
+</div>
+
+<!-- Date Picker -->
+<!-- TODO - AJUSTAR JS PARA PICKER FUNCIONAR - VER index.js -->
+<div class="form-group"> 
+  <label class="col-md-4 control-label">Data inicial</label>
+    <div class="col-md-4 selectContainer">
+    <div class="input-group">
+        <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+            <input type='text' class="form-control" id='datetimepicker1' />
+        </div>
+    </div>
+</div>
+
+<!-- Date Picker -->
+<!-- TODO - AJUSTAR JS PARA PICKER FUNCIONAR - VER index.js -->
+<div class="form-group"> 
+  <label class="col-md-4 control-label">Data limite</label>
+    <div class="col-md-4 selectContainer">
+    <div class="input-group">
+        <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+            <input type='text' class="form-control" id='datetimepicker2' />
+        </div>
+    </div>
+</div>
+
+<!-- Success message -->
+<!-- TODO - AVERIGUAR CODIGO PARA FAZER ESTA MENSAGEM APARECER -->
+<div class="alert alert-success" role="alert" id="success_message">Success <i class="glyphicon glyphicon-thumbs-up"></i> Thanks for contacting us, we will get back to you shortly.</div>
+
+<!-- Button -->
+<div class="form-group">
+  <label class="col-md-4 control-label"></label>
+  <div class="col-md-4">
+    <button type="submit" class="btn btn-info" >Enviar</button>
+  </div>
+</div>
+
+</fieldset>
+</form>
+
+                        <!-- ----------------------------------------------------------------------------- -->
+                        <!-- FIM DO CÓDIGO DE FORM ADAPTADO (AINDA NÃO IDENTADO)     -->
+                        <!-- ----------------------------------------------------------------------------- -->
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /#page-content-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+  <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+<script src='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js'></script>
+
+    <script src="js/index.js"></script>
+
+</body>
+</html>
