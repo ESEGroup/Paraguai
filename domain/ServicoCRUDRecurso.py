@@ -9,8 +9,8 @@ class ServicoCRUDRecurso():
 
     # UC07 - Cadastrar Recurso
     def criar(self, fonte):
-        # TODO - Validar criação
-        tipoRecurso = self.repositorio.tipoPorId(id = fonte["categoria"])
+        # TODO - Validar criação -> Externalizar o processamento do form
+        tipoRecurso = self.repositorio.tipo_por_id(id = fonte["categoria"])
         novoRecurso = Recurso(nome = fonte["nome"],
                       local = fonte["local"],
                       tipo = tipoRecurso )
