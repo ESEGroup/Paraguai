@@ -9,6 +9,11 @@ class TipoRecurso():
     def __repr__(self):
         return (self.id, self.nome)
 
+    def __eq__(self,other):
+        if (other is None):
+            return False
+        return self.id == other.id
+
     def validarId(self):
         # TODO - Criar validação de tipo de recurso
         return True
