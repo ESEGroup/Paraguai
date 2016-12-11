@@ -1,5 +1,5 @@
 class TipoRecurso():
-    def __init__(self, nome=None, id=None):
+    def __init__(self,id,nome=None):
         self.id = id
         self.nome = nome
 
