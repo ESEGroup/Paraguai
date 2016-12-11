@@ -18,13 +18,13 @@ class RepositorioRecursoEmMemoria(RepositorioRecurso):
     def todos(self):
         return self.recursos
 
-    def tipos(self):
-        return self.listaTipoRecurso
+    def metadados(self):
+        return { "tipos" : self.listaTipoRecurso }
 
-    def tipoPorId(self,id):
+    def tipo_por_id(self,id):
         for tipo in self.listaTipoRecurso:
             if str(tipo.id) == str(id):
                 return tipo
-        print("TipoRecurso não achado ->", id)
-        return False
+        print("TipoRecurso não existente ->", id)
+        return None
 

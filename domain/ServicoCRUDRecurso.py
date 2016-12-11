@@ -3,6 +3,7 @@ from domain import Recurso, TipoRecurso
 class ServicoCRUDRecurso():
     def __init__(self, repositorio):
         self.repositorio = repositorio
+        self.metadados = self.repositorio.metadados()
 
     # UC07 - Cadastrar Recurso
     def criar(self, fonte):
@@ -20,5 +21,5 @@ class ServicoCRUDRecurso():
     def todos(self):
         return self.repositorio.todos()
 
-    def tipos(self):
-        return self.repositorio.tipos()
+    def metadados(self):
+        return self.metadados
