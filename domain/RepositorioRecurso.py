@@ -8,14 +8,11 @@ class RepositorioRecurso():
     def todos(self):
         pass
 
-    def tipos(self):
-        """
-        Retorna a lista de objetos TipoRecurso contendo todos os tipos de recurso.
-        """
+    def buscar(self, recurso):
         pass
 
-    def tipoPorId(self,id):
+    def metadados(self):
         """
-        Retorna o TipoRecurso cujo id é o id dado. Caso não exista, retorna False.
+        Retorna a lista de objetos TipoRecurso contendo todos os tipos de recurso.
         """
         pass
