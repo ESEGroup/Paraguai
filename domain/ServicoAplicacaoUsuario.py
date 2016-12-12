@@ -8,12 +8,12 @@ class ServicoAplicacaoUsuario():
 	def __init__(self, repositorio):
 		self.repositorio = repositorio
 
-	#UCXX - Criar Usuario
+	#UC12 - Adicionar Usuario
 	#param: dados: DTOUsuario
 	def criar(self, dados):
 		return self.repositorio.criarOuSalvar(dados)
 
-	#UCXX - Alterar Usuario
+	#UC13 - Alterar Usuario
 	#param: _id: IDUsuario, dados: DTOUsuario
 	def alterar(self, _id, dados):
 		return self.repositorio.criarOuSalvar(_id, dados)
@@ -21,7 +21,7 @@ class ServicoAplicacaoUsuario():
 	def listar(self):
 		return self.repositorio.listar()
 
-	#UCXX - Buscar Usuario
+	#UC04 - Buscar Usuario
 	#param: _id: IDUsuario
 	def obter(self, _id):
 		return self.repositorio.obter(_id)
