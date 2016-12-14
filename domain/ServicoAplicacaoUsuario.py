@@ -1,29 +1,44 @@
 #-*- coding: utf-8 -*-
 
+###########################################
+# ServicoAplicacaoUsuario.py
+#
+# Autor: Lucas de Carvalho (Lucas-CG) (lucas.gomes@poli.ufrj.br)
+#
+# Descrição: Implementa a classe ServicoAplicacaoUsuario.
+#            Essa classe modela um serviço CRUD para Usuários,
+#            que independe da implementação do armazenamento.
+#            Seus métodos criam, alteram, buscam e listam Usuários.
+#
+# Atributos: repositorio - Tipo: domain.RepositorioUsuario
+###########################################
+
 class ServicoAplicacaoUsuario():
-	"""Essa classe modela um serviço CRUD para Usuários.
-	Seus metodos criam, alteram, buscam e listam Usuários.
-	Seu único atributo é "repositorio", que deve herdar de RepositorioUsuario"""
 
 	def __init__(self, repositorio):
+
 		self.repositorio = repositorio
 
 	#UC12 - Adicionar Usuario
-	#param: dados: DTOUsuario
+	#parâmetros: dados: DTOUsuario
 	def criar(self, dados):
+
 		return self.repositorio.criarOuSalvar(dados)
 
 	#UC13 - Alterar Usuario
-	#param: _id: IDUsuario, dados: DTOUsuario
+	#parâmetros: _id: IDUsuario, dados: DTOUsuario
 	def alterar(self, _id, dados):
+
 		return self.repositorio.criarOuSalvar(_id, dados)
 
 	def listar(self):
+
 		return self.repositorio.listar()
 
 	#UC04 - Buscar Usuario
 	#param: _id: IDUsuario
 	def obter(self, _id):
+
 		return self.repositorio.obter(_id)
 
 

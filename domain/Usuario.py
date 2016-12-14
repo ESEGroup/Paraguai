@@ -1,16 +1,34 @@
 # -*- coding: utf-8 -*-
 
-from domain import SenhaCriptografada, Administrador, UsuarioComum, SistemaManutencao
+###########################################
+# Usuario.py
+#
+# Autor: Lucas de Carvalho (Lucas-CG) (lucas.gomes@poli.ufrj.br)
+#
+# Descrição: Implementa a classe Usuario.
+#            Essa classe modela os usuários do SAGRE UFRJ.
+#            Cada Usuário contém um nome, um endereço de e-mail,
+#            um nível de acesso, uma senha criptografada e um ID.
+#
+#
+# Atributos: nome - Tipo: string
+#            email - Tipo: string
+#            nivelAcesso - Tipo: domain.NivelAcesso (composição)
+#            senhaCriptografada - Tipo: domain.SenhaCriptografada (composição)
+#            id - Tipo: domain.IDUsuario (composição)
+#
+# Dependências: domain.[SenhaCriptografada, IDUsuario,
+#               Administrador, UsuarioComum, SistemaManutencao]
+###########################################
+
+
+from domain import NivelAcesso, SenhaCriptografada, IDUsuario, Administrador, UsuarioComum, SistemaManutencao
 
 class Usuario():
-"""Essa classe modela um Usuário para o nosso sistema.
-Possui campos de e-mail e telefone, e é associado a um objeto
-de NivelDeAcesso e a um objeto de SenhaCriptografada."""
 
-	def __init__(self, nome=None, email=None, nivelAcesso=None, senha, _id):
+	def __init__(self, nome=None, email=None, escolhaNivelAcesso=None, senha, _id):
 		self.nome = nome
 		self.email = email
-		self.nivelAcesso = nivelAcesso
 
 		escolha = {
 			0: UsuarioComum(),
@@ -18,13 +36,12 @@ de NivelDeAcesso e a um objeto de SenhaCriptografada."""
 			2: Administrador(),
 		}
 
-		self.nivelAcesso = escolha.get(nivelAcesso)
+		self.nivelAcesso = escolha.get(escolhaNivelAcesso)
 
 		#criptografa a senha passada na criação
 		self.senhaCriptografada = SenhaCriptografada(senha)
 
-		#_id deve ser um IDUsuario
-		self.id = _id
+		self.id = IDUsuario(_id)
 
 	def nivelDeAcesso():
 		return self.nivelAcesso
