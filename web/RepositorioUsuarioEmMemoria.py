@@ -1,28 +1,30 @@
 # -*- coding: utf-8 -*-
 
-###########################################
-# RepositorioUsuarioEmMemoria.py
-#
-# Autor: Lucas de Carvalho (Lucas-CG) (lucas.gomes@poli.ufrj.br)
-#
-# Descrição: Implementa a classe RepositorioUsuarioEmMemoria.
-#            Essa classe modela um Repositório de Usuários em memória,
-#            para armazenamento temporário e uso em mock tests.
-#
-# Atributos: usuarios - Tipo: Usuario[]
-#
-# Dependências: domain.RepositorioUsuario, domain.Usuario
-###########################################
+"""
+RepositorioUsuarioEmMemoria.py
 
-import domain.RepositorioUsuario
-import domain.Usuario
+Autor: Lucas de Carvalho (Lucas-CG) (lucas.gomes@poli.ufrj.br)
+
+Descrição: Implementa a classe RepositorioUsuarioEmMemoria.
+           Essa classe modela um Repositório de Usuários em memória,
+           para armazenamento temporário e uso em mock tests.
+
+Atributos: usuarios - Tipo: Usuario[]
+"""
+
+from domain.modelo.usuario.repositorio_usuario import RepositorioUsuario
+import domain.modelo.usuario.usuario import Usuario
 
 class RepositorioUsuarioEmMemoria(RepositorioUsuario):
+    """Essa classe modela um Repositório de Usuários em memória, para 
+    armazenamento temporário e uso em mock tests.
+    :param usuarios: Lista de Usuários armazenados (Usuario[])."""
+
     def __init__(self):
 
         self.usuarios = []
 
-    #parâmetros: dados: DTOUsuario
+
     def criar(self, usuario):
 
         _id = len(self.usuarios) + 1
@@ -32,7 +34,8 @@ class RepositorioUsuarioEmMemoria(RepositorioUsuario):
 
         return usuario
 
-    def atualizar(self, _id, usuario):
+
+    def alterar(self, _id, usuario):
 
         _id = len(self.usuarios) + 1
 
@@ -41,7 +44,7 @@ class RepositorioUsuarioEmMemoria(RepositorioUsuario):
 
         return usuario
 
-    #_id: - Tipo: int
+
     def obter(self, _id):
 
         return usuarios[_id]
