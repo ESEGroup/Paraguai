@@ -1,7 +1,7 @@
 from flask import render_template, flash, redirect, send_from_directory
 from app import app
 
-#Inndex
+#Index
 @app.route("/")
 @app.route('/index')
 def index():
