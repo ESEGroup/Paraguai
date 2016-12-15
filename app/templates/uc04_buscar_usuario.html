@@ -1,0 +1,64 @@
+<!-- extend base layout -->
+{% extends "base.html" %}
+
+{% block content %}
+  <div id="page-content-wrapper">
+    <button type="button" class="hamburger is-closed animated fadeInLeft" data-toggle="offcanvas">
+      <span class="hamb-top"></span>
+      <span class="hamb-middle"></span>
+      <span class="hamb-bottom"></span>
+    </button>
+      <div class="container">
+          <div class="row">
+              <div class="col-lg-8 col-lg-offset-2">
+              
+                <!-- ----------------------------------------------------------------------------- -->
+                <!-- CÓDIGO DE FORM COPIADO E ADAPTADO DO TEMPLATE DE FORM -->
+                <!-- ----------------------------------------------------------------------------- -->
+                
+                  <form class="well form-horizontal" action=" " method="post"  id="contact_form">
+                  <fieldset>
+
+                  <!-- Form Name -->
+                  <legend>Buscar Usuário</legend>
+
+                  <!-- Select Basic -->
+                     
+                  <div class="form-group"> 
+                    <label class="col-md-4 control-label">Nome do Usuário</label>
+                      <div class="col-md-4 selectContainer">
+                      <div class="input-group">
+                          <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
+                      <select name="nome" class="form-control selectpicker" >
+                        <option value=" " >Selecione a categoria</option>
+                        <option>Cat 1</option>
+                        <option>Cat 2</option>
+                        <option>Cat 3</option>
+                        <option>Cat 4</option>
+                      </select>
+                    </div>
+                  </div>
+                  </div>
+
+                  <!-- Button -->
+                  <div class="form-group">
+                    <label class="col-md-4 control-label"></label>
+                    <div class="col-md-4">
+                      <button type="submit" class="btn btn-info" >Enviar</button>
+                    </div>
+                  </div>
+
+                  </fieldset>
+                  </form>
+
+                <!-- ----------------------------------------------------------------------------- -->
+                <!-- FIM DO CÓDIGO DE FORM ADAPTADO (AINDA NÃO IDENTADO)     -->
+                <!-- ----------------------------------------------------------------------------- -->
+
+              </div>
+          </div>
+      </div>
+  </div>
+  <!-- /#page-content-wrapper -->
+
+{% endblock content %}
