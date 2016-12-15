@@ -11,11 +11,6 @@
       <div class="container">
           <div class="row">
               <div class="col-lg-8 col-lg-offset-2">
-              
-                <!-- ----------------------------------------------------------------------------- -->
-                <!-- CÓDIGO DE FORM COPIADO E ADAPTADO DO TEMPLATE DE FORM -->
-                <!-- ----------------------------------------------------------------------------- -->
-                
                   <form class="well form-horizontal" action=" " method="post"  id="contact_form">
                   <fieldset>
 
@@ -24,21 +19,39 @@
 
                   <!-- Select Basic -->
                      
-                  <div class="form-group"> 
-                    <label class="col-md-4 control-label">Nome do Usuário</label>
-                      <div class="col-md-4 selectContainer">
+                    <!-- Código -->
+                  <div class="form-group">
+                    <label class="col-md-4 control-label">Código</label>  
+                     <div class="col-md-4 inputGroupContainer">
                       <div class="input-group">
-                          <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
-                      <select name="nome" class="form-control selectpicker" >
-                        <option value=" " >Selecione a categoria</option>
-                        <option>Cat 1</option>
-                        <option>Cat 2</option>
-                        <option>Cat 3</option>
-                        <option>Cat 4</option>
-                      </select>
+                          <span class="input-group-addon"></span>
+                    <input name="codigo" placeholder="Código do Usuário" class="form-control" type="text">
+                      </div>
                     </div>
                   </div>
+
+                    <!-- Nome-->
+                  <div class="form-group">
+                    <label class="col-md-4 control-label">Nome</label>  
+                     <div class="col-md-4 inputGroupContainer">
+                      <div class="input-group">
+                          <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                    <input name="nome" placeholder="Nome do Usuário" class="form-control" type="text">
+                      </div>
+                    </div>
                   </div>
+
+                  <!-- Departamento-->
+                  <div class="form-group">
+                    <label class="col-md-4 control-label">Departamento</label>  
+                     <div class="col-md-4 inputGroupContainer">
+                      <div class="input-group">
+                          <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+                    <input name="departamento" placeholder="Departamento" class="form-control" type="text">
+                      </div>
+                    </div>
+                  </div>
+
 
                   <!-- Button -->
                   <div class="form-group">
@@ -50,11 +63,6 @@
 
                   </fieldset>
                   </form>
-
-                <!-- ----------------------------------------------------------------------------- -->
-                <!-- FIM DO CÓDIGO DE FORM ADAPTADO (AINDA NÃO IDENTADO)     -->
-                <!-- ----------------------------------------------------------------------------- -->
-
               </div>
           </div>
       </div>
