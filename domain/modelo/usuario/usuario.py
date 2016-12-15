@@ -1,14 +1,16 @@
 # -*- coding: utf-8 -*-
 
 ###########################################
-# Usuario.py
+# usuario.py
 #
 # Autor: Lucas de Carvalho (Lucas-CG) (lucas.gomes@poli.ufrj.br)
 #
-# Descrição: Implementa a classe Usuario.
-#            Essa classe modela os usuários do SAGRE UFRJ.
+# Descrição: Implementa as classes Usuario e IDUsuario.
+#            A classe Usuario modela os usuários do SAGR UFRJ.
 #            Cada Usuário contém um nome, um endereço de e-mail,
 #            um nível de acesso, uma senha criptografada e um ID.
+#
+#            IDs de Usuário são definidos pela classe IDUsuario.
 #
 #
 # Atributos: nome - Tipo: string
@@ -22,7 +24,12 @@
 ###########################################
 
 
-from domain import NivelAcesso, SenhaCriptografada, IDUsuario, Administrador, UsuarioComum, SistemaManutencao
+from senha_criptografada import *
+from nivel_acesso import *
+from domain.support import ID
+
+class IDUsuario(ID):
+	pass
 
 class Usuario():
 

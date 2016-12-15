@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ###########################################
-# RepositorioUsuario.py
+# repositorio_usuario.py
 #
 # Autor: Lucas de Carvalho (Lucas-CG) (lucas.gomes@poli.ufrj.br)
 #
@@ -14,8 +14,13 @@
 
 class RepositorioUsuario():
 
-	def criarOuSalvar(self, _id=None, usuario):
-		#Cria ou atualiza um Usuário no Repositório.
+	def criar(self, usuario):
+		#Cria um Usuário no Repositório.
+		#Parâmetros: _id - Tipo: int; usuario - Tipo: domain.Usuario
+		pass
+
+	def atualizar(self, _id=None, usuario):
+		#Atualiza um Usuário no Repositório.
 		#Parâmetros: _id - Tipo: int; usuario - Tipo: domain.Usuario
 		pass
 

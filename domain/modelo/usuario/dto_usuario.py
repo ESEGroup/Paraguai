@@ -1,7 +1,7 @@
 #-*- coding: utf-8 -*-
 
 ###########################################
-# DTOUsuario.py
+# dto_usuario.py
 #
 # Autor: Lucas de Carvalho (Lucas-CG) (lucas.gomes@poli.ufrj.br)
 #

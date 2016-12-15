@@ -1,8 +1,7 @@
 #-*- coding: utf-8 -*-
 
 ###########################################
-# SenhaCriptografada.py
-#
+# senha_criptografada.py
 # Autor: Lucas de Carvalho (Lucas-CG) (lucas.gomes@poli.ufrj.br)
 #
 # Descrição: Implementa a classe SenhaCriptografada.
