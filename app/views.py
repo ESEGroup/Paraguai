@@ -3,19 +3,17 @@ from app import app
 
 #Index
 @app.route("/")
-@app.route('/index')
+@app.route("/index")
 def index():
-    return render_template("home_logado.html",
-                            title='Home')
+    return render_template("/pages/index.html")
 
 @app.route("/buscar/recurso")
 def buscar_recurso():
-    return render_template("uc01_buscar_recurso.html")
+    return render_template("/recursos/index.html")
 
 @app.route("/buscar/usuario")
 def buscar_usuario():
-    return render_template("uc04_buscar_usuario.html")
-
+    return render_template("/usuarios/index.html")
 
 @app.route("/css/<path>")
 def serve_stylesheet(path):

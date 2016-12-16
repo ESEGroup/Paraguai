@@ -1,0 +1,54 @@
+{% extends "layout.html" %}
+
+{% block body %}
+
+    <!-- CONTEUDO ESPECIFICO DA PAGINA -->
+    <h5 class="page-header">Recursos</h5>
+    
+    <!-- TODO - ADICIONAR OPÇÕES DE FILTROS -->
+    
+    <!-- TABELA DE EXIBICAO DE RESULTADOS -->
+    <div class="table-responsive">
+        <table class="table table-striped table-bordered">
+            <th>
+                <td>Código</td>
+                <td>Nome</td>
+                <td>Categoria</td>
+                <td>Localização</td>
+                <td>Ações</td>
+            </th>
+            <tbody>
+                <tr>
+                    <td>001</td>
+                    <td>H-214</td>
+                    <td>Sala</td>
+                    <td>Bloco H</td>
+                    <td><button class="btn btn-info">Botão</button></td>
+                </tr>
+                <tr>
+                    <td>002</td>
+                    <td>Projetor Epson</td>
+                    <td>Projetor</td>
+                    <td>Sala H-209</td>
+                    <td><button class="btn btn-success">Botão</button></td>
+                </tr>
+                <tr>
+                    <td>003</td>
+                    <td>Canetas Pilot</td>
+                    <td>Itens de sala</td>
+                    <td>Sala H-214</td>
+                    <td><button class="btn btn-warning">Botão</button></td>
+                </tr>
+                <tr>
+                    <td>004</td>
+                    <td>CPU velha</td>
+                    <td>Computadores</td>
+                    <td>Sala H-211</td>
+                    <td><button class="btn btn-ufrj">Botão</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <!-- FIM DO CONTEUDO ESPECIFICO -->
+
+{% endblock body %}
