@@ -1,11 +1,17 @@
 class RepositorioRecurso():
-    def criar(self, recurso):
+    def criarOuSalvar(self, recurso):
         """
         Adiciona um recurso ao repositório
         """
         pass
 
     def todos(self):
+        pass
+
+    def obter(self,RecursoID):
+        pass
+
+    def remover(self,RecursoID):
         pass
 
     def buscar(self, recurso):
