@@ -7,9 +7,14 @@ from app import app
 def index():
     return render_template("pages/index.html")
 
+# UC01 Buscar Recurso
 @app.route("/buscar/recurso")
 def buscar_recurso():
     return render_template("recursos/index.html")
+
+@app.route("/criar/recurso")
+def criar_recurso():
+    return render_template("recursos/form.html")
 
 @app.route("/buscar/usuario")
 def buscar_usuario():

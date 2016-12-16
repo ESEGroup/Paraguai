@@ -17,9 +17,9 @@ _ _ recursos/detalhes
     - UC08 (alterar recurso)
     - UC11 (buscar agendamento)
     
-_ _ recursos/form
-    - UC07 (cadastrar recurso) * com legenda do botão = "Criar"
-    - UC08 (alterar recurso) * com legenda do botão = "Alterar"
+_OK_ recursos/form
+    - UC07 (cadastrar recurso) * com legenda do botão = "Criar" - Pronto
+    - UC08 (alterar recurso) * com legenda do botão = "Alterar" - Falta trocar o nome
 
 _ _ usuario/index
     - UC04 (buscar usuario)
