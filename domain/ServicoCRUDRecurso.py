@@ -16,6 +16,27 @@ class ServicoCRUDRecurso():
                       tipo = tipoRecurso )
         return self.repositorio.criarOuSalvar(novoRecurso)
 
+    # UC08 - Alterar recurso
+    def alterar(self, fonte):
+        """
+        Recebe um dicionário com id e os dados a serem alterados
+        """
+        if not fonte["id"]:
+            return None
+        recurso = self.repositorio.recurso_por_id(fonte["id"])
+
+        # -x-v Refatorar esse trecho para fazer iterando pelas propriedades:
+        if fonte["categoria"]:
+            tipoRecurso = self.repositorio.tipo_por_id(id = fonte["categoria"])
+            recurso.tipo = tipoRecurso
+        if fonte["nome"]:
+            recurso.nome = fonte["nome"]
+        if fonte["local"]:
+            recurso.local = fonte["local"]
+        # -x-^
+
+        return self.repositorio.criarOuSalvar(recurso)
+
     # UC01 - Buscar Recurso
     def buscar(self, id, nome, tipoID, intervalosLivres, localizacao):
         """
