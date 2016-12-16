@@ -33,18 +33,32 @@ class RepositorioRecursoEmMemoria(RepositorioRecurso):
         recursoComAgendamento.id = id
         self.recursos.append(recursoComAgendamento)
 
-
+    def criarOuSalvar(self, recurso):
+        if recurso.id:
+            recursoAlterado = self.recurso_por_id(recurso.id)
+            if recursoAlterado:
+                self.recursos[recursoAlterado.id - 1] = recurso
+            return recurso
+        return self.criar(recurso)
 
     def criar(self, recurso):
         recurso.id = len(self.recursos) + 1
         self.recursos.append(recurso)
         return recurso
 
-    def recurso_por_id(self, id):
-        return [elemento
-                for elemento
-                in self.recursos
-                if elemento.id == id]
+    def remover(self, RecursoID):
+        try:
+            del self.recursos[RecursoID - 1]
+            return True
+        except:
+            return False
+
+    def recurso_por_id(self, identificador):
+        print("BUSCA POR ID -> ",identificador)
+        try:
+            return self.recursos[int(identificador)-1]
+        except:
+            return None
 
     def buscar(self, recursoFiltro):
         if recursoFiltro.id:
