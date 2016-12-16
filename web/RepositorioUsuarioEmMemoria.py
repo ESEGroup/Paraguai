@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 """
-RepositorioUsuarioEmMemoria.py
+repositorio_usuario_em_memoria.py
 
 Autor: Lucas de Carvalho (Lucas-CG) (lucas.gomes@poli.ufrj.br)
 
@@ -37,10 +37,7 @@ class RepositorioUsuarioEmMemoria(RepositorioUsuario):
 
     def alterar(self, _id, usuario):
 
-        _id = len(self.usuarios) + 1
-
-        usuario = Usuario(dados.nome, dados.email, 1, dados.senha, _id)       
-        self.usuarios.append(usuario)
+        usuarios[_id] = Usuario(dados.nome, dados.email, 1, dados.senha, _id)
 
         return usuario
 
@@ -53,3 +50,14 @@ class RepositorioUsuarioEmMemoria(RepositorioUsuario):
     def listar(self):
 
         return self.usuarios
+        
+
+    def remover(self, _id):
+
+        del self.usuarios[_id]
+
+        return True
+
+
+
+
