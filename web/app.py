@@ -51,11 +51,29 @@ def recurso(id):
         return redirect("/recursos/buscar/")
     return render_template("recursos.html", recursos=crud_recurso.todos(), menu=gerarMenu())
 
-@App.route("/admin/recursos/novo")
+@App.route("/recursos/novo")
 def novo_recurso():
-    return render_template("form_recurso.html", tipos_recurso=[(tipo.nome,tipo.id) for tipo in crud_recurso.tipos()], recurso=Recurso(), menu=gerarMenu())
+    return render_template("form_recurso.html", tipos_recurso=[(tipo.nome,tipo.id) for tipo in crud_recurso.metadados["tipos"]], recurso=Recurso(), menu=gerarMenu())
 
-@App.route("/admin/recursos/novo", methods=["POST"])
+@App.route("/recurso/edit/<id>")
+def edit_recurso_form(id):
+    rec = repositorio_recurso.recurso_por_id(id)
+    print([ (p) for p in dir(rec) if not p.startswith('__') ])
+    if rec:
+        return render_template("form_recurso.html", tipos_recurso=[(tipo.nome,tipo.id) for tipo in crud_recurso.metadados["tipos"]], recurso=rec, menu=gerarMenu(), edit=True)
+    else:
+        print("EDIT EMPTY")
+
+@App.route("/recurso/edit/<id>", methods=["POST"])
+def edit_recurso(id):
+    rec = crud_recurso.alterar(request.form)
+    if rec:
+        return render_template("form_recurso.html", tipos_recurso=[(tipo.nome,tipo.id) for tipo in crud_recurso.metadados["tipos"]], recurso=rec, menu=gerarMenu(), edit=True)
+    else:
+        print("NAO ALTEROU")
+
+
+@App.route("/recurso/novo", methods=["POST"])
 def criar_recurso():
     recurso = crud_recurso.criar(request.form)
     return redirect("/")

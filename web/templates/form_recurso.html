@@ -1,22 +1,42 @@
 {% extends "layout.html" %}
 {% block body %}
-<form action="/recursos" method="POST">
+<form
+  action="/recurso{% if edit %}/edit/{{recurso.id}}{% else %}/novo{% endif %}"
+  method="POST"
+>
   <div class="form-group">
+    {% if edit %}
+    <input type="hidden" name="id" value="{{recurso.id}}">
+    {% endif %}
     <label for="nome">Nome</label>
-    <input type="text" class="form-control" id="nome" name="nome" placeholder="Nome">
+    <input type="text" class="form-control" id="nome" name="nome" placeholder="Nome"
+    {% if recurso.nome %}
+    value="{{recurso.nome}}"
+    {% endif %}
+    >
   </div>
   <div class="form-group">
     <label for="categoria">Categoria</label><br>
     <select class="selectpicker" data-width="100%" name="categoria">
         {% for label, valor in tipos_recurso %}
-        <option value="{{valor}}">{{label}}</option>
+        <option
+        {% if edit %}{% if recurso.tipo.id == valor %} selected {% endif %}{% endif %}
+        value="{{valor}}">{{label}}</option>
         {% endfor %}
     </select>
   </div>
   <div class="form-group">
     <label for="nome">Localização</label>
-    <input type="text" class="form-control" id="local" name="local" placeholder="Localização">
+    <input type="text" class="form-control" id="local" name="local" placeholder="Localização"
+    {% if recurso.localizacao %}
+    value="{{recurso.localizacao}}"
+    {% endif %}
+    >
   </div>
-  <button type="submit" class="btn btn-primary">Criar</button>
+  {% if edit %}
+  <button type="submit" class="btn btn-primary">Alterar</button>
+  {% else %}
+   <button type="submit" class="btn btn-primary">Criar</button>
+  {% endif %}
 </form>
 {% endblock body %}

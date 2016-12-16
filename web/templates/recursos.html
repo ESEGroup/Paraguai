@@ -10,11 +10,13 @@
     </th>
     <tbody>
       {% for recurso in recursos %}
+
         <tr>
-          <td>{{ recurso.id }}</td>
-          <td>{{ recurso.nome }}</td>
-          <td>{{ recurso.tipo.nome }}</td>
+            <td><a href="/recurso/edit/{{recurso.id}}">{{ recurso.id }}</a></td>
+            <td>{{ recurso.nome }}</td>
+            <td>{{ recurso.tipo.nome }}</td>
         </tr>
+
       {% endfor %}
     </tbody>
   </table>
