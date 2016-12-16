@@ -23,7 +23,7 @@ class ServicoCRUDRecurso():
         """
         if not fonte["id"]:
             return None
-        recurso = self.repositorio.recurso_por_id(fonte["id"])
+        recurso = self.repositorio.obter(fonte["id"])
 
         # -x-v Refatorar esse trecho para fazer iterando pelas propriedades:
         if fonte["categoria"]:
@@ -36,6 +36,9 @@ class ServicoCRUDRecurso():
         # -x-^
 
         return self.repositorio.criarOuSalvar(recurso)
+
+    def obter(self,id):
+        return self.repositorio.obter(id)
 
     # UC01 - Buscar Recurso
     def buscar(self, id, nome, tipoID, intervalosLivres, localizacao):

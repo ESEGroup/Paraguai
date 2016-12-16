@@ -35,7 +35,7 @@ class RepositorioRecursoEmMemoria(RepositorioRecurso):
 
     def criarOuSalvar(self, recurso):
         if recurso.id:
-            recursoAlterado = self.recurso_por_id(recurso.id)
+            recursoAlterado = self.obter(recurso.id)
             if recursoAlterado:
                 self.recursos[recursoAlterado.id - 1] = recurso
             return recurso
@@ -53,7 +53,7 @@ class RepositorioRecursoEmMemoria(RepositorioRecurso):
         except:
             return False
 
-    def recurso_por_id(self, identificador):
+    def obter(self, identificador):
         print("BUSCA POR ID -> ",identificador)
         try:
             return self.recursos[int(identificador)-1]
@@ -62,7 +62,7 @@ class RepositorioRecursoEmMemoria(RepositorioRecurso):
 
     def buscar(self, recursoFiltro):
         if recursoFiltro.id:
-            return self.recurso_por_id(recursoFiltro.id)
+            return self.obter(recursoFiltro.id)
 
         iter_recursos = iter(self.recursos)
         # Filtro por tipo

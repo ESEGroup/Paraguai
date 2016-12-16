@@ -57,7 +57,7 @@ def novo_recurso():
 
 @App.route("/recurso/edit/<id>")
 def edit_recurso_form(id):
-    rec = repositorio_recurso.recurso_por_id(id)
+    rec = repositorio_recurso.obter(id)
     print([ (p) for p in dir(rec) if not p.startswith('__') ])
     if rec:
         return render_template("form_recurso.html", tipos_recurso=[(tipo.nome,tipo.id) for tipo in crud_recurso.metadados["tipos"]], recurso=rec, menu=gerarMenu(), edit=True)
