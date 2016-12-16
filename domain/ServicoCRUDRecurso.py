@@ -14,7 +14,7 @@ class ServicoCRUDRecurso():
         novoRecurso = Recurso(nome = fonte["nome"],
                       local = fonte["local"],
                       tipo = tipoRecurso )
-        return self.repositorio.criar(novoRecurso)
+        return self.repositorio.criarOuSalvar(novoRecurso)
 
     # UC01 - Buscar Recurso
     def buscar(self, id, nome, tipoID, intervalosLivres, localizacao):
