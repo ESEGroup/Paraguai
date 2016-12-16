@@ -5,15 +5,15 @@ from app import app
 @app.route("/")
 @app.route("/index")
 def index():
-    return render_template("/pages/index.html")
+    return render_template("pages/index.html")
 
 @app.route("/buscar/recurso")
 def buscar_recurso():
-    return render_template("/recursos/index.html")
+    return render_template("recursos/index.html")
 
 @app.route("/buscar/usuario")
 def buscar_usuario():
-    return render_template("/usuarios/index.html")
+    return render_template("usuarios/index.html")
 
 @app.route("/css/<path>")
 def serve_stylesheet(path):
