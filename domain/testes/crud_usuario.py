@@ -3,6 +3,7 @@ import unittest
 from domain.usuario import DTOUsuario, Usuario, IDUsuario
 from domain.usuario.nivel_acesso import *
 from domain.usuario import ServicoCRUDUsuario
+from domain.excecoes import ExcecaoNivelAcessoInvalido
 from repositorios_memoria import RepositorioUsuarioEmMemoria
 
 class TesteCRUDUsuario(unittest.TestCase):
@@ -18,6 +19,7 @@ class TesteCRUDUsuario(unittest.TestCase):
         # Verificar que foi criado um Usuario
         self.assertEqual(Usuario, usuario.__class__)
         self.assertEqual("Bernardo", usuario.nome)
+        self.assertEqual("contato@bamorim.com", usuario.email)
 
         # Verificar que foi criado usuario com nível de acesso correto
         self.assertTrue(UsuarioComum(), usuario.nivelAcesso)
@@ -37,3 +39,7 @@ class TesteCRUDUsuario(unittest.TestCase):
         self.assertEqual(SistemaManutencao(), self.servico.criar(dto).nivelAcesso)
         dto.nivelAcesso = 2
         self.assertEqual(Administrador(), self.servico.criar(dto).nivelAcesso)
+        dto.nivelAcesso = 3
+
+        with self.assertRaises(ExcecaoNivelAcessoInvalido):
+            self.servico.criar(dto)

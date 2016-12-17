@@ -2,6 +2,7 @@
 from .usuario import Usuario
 from .nivel_acesso import *
 from .senha_criptografada import *
+from domain.excecoes import ExcecaoNivelAcessoInvalido
 
 class ServicoCRUDUsuario():
     """Essa classe modela um serviço CRUD para Usuários, que independe da
@@ -21,7 +22,11 @@ class ServicoCRUDUsuario():
             2: Administrador(),
         }
 
-        nivelAcesso = escolha[dados.nivelAcesso]
+        try:
+            nivelAcesso = escolha[dados.nivelAcesso]
+        except KeyError:
+            raise ExcecaoNivelAcessoInvalido
+
         senhaCriptografada = SenhaCriptografada(dados.senha)
         usuario = Usuario(dados.nome, dados.email, senhaCriptografada, nivelAcesso)
 
@@ -60,6 +65,3 @@ class ServicoCRUDUsuario():
         #cancela todos os agendamentos da lista
 
         return (self.repositorio.remover(_id), true)
-
-
-
