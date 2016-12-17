@@ -11,6 +11,10 @@ def index():
 @app.route("/buscar/recurso")
 def buscar_recurso():
     return render_template("recursos/index.html")
+    
+@app.route("/detalhar/recurso")
+def detalhar_recurso():
+    return render_template("recursos/detalhes.html")
 
 @app.route("/criar/recurso")
 def criar_recurso():
@@ -19,6 +23,10 @@ def criar_recurso():
 @app.route("/buscar/usuario")
 def buscar_usuario():
     return render_template("usuarios/index.html")
+    
+@app.route("/detalhar/usuario")
+def detalhar_usuario():
+    return render_template("usuarios/detalhes.html") 
     
 @app.route("/criar/usuario")
 def criar_usuario():
