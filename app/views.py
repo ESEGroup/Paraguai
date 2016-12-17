@@ -19,6 +19,10 @@ def criar_recurso():
 @app.route("/buscar/usuario")
 def buscar_usuario():
     return render_template("usuarios/index.html")
+    
+@app.route("/criar/usuario")
+def criar_usuario():
+    return render_template("usuarios/form.html")
 
 @app.route("/css/<path>")
 def serve_stylesheet(path):

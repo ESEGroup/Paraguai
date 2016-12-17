@@ -1,6 +1,4 @@
-@import "http://designmodo.github.io/Flat-UI/dist/css/flat-ui.min.css";
 @import "https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css";
-@import "https://daneden.github.io/animate.css/animate.min.css";
 /*-------------------------------*/
 /*           VARIABLES           */
 /*-------------------------------*/
@@ -23,7 +21,7 @@ html {
   background-color: transparent;
 }
 /*-------------------------------*/
-/*           Wrappers              */
+/*           Wrappers            */
 /*-------------------------------*/
 #wrapper {
   -moz-transition: all 0.5s ease;
@@ -265,28 +263,6 @@ html {
   bottom: 0;
   background-color: rgba(0, 0, 0, 0.5);
   z-index: 1;
-}
-/* SOME DEMO STYLES - NOT REQUIRED */
-body,
-html {
-  background-color: #ededed /*#583e7e*/;
-}
-body h1,
-body h2,
-body h3,
-body h4 {
-  color: rgba(33, 33, 33, 0.9);
-}
-body p,
-body blockquote {
-  color: rgba(33, 33, 33, 0.7);
-}
-body a {
-  color: rgba(33, 33, 33, 0.8);
-  text-decoration: underline;
-}
-body a:hover {
-  color: #101010;
 }
 /*------------------------------------------------*/
 /*           CSS PARA A TELA DE SIGNIN            */

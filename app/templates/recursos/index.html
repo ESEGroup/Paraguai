@@ -9,7 +9,7 @@
     <div class="row">
         <div id="search-by-id-box" class="col-sm-12 alert alert-info" align="center">
             Tamb&eacute;m &eacute; poss&iacute;vel <strong>filtrar</strong> a lista de recursos por:
-            <form class="form-inline" action="/recursos/buscar/" method="POST">
+            <form class="form-inline" action="/buscar/recurso" method="POST">
                 <div class="form-group">
                     <label class="sr-only">C&oacute;digo do Recurso</label>
                     <input type="text" class="form-control" name="id-recurso" id="id-recurso" placeholder="C&oacute;digo do Recurso"/>
@@ -33,7 +33,7 @@
     <div class="table-responsive">
         <table class="table table-striped table-bordered table-hover">
             <thead>
-                <tr>    
+                <tr>
                     <th>C&oacute;digo</th>
                     <th>Nome</th>
                     <th>Categoria</th>
@@ -41,19 +41,19 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
+                <tr class='clickable-row' data-url='www.google.com'>
                     <td>001</td>
                     <td>H-214</td>
                     <td>Sala</td>
                     <td>Bloco H</td>
                 </tr>
-                <tr>
+                <tr class='clickable-row' data-url='www.duckduckgo.com'>
                     <td>002</td>
                     <td>Projetor Epson</td>
                     <td>Projetor</td>
                     <td>Sala H-209</td>
                 </tr>
-                <tr>
+                <tr class='clickable-row' data-url='www.bing.com'>
                     <td>003</td>
                     <td>Canetas Pilot</td>
                     <td>Itens de sala</td>
