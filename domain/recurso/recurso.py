@@ -1,4 +1,8 @@
 from .tipo import TipoRecurso
+from domain.support import ID
+
+class IDRecurso(ID):
+    pass
 
 class Recurso():
     def __init__(self, nome=None, tipo=None, local=None, agendamentos=[]):
