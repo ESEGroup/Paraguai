@@ -24,11 +24,12 @@ class RepositorioUsuarioEmMemoria(RepositorioUsuario):
 
 
     def obter(self, _id):
-        return usuarios[_id]
+        return self.usuarios[_id.id-1]
 
 
     def listar(self):
         return self.usuarios
 
+    def remover(self, usuario):
         del self.usuarios[_id]
         return True
