@@ -1,4 +1,7 @@
 #-*- coding: utf-8 -*-
+from .usuario import Usuario
+from .nivel_acesso import *
+from .senha_criptografada import *
 
 class ServicoCRUDUsuario():
     """Essa classe modela um serviço CRUD para Usuários, que independe da
@@ -6,15 +9,23 @@ class ServicoCRUDUsuario():
     :param repositorio: Objeto de RepositorioUsuario"""
 
     def __init__(self, repositorio):
-
         self.repositorio = repositorio
 
 
     def criar(self, dados):
         """Cria um Usuário. Implementa o UC12 (Adicionar Usuário).
         :param dados: Objeto de DTOUsuario com os dados a serem inseridos."""
+        escolha = {
+            0: UsuarioComum(),
+            1: SistemaManutencao(),
+            2: Administrador(),
+        }
 
-        return self.repositorio.criar(dados)
+        nivelAcesso = escolha[dados.nivelAcesso]
+        senhaCriptografada = SenhaCriptografada(dados.senha)
+        usuario = Usuario(dados.nome, dados.email, senhaCriptografada, nivelAcesso)
+
+        return self.repositorio.criar(usuario)
 
 
     def alterar(self, _id, dados):
