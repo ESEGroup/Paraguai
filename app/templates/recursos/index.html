@@ -3,9 +3,8 @@
 {% block content %}
 
     <!-- CONTEUDO ESPECIFICO DA PAGINA -->
-    <h5 class="page-header">Recursos</h5>
+    <h2 class="page-header">Recursos</h2>
     
-    <!-- TODO - ADICIONAR OPÇÕES DE FILTROS -->
     <div class="row">
         <div id="search-by-id-box" class="col-sm-12 alert alert-info" align="center">
             Tamb&eacute;m &eacute; poss&iacute;vel <strong>filtrar</strong> a lista de recursos por:
@@ -23,8 +22,8 @@
                 <div class="form-group">
                     <label class="sr-only">Localiza&ccedil;&atilde;o do Recurso</label>
                     <input type="text" class="form-control" name="localizacao-recurso" id="localizacao-recurso" placeholder="Localiza&ccedil;&atilde;o do Recurso"/>
-                    <button type="submit" class="btn btn-primary"><i class="fa fa-search" aria-hidden="true"></i></button>
                 </div>
+                <button type="submit" class="btn btn-primary"><i class="fa fa-search" aria-hidden="true"></i></button>
             </form>
         </div>
     </div>
@@ -40,26 +39,26 @@
                     <th>Localização</th>
                 </tr>
             </thead>
-            <tbody>
-                <tr class='clickable-row' data-url='www.google.com'>
+            <tbody class='clickable-row'>
+                <tr data-url=''>
                     <td>001</td>
                     <td>H-214</td>
                     <td>Sala</td>
                     <td>Bloco H</td>
                 </tr>
-                <tr class='clickable-row' data-url='www.duckduckgo.com'>
+                <tr data-url=''>
                     <td>002</td>
                     <td>Projetor Epson</td>
                     <td>Projetor</td>
                     <td>Sala H-209</td>
                 </tr>
-                <tr class='clickable-row' data-url='www.bing.com'>
+                <tr data-url=''>
                     <td>003</td>
                     <td>Canetas Pilot</td>
                     <td>Itens de sala</td>
                     <td>Sala H-214</td>
                 </tr>
-                <tr>
+                <tr data-url=''>
                     <td>004</td>
                     <td>CPU velha</td>
                     <td>Computadores</td>

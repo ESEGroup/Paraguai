@@ -3,7 +3,8 @@ _OK_ sessoes/login
 
 _OK_ pages/index
 
-_TRABALHAR NESTA_ recursos/index
+_OK_ recursos/index
+TODO - Colocar templates do Jinja na tabela
     - UC01 (buscar recurso)
     - UC02 (agendar recurso)
     - UC03 (cancelar agendamento)
@@ -23,7 +24,8 @@ _SEMI_ recursos/form
     - UC07 (cadastrar recurso) * com legenda do botão = "Criar" - Pronto
     - UC08 (alterar recurso) * com legenda do botão = "Alterar" - Falta trocar a legenda do botão
 
-_ _ usuario/index
+_OK_ usuario/index
+TODO - Colocar templates do Jinja na tabela
     - UC04 (buscar usuario)
     - UC12 (cadastrar usuario)
     - UC13 (alterar usuario)
