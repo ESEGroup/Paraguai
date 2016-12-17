@@ -1,4 +1,5 @@
-from .TipoRecurso import TipoRecurso
+from .tipo import TipoRecurso
+
 class Recurso():
     def __init__(self, nome=None, tipo=None, local=None, agendamentos=[]):
         self.id = None
