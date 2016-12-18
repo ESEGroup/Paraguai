@@ -25,6 +25,11 @@ class RepositorioUsuario():
         :param _id: Número inteiro (int) que representa o ID do Usuário a ser buscado."""
         pass
 
+    def obter_por_email(self, email):
+        """Busca um Usuário do Repositório com um email específico e deve retorná-lo.
+        :param email: String com o email do usuário a ser buscado"""
+        pass
+
     def listar(self):
         """Retorna todos os Usuários armazenados no Repositório em uma lista."""
         pass

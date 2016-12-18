@@ -10,12 +10,15 @@ class SenhaCriptografada():
         """Construtor: converte uma senha em hash e armazena o hash.
         :param senha: String que representa a senha não criptografada."""
 
-        self.digest = hashlib.sha1(senha).hexdigest()
+        self.digest = self.crypto(senha)
 
     def verificar(self, senha):
         """Verifica se uma senha em texto plano é compatível
         com o hash armazenado. Usado em autenticações.
         :param senha: String que representa a senha a ser comparada"""
 
-        digestSenha = hashlib.sha1(senha).hexdigest()
-        return self.digest == digestSenha
+        return self.digest == self.crypto(senha)
+
+    def crypto(self, senha):
+        return hashlib.sha1(senha.encode('utf-8')).hexdigest()
+

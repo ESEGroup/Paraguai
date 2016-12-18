@@ -5,7 +5,7 @@ class DTOUsuario:
        :param nome: Nome do usuário
        :param email: Endereço de e-mail
        :param senha: Senha em texto plano não criptografada
-       :param nivelAcesso: Número inteiro que indica o nível de acesso
+       :param nivelAcesso: Número inteiro que indica o nível de acesso (0: UsuarioComum, 1: SistemaDeManutencao, 2: Administrador)
        """
 
     def __init__(self, nome=None, email=None, senha=None, nivelAcesso=None):

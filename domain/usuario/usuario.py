@@ -1,12 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from senha_criptografada import *
-from nivel_acesso import *
-from domain.support import ID
-
-class IDUsuario(ID):
-    "Value Object que armazena o ID de um Usuário."
-    pass
+from .nivel_acesso import *
 
 class Usuario():
     """Modela os usuários do SAGR UFRJ.
@@ -17,22 +11,15 @@ class Usuario():
     :param id: ID do Usuário (objeto de IDUsuario)
     """
 
-    def __init__(self, nome=None, email=None, escolhaNivelAcesso=None, senha, _id):
+    def __init__(self, nome, email, senhaCriptografada, nivelAcesso, id_usuario=None):
         self.nome = nome
         self.email = email
-
-        escolha = {
-            0: UsuarioComum(),
-            1: SistemaManutencao(),
-            2: Administrador(),
-        }
-
-        self.nivelAcesso = escolha.get(escolhaNivelAcesso)
+        self.nivelAcesso = nivelAcesso
 
         #criptografa a senha passada na criação
-        self.senhaCriptografada = SenhaCriptografada(senha)
+        self.senhaCriptografada = senhaCriptografada
 
-        self.id = IDUsuario(_id)
+        self.id = id_usuario
 
     def nivelDeAcesso():
         """Retorna o nível de acesso do Usuário (um objeto de NivelAcesso)."""

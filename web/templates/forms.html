@@ -1,0 +1,19 @@
+{% macro text_input(name, value) %}
+  <div class="form-group">
+    <label for="{{ name }}">{{ name.capitalize() }}</label>
+    <input type="text" class="form-control" name="{{ name }}" placeholder="{{ name.capitalize() }}" value="{{ value or "" }}">
+  </div>
+{% endmacro %}
+
+{% macro select(name, kv) %}
+  <div class="form-group">
+    <label for="{{ name }}">Categoria</label><br>
+    <select class="selectpicker" data-width="100%" name="{{ name }}">
+        {% for valor, label in kv %}
+        <option value="{{valor}}">{{label}}</option>
+        {% endfor %}
+    </select>
+  </div>
+{% endmacro %}
+
+{% block body %} {% endblock body %}
