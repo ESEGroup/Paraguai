@@ -1,6 +1,9 @@
+"""Fornece dados de teste para os CRUDs de Usuário e Recurso."""
+
 from domain.recurso import Recurso, TipoRecurso
 from domain.usuario import Usuario, SenhaCriptografada
 from domain.usuario.nivel_acesso import *
+from domain.usuario.senha_criptografada import SenhaCriptografada
 
 def email_para(nome):
     return nome.lower() + "@paraguai.com"

@@ -31,7 +31,7 @@ class ServicoCRUDUsuario():
         senhaCriptografada = SenhaCriptografada(dados.senha)
         usuario = Usuario(dados.nome, dados.email, senhaCriptografada, nivelAcesso)
 
-        if self.repositorio.obter_por_email(dados.email) != None:
+        if self.repositorio.obter_por_email(dados.email):
             raise ExcecaoUsuarioJaExistente
 
         return self.repositorio.criar(usuario)
@@ -46,20 +46,39 @@ class ServicoCRUDUsuario():
         if not usuario:
             raise ExcecaoUsuarioInexistente
 
+        #Usuário que possui o e-mail para o qual se deseja alterar
+        usuarioDoEmail = self.repositorio.obter_por_email(dados.email)
+
+        if usuarioDoEmail and usuarioDoEmail.id != _id:
+            raise ExcecaoUsuarioJaExistente
+
+        escolha = {
+            0: UsuarioComum(),
+            1: SistemaManutencao(),
+            2: Administrador(),
+        }
+
+        try:
+            usuario.nivelAcesso = escolha[dados.nivelAcesso]
+        except KeyError:
+            raise ExcecaoNivelAcessoInvalido            
+
         usuario.nome = dados.nome
         usuario.email = dados.email
 
-        if dados.senha != None:
+        if dados.senha:
             usuario.senhaCriptografada = SenhaCriptografada(dados.senha)
+              
 
         return self.repositorio.alterar(_id, usuario)
 
 
     def listar(self):
-        """Lista todos os Úsuários, retornando uma lista de objetos de Usuario.
+        """Lista todos os Usuários, retornando uma lista de objetos de Usuario.
         Implementa parte do UC04 (Buscar Usuário)."""
-
-        return self.repositorio.listar()
+        
+        #Não lista Usuários vazios (removidos)
+        return list( filter( lambda r: r, self.repositorio.listar() ) )
 
 
     def obter(self, _id):
@@ -79,7 +98,8 @@ class ServicoCRUDUsuario():
         """Remove o Usuário que possui o ID fornecido e o retorna, além de
         cancelar todos os seus Agendamentos. Implementa o UCXXX (Remover Usuário).
         :param _id: Número inteiro que representa o ID do Usuário desejado."""
-        #busca por agendamentos associados ao Usuário com id _id
+        
+        #TODO: buscar por agendamentos associados ao Usuário com id _id
 
         if not self.repositorio.obter(_id):
             raise ExcecaoUsuarioInexistente
