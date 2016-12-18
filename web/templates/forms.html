@@ -16,4 +16,11 @@
   </div>
 {% endmacro %}
 
+{% macro password_input(value) %}
+  <div class="form-group">
+    <label for="senha">Senha</label>
+    <input type="password" class="form-control" name="senha" value="{{ value or "" }}">
+  </div>
+{% endmacro %}
+
 {% block body %} {% endblock body %}

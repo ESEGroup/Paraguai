@@ -33,12 +33,12 @@ def editar(id_usuario):
 
 @view_usuarios.route("/<id_usuario>", methods=["POST"])
 def alterar(id_usuario):
-    dto = DTOUsuario(request.form["nome"], request.form["email"], request.form["senha"], request.form["nivelAcesso"])
+    dto = DTOUsuario(request.form["nome"], request.form["email"], request.form["senha"], int(request.form["nivelAcesso"]))
     current_app.crud_usuario.alterar(id_usuario, dto)
     return redirect(url_for('usuarios.index'))
 
 @view_usuarios.route("/", methods=["POST"])
 def criar():
-    dto = DTOUsuario(request.form["nome"], request.form["email"], request.form["senha"], request.form["nivelAcesso"])
+    dto = DTOUsuario(request.form["nome"], request.form["email"], request.form["senha"], int(request.form["nivelAcesso"]))
     current_app.crud_usuario.criar(dto)
     return redirect(url_for('usuarios.index'))

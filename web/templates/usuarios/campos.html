@@ -3,6 +3,6 @@
 {% block body %}
   {{ text_input("nome", dto_usuario.nome) }}
   {{ text_input("email", dto_usuario.email) }}
-  {{ text_input("senha", dto_usuario.senha) }}
+  {{ password_input(dto_usuario.senha) }}
   {{ select("nivelAcesso", niveisAcesso) }}
 {% endblock body %}
