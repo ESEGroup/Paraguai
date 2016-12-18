@@ -11,7 +11,11 @@ def index():
 
 @view_usuarios.route("/novo")
 def novo():
-    return render_template("usuarios/novo.html", dto_usuario=DTOUsuario())
+	niveisAcesso=[
+	(UsuarioComum(), "Usuário Comum"),
+	(SistemaManutencao(), "Sistema de Manutenção")
+	(Administrador(), "Administrador")]
+    return render_template("usuarios/novo.html", dto_usuario=DTOUsuario(), niveisAcesso=niveisAcesso)
 
 @view_usuarios.route("/<id_usuario>")
 def detalhes(id_usuario):

@@ -1,7 +1,8 @@
 {% extends "forms.html" %}
 
 {% block body %}
-  {{ text_input("nome", dto_recurso.nome) }}
-  {{ select("tipo", tipos_recurso) }}
-  {{ text_input("local", dto_recurso.local) }}
+  {{ text_input("nome", dto_usuario.nome) }}
+  {{ text_input("email", dto_usuario.email) }}
+  {{ text_input("senha", dto_usuario.senha) }}
+  {{ select("nivelAcesso", niveisAcesso) }}
 {% endblock body %}
