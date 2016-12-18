@@ -3,6 +3,7 @@ from .tipo import TipoRecurso
 from .filtro import FiltroRecurso
 from domain import IntervaloDeTempo
 from domain.excecoes import ExcecaoRecursoInexistente
+from domain.iso8601 import from_iso
 
 class ServicoCRUDRecurso():
     def __init__(self, repositorio):
@@ -40,14 +41,14 @@ class ServicoCRUDRecurso():
         return self.repositorio.obter(id)
 
     # UC01 - Buscar Recurso
-    def buscar(self, nome=None, tipoNome = None, intervalosLivres = [], local = None):
+    def buscar(self, dto):
         """
         :param tipoID: ID do TipoRecurso correspondente
         :param intervalosLivres: Lista de intervalos livres desejados contendo tuplas (inicio,fim) ou intervalos
         """
-        intervalosLivres = [IntervaloDeTempo(inicio,fim) for (inicio,fim) in intervalosLivres]
-        tipo = tipoNome and TipoRecurso(tipoNome)
-        filtro = FiltroRecurso(nome,tipo,local,intervalosLivres)
+        intervalosLivres = [IntervaloDeTempo(from_iso(inicio),from_iso(fim)) for (inicio,fim) in dto.intervalos]
+        tipo = dto.tipo and TipoRecurso(dto.tipo)
+        filtro = FiltroRecurso(dto.nome,tipo,dto.local,intervalosLivres)
         return self.repositorio.buscar(filtro)
 
     def listar(self):

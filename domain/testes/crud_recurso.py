@@ -1,6 +1,6 @@
 #-*- coding: utf-8 -8-
 import unittest
-from domain.recurso import Recurso, ServicoCRUDRecurso, TipoRecurso, DTORecurso
+from domain.recurso import Recurso, ServicoCRUDRecurso, TipoRecurso, DTORecurso, DTOBuscaRecurso
 from domain.excecoes import ExcecaoRecursoInexistente
 from repositorios_memoria import RepositorioRecursoEmMemoria
 
@@ -71,7 +71,8 @@ class TesteCRUDRecurso(unittest.TestCase):
         self.servico.criar(dto2)
         self.servico.criar(dto3)
 
-        recursos = self.servico.buscar(nome = "Projetor 2", local = "h201")
+        busca = DTOBuscaRecurso(nome = "Projetor 2", local="h201")
+        recursos = self.servico.buscar(busca)
         self.assertEqual(1, len(recursos))
         self.assertEqual("Projetor 2", recursos[0].nome)
         self.assertEqual("h201", recursos[0].local)
