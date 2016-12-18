@@ -3,8 +3,8 @@ from itertools import product
 from domain.recurso import RepositorioRecurso
 
 class RepositorioRecursoEmMemoria(RepositorioRecurso):
-    def __init__(self):
-        self.recursos = []
+    def __init__(self, recursos=[]):
+        self.recursos = recursos
 
     def criar(self, recurso):
         recurso.id = len(self.recursos) + 1

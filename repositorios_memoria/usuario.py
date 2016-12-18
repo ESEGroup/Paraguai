@@ -7,8 +7,8 @@ class RepositorioUsuarioEmMemoria(RepositorioUsuario):
     armazenamento temporário e uso em mock tests.
     :param usuarios: Lista de Usuários armazenados (Usuario[])."""
 
-    def __init__(self):
-        self.usuarios = []
+    def __init__(self, usuarios=[]):
+        self.usuarios = usuarios
 
     def criar(self, usuario):
         novo_id = len(self.usuarios) + 1

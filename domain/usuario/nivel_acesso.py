@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
-from domain.support import ValueObject
+import domain.support as sup
 
-class NivelAcesso(ValueObject):
+class NivelAcesso(sup.ValueObject):
     """Classe abstrata que modela um nível de acesso ao SAGR.
     Estabelece uma relação de composição com Usuário (é contido por Usuário)."""
     pass
