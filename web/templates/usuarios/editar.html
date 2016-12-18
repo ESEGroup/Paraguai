@@ -3,6 +3,6 @@
 <form action="{{ url_for('usuarios.alterar', id_usuario = id_usuario) }}" method="POST">
   {% include "usuarios/campos.html" %}
   <button type="submit" class="btn btn-primary">Alterar</button>
-  <a href="/usuarios/{{ id_usuario }}/remover" class="btn btn-primary">Deletar</a>
+  <a href="{{ url_for('usuarios.remover', id_usuario = id_usuario) }}" class="btn btn-primary">Deletar</a>
 </form>
 {% endblock body %}

@@ -43,7 +43,9 @@ class RepositorioUsuarioEmMemoria(RepositorioUsuario):
         fornecido. Pode levantar uma exceção do tipo IndexError caso não seja
         encontrado nenhum Usuário associado ao e-mail dado."""
         try:
-            return list(filter(lambda u: u.email == email, self.usuarios))[0]
+            usuariosExistentes = list(filter(lambda r: r, self.usuarios))
+            return list(filter(lambda u: u.email == email, usuariosExistentes))[0]
+            
         except IndexError:
             return None
 
@@ -55,9 +57,6 @@ class RepositorioUsuarioEmMemoria(RepositorioUsuario):
         """Remove o Usuário associado ao ID fornecido, se ele existir.
         Pode causar um IndexError, caso não exista um Usuário com o ID fornecido.
         :param _id: ID do Usuário a ser deletado."""
-        del self.usuarios[_id-1]
+        self.usuarios[_id-1] = None
         
-        for i in range(0, len(self.usuarios)):
-            self.usuarios[i].id = i+1
-
         return True

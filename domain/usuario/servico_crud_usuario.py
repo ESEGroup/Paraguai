@@ -46,6 +46,12 @@ class ServicoCRUDUsuario():
         if not usuario:
             raise ExcecaoUsuarioInexistente
 
+        #Usuário que possui o e-mail para o qual se deseja alterar
+        usuarioDoEmail = self.repositorio.obter_por_email(dados.email)
+
+        if usuarioDoEmail and usuarioDoEmail.id != _id:
+            raise ExcecaoUsuarioJaExistente
+
         escolha = {
             0: UsuarioComum(),
             1: SistemaManutencao(),
@@ -62,9 +68,7 @@ class ServicoCRUDUsuario():
 
         if dados.senha:
             usuario.senhaCriptografada = SenhaCriptografada(dados.senha)
-        
-        if self.repositorio.obter_por_email(dados.email):
-            raise ExcecaoUsuarioJaExistente            
+              
 
         return self.repositorio.alterar(_id, usuario)
 
@@ -72,8 +76,9 @@ class ServicoCRUDUsuario():
     def listar(self):
         """Lista todos os Usuários, retornando uma lista de objetos de Usuario.
         Implementa parte do UC04 (Buscar Usuário)."""
-
-        return self.repositorio.listar()
+        
+        #Não lista Usuários vazios (removidos)
+        return list( filter( lambda r: r, self.repositorio.listar() ) )
 
 
     def obter(self, _id):
