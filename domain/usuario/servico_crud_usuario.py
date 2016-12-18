@@ -1,8 +1,8 @@
 #-*- coding: utf-8 -*-
-from .usuario import Usuario
+from .usuario import Usuario, IDUsuario
 from .nivel_acesso import *
 from .senha_criptografada import *
-from domain.excecoes import ExcecaoNivelAcessoInvalido
+from domain.excecoes import *
 
 class ServicoCRUDUsuario():
     """Essa classe modela um serviço CRUD para Usuários, que independe da
@@ -16,6 +16,7 @@ class ServicoCRUDUsuario():
     def criar(self, dados):
         """Cria um Usuário. Implementa o UC12 (Adicionar Usuário).
         :param dados: Objeto de DTOUsuario com os dados a serem inseridos."""
+
         escolha = {
             0: UsuarioComum(),
             1: SistemaManutencao(),
@@ -30,6 +31,9 @@ class ServicoCRUDUsuario():
         senhaCriptografada = SenhaCriptografada(dados.senha)
         usuario = Usuario(dados.nome, dados.email, senhaCriptografada, nivelAcesso)
 
+        if self.repositorio.obter_por_email(dados.email) != None:
+            raise ExcecaoUsuarioJaExistente
+
         return self.repositorio.criar(usuario)
 
 
@@ -37,15 +41,26 @@ class ServicoCRUDUsuario():
         """Atualiza os dados de um Usuário. Implementa o UC13 (Alterar Usuário).
         :param _id: Número inteiro que representa o ID do Usuário desejado.
         :param dados: Objeto de DTOUsuario com os dados a serem inseridos."""
+        id = IDUsuario(_id)
 
-        return self.repositorio.alterar(_id, dados)
+        usuario = self.repositorio.obter(id)
+        if usuario == None:
+            raise ExcecaoUsuarioInexistente
+
+        usuario.nome = dados.nome
+        usuario.email = dados.email
+
+        if dados.senha != None:
+            usuario.senhaCriptografada = SenhaCriptografada(dados.senha)
+
+        return self.repositorio.alterar(id, usuario)
 
 
     def listar(self):
         """Lista todos os Úsuários, retornando uma lista de objetos de Usuario.
         Implementa parte do UC04 (Buscar Usuário)."""
 
-        return self.repositorio.todos()
+        return self.repositorio.listar()
 
 
     def obter(self, _id):
@@ -53,7 +68,7 @@ class ServicoCRUDUsuario():
         parte do UC04 (Buscar Usuário).
         :param _id: Número inteiro que representa o ID do Usuário desejado."""
 
-        return self.repositorio.obter(_id)
+        return self.repositorio.obter(IDUsuario(_id))
 
 
     def remover(self, _id):
