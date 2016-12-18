@@ -3,14 +3,16 @@ from .usuario import Usuario
 from .nivel_acesso import *
 from .senha_criptografada import *
 from domain.excecoes import *
+from domain.email import EmailUsuarioCadastrado, EmailUsuarioAlterado, EmailUsuarioRemovido
 
 class ServicoCRUDUsuario():
     """Essa classe modela um serviço CRUD para Usuários, que independe da
     implementação do armazenamento.
     :param repositorio: Objeto de RepositorioUsuario"""
 
-    def __init__(self, repositorio):
+    def __init__(self, repositorio, servico_email):
         self.repositorio = repositorio
+        self.servico_email = servico_email
 
 
     def criar(self, dados):
@@ -34,7 +36,12 @@ class ServicoCRUDUsuario():
         if self.repositorio.obter_por_email(dados.email):
             raise ExcecaoUsuarioJaExistente
 
-        return self.repositorio.criar(usuario)
+        usuario = self.repositorio.criar(usuario)
+
+        email = EmailUsuarioCadastrado(usuario, dados.senha)
+        self.servico_email.enviar(usuario.email, email)
+
+        return usuario
 
 
     def alterar(self, _id, dados):
@@ -70,7 +77,12 @@ class ServicoCRUDUsuario():
             usuario.senhaCriptografada = SenhaCriptografada(dados.senha)
               
 
-        return self.repositorio.alterar(_id, usuario)
+        novoUsuario = self.repositorio.alterar(_id, usuario)
+
+        email = EmailUsuarioAlterado(novoUsuario)
+        self.servico_email.enviar(novoUsuario.email, email)
+
+        return novoUsuario
 
 
     def listar(self):
@@ -101,8 +113,12 @@ class ServicoCRUDUsuario():
         
         #TODO: buscar por agendamentos associados ao Usuário com id _id
 
-        if not self.repositorio.obter(_id):
+        usuario = self.repositorio.obter(_id)
+        if not usuario:
             raise ExcecaoUsuarioInexistente
+
+        email = EmailUsuarioRemovido(usuario)
+        self.servico_email.enviar(usuario.email, email)
 
         #TODO: cancela todos os agendamentos da lista
 
