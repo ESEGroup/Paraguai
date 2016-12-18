@@ -46,6 +46,17 @@ class ServicoCRUDUsuario():
         if not usuario:
             raise ExcecaoUsuarioInexistente
 
+        escolha = {
+            0: UsuarioComum(),
+            1: SistemaManutencao(),
+            2: Administrador(),
+        }
+
+        try:
+            usuario.nivelAcesso = escolha[dados.nivelAcesso]
+        except KeyError:
+            raise ExcecaoNivelAcessoInvalido            
+
         usuario.nome = dados.nome
         usuario.email = dados.email
 

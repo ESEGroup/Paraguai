@@ -21,6 +21,6 @@ class Usuario():
 
         self.id = id_usuario
 
-    def nivelDeAcesso():
+    def nivelDeAcesso(self):
         """Retorna o nível de acesso do Usuário (um objeto de NivelAcesso)."""
         return self.nivelAcesso

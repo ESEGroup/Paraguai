@@ -39,5 +39,9 @@ class RepositorioUsuarioEmMemoria(RepositorioUsuario):
         return self.usuarios
 
     def remover(self, _id):
-        self.usuarios[_id-1] = None
+        del self.usuarios[_id-1]
+        
+        for i in range(0, len(self.usuarios)):
+            self.usuarios[i].id = i+1
+
         return True

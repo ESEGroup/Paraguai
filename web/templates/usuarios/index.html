@@ -6,6 +6,7 @@
         <td>ID</td>
         <td>Nome</td>
         <td>E-mail</td>
+        <td></td>
       </tr>
     </th>
     <tbody>
@@ -14,6 +15,7 @@
           <td>{{ usuario.id }}</td>
           <td>{{ usuario.nome }}</td>
           <td>{{ usuario.email }}</td>
+          <td><a href="/usuarios/{{ usuario.id }}/editar" class="btn btn-primary">Editar Usuário</a></td>       
         </tr>
       {% endfor %}
     </tbody>
