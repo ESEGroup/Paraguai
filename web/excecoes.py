@@ -1,8 +1,8 @@
 class ExcecaoParaguaiWeb(Exception):
     pass
 
-class ExcesaoNaoAutenticado(Exception):
+class ExcecaoNaoAutenticado(Exception):
     pass
 
-class ExcesaoNaoAutorizado(Exception):
+class ExcecaoNaoAutorizado(Exception):
     pass

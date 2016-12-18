@@ -5,9 +5,13 @@ from domain.autenticacao import ServicoAutenticacao
 from repositorios_memoria.recurso import RepositorioRecursoEmMemoria
 from repositorios_memoria.usuario import RepositorioUsuarioEmMemoria
 from web.mocks import recursos, usuarios
+from web.tratamento_excecoes import registrar_capturas
+from web.autenticacao import registrar_precarregar_usuario
 
 def create_app():
     app = Flask(__name__)
+    registrar_capturas(app)
+    registrar_precarregar_usuario(app)
 
     app.secret_key = 'notthatsecret'
 

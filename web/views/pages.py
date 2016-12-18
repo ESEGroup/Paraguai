@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template
-from web.decoradores import requer_usuario
+from web.autenticacao import requer_usuario
 
 pages = Blueprint('pages', __name__)
 
