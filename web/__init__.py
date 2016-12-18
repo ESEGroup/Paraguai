@@ -7,6 +7,8 @@ from repositorios_memoria.usuario import RepositorioUsuarioEmMemoria
 from web.mocks import recursos, usuarios
 from web.tratamento_excecoes import registrar_capturas
 from web.autenticacao import registrar_precarregar_usuario
+from web.email import ServicoEmailConsole
+from web.email.formatadores import FORMATADORES_PADRAO
 
 def create_app():
     app = Flask(__name__)
@@ -15,13 +17,15 @@ def create_app():
 
     app.secret_key = 'notthatsecret'
 
+    formatadores = [klasse() for klasse in FORMATADORES_PADRAO]
     # Instanciando adapters
     app.repositorio_recurso = RepositorioRecursoEmMemoria(recursos)
     app.repositorio_usuario = RepositorioUsuarioEmMemoria(usuarios)
+    app.servico_email = ServicoEmailConsole(formatadores)
 
     # Instanciando serviço hexagonal
     app.crud_recurso = ServicoCRUDRecurso(app.repositorio_recurso)
-    app.crud_usuario = ServicoCRUDUsuario(app.repositorio_usuario)
+    app.crud_usuario = ServicoCRUDUsuario(app.repositorio_usuario,app.servico_email)
 
     # Instanciando serviço de autenticacao
 
