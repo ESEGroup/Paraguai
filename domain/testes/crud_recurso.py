@@ -1,6 +1,6 @@
 #-*- coding: utf-8 -8-
 import unittest
-from domain.recurso import Recurso, ServicoCRUDRecurso, TipoRecurso
+from domain.recurso import Recurso, ServicoCRUDRecurso, TipoRecurso, DTORecurso
 from domain.excecoes import ExcecaoRecursoInexistente
 from repositorios_memoria import RepositorioRecursoEmMemoria
 
@@ -10,7 +10,7 @@ class TesteCRUDRecurso(unittest.TestCase):
         self.servico = ServicoCRUDRecurso(self.repositorio)
 
     def test_criar_ok(self):
-        dto = {"nome": "Projetor 1", "tipo": "projetor", "local": "h201"}
+        dto = DTORecurso("Projetor 1", "projetor", "h201")
         total_anterior = len(self.repositorio.recursos)
         recurso = self.servico.criar(dto)
 
@@ -26,17 +26,17 @@ class TesteCRUDRecurso(unittest.TestCase):
         self.assertEqual(recurso, self.repositorio.obter(recurso.id))
 
     def test_alterar(self):
-        dto = {"nome": "Projetor 1", "tipo": "projetor", "local": "h201"}
+        dto = DTORecurso("Projetor 1", "projetor", "h201")
         recurso = self.servico.criar(dto)
 
-        dto["nome"] = "Projetor Novo"
+        dto.nome = "Projetor Novo"
         self.servico.alterar(int(recurso.id), dto)
 
         recurso_novo = self.repositorio.obter(recurso.id)
         self.assertEqual("Projetor Novo", recurso_novo.nome)
 
     def test_inexistente(self):
-        dto = {"nome": "Projetor 1", "tipo": "projetor", "local": "h201"}
+        dto = DTORecurso("Projetor 1", "projetor", "h201")
         with self.assertRaises(ExcecaoRecursoInexistente):
             self.servico.alterar(1234, dto)
 
@@ -44,7 +44,7 @@ class TesteCRUDRecurso(unittest.TestCase):
             self.servico.remover(1234)
 
     def test_remover(self):
-        dto = {"nome": "Projetor 1", "tipo": "projetor", "local": "h201"}
+        dto = DTORecurso("Projetor 1", "projetor", "h201")
         recurso = self.servico.criar(dto)
 
         self.servico.remover(recurso.id)
@@ -52,20 +52,20 @@ class TesteCRUDRecurso(unittest.TestCase):
         self.assertEqual(None, self.repositorio.obter(recurso.id))
 
     def test_listar(self):
-        dto1 = {"nome": "Projetor 1", "tipo": "projetor", "local": "h201"}
-        dto2 = {"nome": "Projetor 2", "tipo": "projetor", "local": "h201"}
+        dto1 = DTORecurso("Projetor 1", "projetor", "h201")
+        dto2 = DTORecurso("Projetor 2", "projetor", "h201")
 
         self.servico.criar(dto1)
         self.servico.criar(dto2)
 
         nomes = list(map(lambda r: r.nome, self.servico.listar()))
-        self.assertIn(dto1["nome"], nomes)
-        self.assertIn(dto2["nome"], nomes)
+        self.assertIn(dto1.nome, nomes)
+        self.assertIn(dto2.nome, nomes)
 
     def test_buscar(self):
-        dto1 = {"nome": "Projetor 1", "tipo": "projetor", "local": "h201"}
-        dto2 = {"nome": "Projetor 2", "tipo": "projetor", "local": "h201"}
-        dto3 = {"nome": "Projetor 2", "tipo": "projetor", "local": "h202"}
+        dto1 = DTORecurso("Projetor 1", "projetor", "h201")
+        dto2 = DTORecurso("Projetor 2", "projetor", "h201")
+        dto3 = DTORecurso("Projetor 2", "projetor", "h202")
 
         self.servico.criar(dto1)
         self.servico.criar(dto2)

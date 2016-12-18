@@ -9,16 +9,16 @@ class ServicoCRUDRecurso():
         self.repositorio = repositorio
 
     # UC07 - Cadastrar Recurso
-    def criar(self, fonte):
-        tipo = TipoRecurso(fonte["tipo"])
+    def criar(self, dto):
+        tipo = TipoRecurso(dto.tipo)
         novoRecurso = Recurso(
-                      nome = fonte["nome"],
-                      local = fonte["local"],
-                      tipo = tipo )
+                      nome = dto.nome,
+                      local = dto.local,
+                      tipo = tipo)
         return self.repositorio.criar(novoRecurso)
 
     # UC08 - Alterar recurso
-    def alterar(self, id, fonte):
+    def alterar(self, id, dto):
         """
         Recebe um id e um dicionário com os dados a serem alterados
         """
@@ -26,15 +26,13 @@ class ServicoCRUDRecurso():
         if recurso == None:
             raise ExcecaoRecursoInexistente
 
-        # -x-v Refatorar esse trecho para fazer iterando pelas propriedades:
-        if fonte["tipo"]:
-            tipo = TipoRecurso(fonte["tipo"])
+        if dto.tipo:
+            tipo = TipoRecurso(dto.tipo)
             recurso.tipo = tipo
-        if fonte["nome"]:
-            recurso.nome = fonte["nome"]
-        if fonte["local"]:
-            recurso.local = fonte["local"]
-        # -x-^
+        if dto.nome:
+            recurso.nome = dto.nome
+        if dto.local:
+            recurso.local = dto.local
 
         return self.repositorio.criarOuSalvar(recurso)
 
