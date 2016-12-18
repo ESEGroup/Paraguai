@@ -1,21 +1,24 @@
+"""Fornece dados de teste para os CRUDs de Usuário e Recurso."""
+
 from domain.recurso import Recurso, TipoRecurso
 from domain.usuario import Usuario
 from domain.usuario.nivel_acesso import *
+from domain.usuario.senha_criptografada import SenhaCriptografada
 
 def email_para(nome):
-    nome.lower + "@paraguai.com"
+    return nome.lower() + "@paraguai.com"
 
-def base_user(i, nome, email=None, pw=None, nivel=None):
-    return Usuario(nome, email or email_para(nome), pw or nome.lower(), nivel, int(i))
+def base_user(i, nome, email=None, nivel=None):
+    return Usuario(nome, email or email_para(nome), SenhaCriptografada(nome.lower()), nivel, int(i))
 
-def adm(i, nome, email=None, pw=None):
-    return base_user(i,nome,Administrador(),pw)
+def adm(i, nome, email=None):
+    return base_user(i, nome, email, Administrador())
 
-def usr(i, nome, email=None, pw=None):
-    return base_user(i,nome,UsuarioComum(),pw)
+def usr(i, nome, email=None):
+    return base_user(i, nome, email, UsuarioComum())
 
-def sis(i, nome, email=None, pw=None):
-    return base_user(i,nome,SistemaManutencao(),pw)
+def sis(i, nome, email=None):
+    return base_user(i, nome, email, SistemaManutencao())
 
 usuarios = [
     adm(1, "Bernardo"),

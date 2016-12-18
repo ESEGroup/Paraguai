@@ -20,7 +20,3 @@ class Usuario():
         self.senhaCriptografada = senhaCriptografada
 
         self.id = id_usuario
-
-    def nivelDeAcesso():
-        """Retorna o nível de acesso do Usuário (um objeto de NivelAcesso)."""
-        return self.nivelAcesso
