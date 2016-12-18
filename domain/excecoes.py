@@ -7,5 +7,11 @@ class ExcecaoNivelAcessoInvalido(ExcecaoParaguai):
 class ExcecaoUsuarioJaExistente(ExcecaoParaguai):
     pass
 
-class ExcecaoUsuarioInexistente(ExcecaoParaguai):
+class ExcecaoEntidadeInexistente(ExcecaoParaguai):
+    pass
+
+class ExcecaoUsuarioInexistente(ExcecaoEntidadeInexistente):
+    pass
+
+class ExcecaoRecursoInexistente(ExcecaoEntidadeInexistente):
     pass

@@ -12,3 +12,6 @@ class ValueObject():
 class ID(ValueObject):
     def __init__(self, id):
         self.id = id
+
+    def __int__(self):
+        return self.id

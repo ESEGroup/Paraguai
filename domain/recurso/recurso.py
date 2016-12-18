@@ -5,14 +5,9 @@ class IDRecurso(ID):
     pass
 
 class Recurso():
-    def __init__(self, nome=None, tipo=None, local=None, agendamentos=[]):
-        self.id = None
+    def __init__(self, nome, tipo, local, agendamentos=[], id=None):
+        self.id = id
         self.nome = nome
-        self.localizacao = local
-        if not tipo:
-            tipo = TipoRecurso(0)
+        self.local = local
         self.tipo = tipo
         self.agendamentos = agendamentos
-
-    def __str__(self):
-        return nome
