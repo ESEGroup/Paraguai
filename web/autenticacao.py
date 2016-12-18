@@ -6,10 +6,12 @@ from domain.usuario.nivel_acesso import Administrador
 def registrar_precarregar_usuario(app):
     @app.before_request
     def precarregar_usuario():
-        concessao = session.get('concessao')
-        if concessao:
-            g.usuario = current_app.autenticacao.usuario(concessao)
-            g.nivelAcesso = current_app.autenticacao.nivel(concessao)
+        id_usuario = session.get('id_usuario')
+        usuario = id_usuario and current_app.repositorio_usuario.obter(id_usuario)
+
+        if usuario:
+            g.usuario = usuario
+            g.nivelAcesso = usuario.nivelAcesso
             g.admin = g.nivelAcesso == Administrador()
         else:
             g.usuario = None

@@ -8,11 +8,10 @@ def login():
 
 @view_sessoes.route("/login", methods=["POST"])
 def autenticar():
-    print("HELLO")
-    concessao = current_app.autenticacao.autenticar(request.form['email'], request.form['senha'])
+    usuario = current_app.autenticacao.autenticar(request.form['email'], request.form['senha'])
 
-    if concessao:
-        session['concessao'] = concessao
+    if usuario:
+        session['id_usuario'] = usuario.id
         flash('Autenticação bem sucedida')
         return redirect(url_for('pages.index'))
     else:
@@ -22,5 +21,5 @@ def autenticar():
 
 @view_sessoes.route("/logout")
 def logout():
-    session.pop('concessao', None)
+    session.pop('id_usuario', None)
     return redirect(url_for('sessoes.login'))
