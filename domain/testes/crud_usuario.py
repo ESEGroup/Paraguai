@@ -93,6 +93,9 @@ class TesteCRUDUsuario(unittest.TestCase):
         self.assertEqual(None,self.servico.obter(1234))
 
         with self.assertRaises(ExcecaoUsuarioInexistente):
+            self.servico.remover(1234)
+
+        with self.assertRaises(ExcecaoUsuarioInexistente):
             self.servico.alterar(1234,self.dto())
 
     def test_listar(self):
@@ -106,3 +109,16 @@ class TesteCRUDUsuario(unittest.TestCase):
         emails = map(lambda u: u.email, usuarios)
         self.assertIn(dto.email, emails)
         self.assertIn(dto2.email, emails)
+
+    def test_remover(self):
+        usuario = self.servico.criar(self.dto())
+
+        self.servico.remover(usuario.id.id)
+        self.assertEqual(None, self.repositorio.obter(usuario.id))
+
+    def test_remocao_dupla(self):
+        id = self.servico.criar(self.dto()).id.id
+
+        self.servico.remover(id)
+        with self.assertRaises(ExcecaoUsuarioInexistente):
+            self.servico.remover(id)

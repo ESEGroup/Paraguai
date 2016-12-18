@@ -78,5 +78,7 @@ class ServicoCRUDUsuario():
         #busca por agendamentos associados ao Usuário com id _id
 
         #cancela todos os agendamentos da lista
+        if self.repositorio.obter(IDUsuario(_id)) == None:
+            raise ExcecaoUsuarioInexistente
 
-        return (self.repositorio.remover(_id), true)
+        return (self.repositorio.remover(IDUsuario(_id)), True)
