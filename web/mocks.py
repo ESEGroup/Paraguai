@@ -20,17 +20,13 @@ def adm(i, nome, email=None, pw=None):
 def usr(i, nome, email=None, pw=None):
     return base_user(i,nome,email,pw,UsuarioComum())
 
-def sis(i, nome, email=None, pw=None):
-    return base_user(i,nome,email,pw,SistemaManutencao())
-
 usuarios = [
     adm(1, "Bernardo"),
     adm(2, "Lucas"),
     adm(3, "Olavo"),
     adm(4, "Varlen"),
     adm(5, "Felipe"),
-    usr(6, "Plebeu"),
-    sis(7, "Breno")
+    usr(6, "Plebeu")
 ]
 
 # ---- RECURSO ----
