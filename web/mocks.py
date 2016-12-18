@@ -1,24 +1,27 @@
 """Fornece dados de teste para os CRUDs de Usuário e Recurso."""
 
 from domain.recurso import Recurso, TipoRecurso
-from domain.usuario import Usuario
+from domain.usuario import Usuario, SenhaCriptografada
 from domain.usuario.nivel_acesso import *
 from domain.usuario.senha_criptografada import SenhaCriptografada
 
 def email_para(nome):
     return nome.lower() + "@paraguai.com"
 
-def base_user(i, nome, email=None, nivel=None):
-    return Usuario(nome, email or email_para(nome), SenhaCriptografada(nome.lower()), nivel, int(i))
+def base_user(i, nome, email=None, pw=None, nivel=None):
+    return Usuario(
+        nome = nome,
+        email = email or email_para(nome),
+        senhaCriptografada = SenhaCriptografada(pw or nome.lower()),
+        nivelAcesso = nivel,
+        id_usuario = int(i)
+    )
 
-def adm(i, nome, email=None):
-    return base_user(i, nome, email, Administrador())
+def adm(i, nome, email=None, pw=None):
+    return base_user(i,nome,email,pw,Administrador())
 
-def usr(i, nome, email=None):
-    return base_user(i, nome, email, UsuarioComum())
-
-def sis(i, nome, email=None):
-    return base_user(i, nome, email, SistemaManutencao())
+def usr(i, nome, email=None, pw=None):
+    return base_user(i,nome,email,pw,UsuarioComum())
 
 usuarios = [
     adm(1, "Bernardo"),
@@ -26,8 +29,7 @@ usuarios = [
     adm(3, "Olavo"),
     adm(4, "Varlen"),
     adm(5, "Felipe"),
-    usr(6, "Plebeu"),
-    sis(7, "Breno")
+    usr(6, "Plebeu")
 ]
 
 # ---- RECURSO ----

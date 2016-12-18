@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Sistema de Agendamento de Recursos da UFRJ</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+
+    <!-- BOOTSTRAP CSS -->
+    <link rel='stylesheet prefetch' href='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css'>
+
+    <!-- DATEPICKER CSS -->
+    <link rel="stylesheet" href="/dependencies/bootstrap-datetimepicker-master/build/css/bootstrap-datetimepicker.css">
+
+    <!-- CUSTOM CSS -->
+    <link rel="stylesheet" href="{{url_for('assets.send', path='style.css')}}">
+  </head>
+  <body>
+    {% block outer %} {% endblock outer %}
+    <!-- /#wrapper -->
+    <script src='//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+    <script src='//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js'></script>
+
+    <script src="{{url_for('assets.send', path='index.js')}}"></script>
+  </body>
+</html>

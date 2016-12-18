@@ -1,12 +1,19 @@
 from flask import Flask
 from domain.recurso import ServicoCRUDRecurso
 from domain.usuario import ServicoCRUDUsuario
+from domain.autenticacao import ServicoAutenticacao
 from repositorios_memoria.recurso import RepositorioRecursoEmMemoria
 from repositorios_memoria.usuario import RepositorioUsuarioEmMemoria
 from web.mocks import recursos, usuarios
+from web.tratamento_excecoes import registrar_capturas
+from web.autenticacao import registrar_precarregar_usuario
 
 def create_app():
     app = Flask(__name__)
+    registrar_capturas(app)
+    registrar_precarregar_usuario(app)
+
+    app.secret_key = 'notthatsecret'
 
     # Instanciando adapters
     app.repositorio_recurso = RepositorioRecursoEmMemoria(recursos)
@@ -15,6 +22,10 @@ def create_app():
     # Instanciando serviço hexagonal
     app.crud_recurso = ServicoCRUDRecurso(app.repositorio_recurso)
     app.crud_usuario = ServicoCRUDUsuario(app.repositorio_usuario)
+
+    # Instanciando serviço de autenticacao
+
+    app.autenticacao = ServicoAutenticacao(app.repositorio_usuario)
 
     from web.views.pages import pages
     app.register_blueprint(pages)

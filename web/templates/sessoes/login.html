@@ -1,1 +1,23 @@
-LOGIN
+{% extends "base.html" %}
+{% block outer %}
+<div id="page-content-wrapper">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-4 col-lg-offset-4">
+        <!-- FORM DE SIGN IN -->
+        <form class="form-signin" action="{{url_for('sessoes.autenticar')}}" method="POST">
+          <fieldset>
+            <legend><h2>Faça o login:</h2></legend>
+            <label for="email" class="sr-only">E-mail</label>
+            <input type="email" name="email" class="form-control" placeholder="exemplo@dominio.com.br" required autofocus>
+            <label for="senha" class="sr-only">Senha</label>
+            <input type="password" name="senha" class="form-control" required>
+            <br>
+            <button class="btn btn-lg btn-block btn-ufrj" type="submit">Entrar no sistema</button>
+          </fieldset>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock outer %}

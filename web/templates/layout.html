@@ -1,65 +1,59 @@
+{% extends "base.html" %}
+{% block outer %}
+<div id="wrapper">
+  <div class="overlay"></div>
 
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Sistema de Agendamento de Recursos da UFRJ</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta charset="utf-8">
+  <!-- Sidebar -->
+  <nav class="navbar navbar-inverse navbar-fixed-top" id="sidebar-wrapper" role="navigation">
+    <ul class="nav sidebar-nav">
+      <li class="sidebar-brand">
+        <a>
+          UFRJ
+        </a>
+      </li>
+      <li>
+        <a href="/"><i class="fa fa-fw fa-home"></i> Início</a>
+      </li>
+      <li>
+        <a href="{{url_for('recursos.index')}}">
+          <i class="fa fa-fw fa-th-large"></i>
+          Recursos
+        </a>
+      </li>
 
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
-    <link rel='stylesheet prefetch' href='//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css'>
-    <link rel="stylesheet" href="{{url_for('assets.send', path='style.css')}}">
-  </head>
-  <body>
-    <div id="wrapper">
-      <div class="overlay"></div>
+      {% if g.admin %}
+        <li>
+          <a href="{{url_for('usuarios.index')}}">
+            <i class="fa fa-fw fa-user"></i>
+            Usuários
+          </a>
+        </li>
+      {% endif %}
 
-      <!-- Sidebar -->
-      <nav class="navbar navbar-inverse navbar-fixed-top" id="sidebar-wrapper" role="navigation">
-        <ul class="nav sidebar-nav">
-          <li class="sidebar-brand">
-            <a>
-              UFRJ
-            </a>
-          </li>
-          <li>
-            <a href="/"><i class="fa fa-fw fa-home"></i> Início</a>
-          </li>
-          <li>
-            <a href="{{url_for('recursos.index')}}">
-              <i class="fa fa-fw fa-th-large"></i>
-              Recursos
-            </a>
-          </li>
+      {% if g.usuario %}
+        <li>
+          <a href="{{url_for('sessoes.logout')}}">
+            <i class="fa fa-fw fa-sign-out"></i>
+            Sair
+          </a>
+        </li>
+      {% endif %}
+    </ul>
+  </nav>
+  <!-- /#sidebar-wrapper -->
 
-          <li>
-            <a href="{{url_for('usuarios.index')}}">
-              <i class="fa fa-fw fa-user"></i>
-              Usuários
-            </a>
-          </li>
-        </ul>
-      </nav>
-      <!-- /#sidebar-wrapper -->
-
-      <!-- Page Content -->
-      <div id="page-content-wrapper">
-        <button type="button" class="hamburger is-closed animated fadeInLeft" data-toggle="offcanvas">
-          <span class="hamb-top"></span>
-          <span class="hamb-middle"></span>
-          <span class="hamb-bottom"></span>
-        </button>
-        <div class="container">
-          {% block body %} {% endblock body %}
-        </div>
-      </div>
-      <!-- /#page-content-wrapper -->
-
+  <!-- Page Content -->
+  <div id="page-content-wrapper">
+    <button type="button" class="hamburger is-closed animated fadeInLeft" data-toggle="offcanvas">
+      <span class="hamb-top"></span>
+      <span class="hamb-middle"></span>
+      <span class="hamb-bottom"></span>
+    </button>
+    <div class="container">
+      {% block body %} {% endblock body %}
     </div>
-    <!-- /#wrapper -->
-    <script src='//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
-    <script src='//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js'></script>
+  </div>
+  <!-- /#page-content-wrapper -->
 
-    <script src="{{url_for('assets.send', path='index.js')}}"></script>
-  </body>
-</html>
+</div>
+{% endblock outer %}
