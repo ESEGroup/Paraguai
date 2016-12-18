@@ -11,24 +11,25 @@ def index():
 
 @view_usuarios.route("/novo")
 def novo():
-	niveisAcesso=[
-	(UsuarioComum(), "Usuário Comum"),
-	(SistemaManutencao(), "Sistema de Manutenção")
-	(Administrador(), "Administrador")]
+    niveisAcesso = [
+    (0, "Usuário Comum"),
+    (1, "Sistema de Manutenção"),
+    (2, "Administrador")
+    ]
     return render_template("usuarios/novo.html", dto_usuario=DTOUsuario(), niveisAcesso=niveisAcesso)
+
 
 @view_usuarios.route("/<id_usuario>")
 def detalhes(id_usuario):
-    return render_template("usuarios/detalhes.html", id_usuario=id_usuario)
+    usuario = current_app.crud_usuario.obter(id)
+    dto = DTOUsuario(usuario.nome, usuario.email, None, None)
+    return render_template("usuarios/detalhes.html", id_usuario=id_usuario, dto_usuario=dto)
 
 @view_usuarios.route("/<id_usuario>/editar")
 def editar(id_usuario):
     usuario = current_app.crud_usuario.obter(id)
-
-    #usando digest para comparar senhas
-    dto = DTOUsuario(usuario.nome, usuario.email, None, usuario.nivelAcesso)
-    digest = usuario.senhaCriptografada.digest	
-    return render_template("usuarios/editar.html", id_usuario=id_usuario, dto_usuario=dto, digest=digest)
+    dto = DTOUsuario(usuario.nome, usuario.email, None, None)
+    return render_template("usuarios/editar.html", id_usuario=id_usuario, dto_usuario=dto)
 
 @view_usuarios.route("/<id_usuario>", methods=["POST"])
 def alterar(id_usuario):

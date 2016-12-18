@@ -31,7 +31,7 @@ class ServicoCRUDUsuario():
         senhaCriptografada = SenhaCriptografada(dados.senha)
         usuario = Usuario(dados.nome, dados.email, senhaCriptografada, nivelAcesso)
 
-        if self.repositorio.obter_por_email(dados.email) != None:
+        if self.repositorio.obter_por_email(dados.email):
             raise ExcecaoUsuarioJaExistente
 
         return self.repositorio.criar(usuario)
@@ -49,14 +49,14 @@ class ServicoCRUDUsuario():
         usuario.nome = dados.nome
         usuario.email = dados.email
 
-        if dados.senha != None:
+        if dados.senha:
             usuario.senhaCriptografada = SenhaCriptografada(dados.senha)
 
         return self.repositorio.alterar(_id, usuario)
 
 
     def listar(self):
-        """Lista todos os Úsuários, retornando uma lista de objetos de Usuario.
+        """Lista todos os Usuários, retornando uma lista de objetos de Usuario.
         Implementa parte do UC04 (Buscar Usuário)."""
 
         return self.repositorio.listar()

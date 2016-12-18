@@ -3,19 +3,19 @@ from domain.usuario import Usuario
 from domain.usuario.nivel_acesso import *
 
 def email_para(nome):
-    nome.lower + "@paraguai.com"
+    return nome.lower() + "@paraguai.com"
 
 def base_user(i, nome, email=None, pw=None, nivel=None):
     return Usuario(nome, email or email_para(nome), pw or nome.lower(), nivel, int(i))
 
 def adm(i, nome, email=None, pw=None):
-    return base_user(i,nome,Administrador(),pw)
+    return base_user(i, nome, email, Administrador(), pw)
 
 def usr(i, nome, email=None, pw=None):
-    return base_user(i,nome,UsuarioComum(),pw)
+    return base_user(i, nome, email, UsuarioComum(), pw)
 
 def sis(i, nome, email=None, pw=None):
-    return base_user(i,nome,SistemaManutencao(),pw)
+    return base_user(i, nome, email, SistemaManutencao(), pw)
 
 usuarios = [
     adm(1, "Bernardo"),
