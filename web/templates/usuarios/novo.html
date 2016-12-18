@@ -1,6 +1,6 @@
 {% extends "layout.html" %}
 {% block body %}
-<form action="{{ url_for('recursos.criar') }}" method="POST">
+<form action="{{ url_for('usuarios.criar') }}" method="POST">
   {% include "recursos/campos.html" %}
   <button type="submit" class="btn btn-primary">Criar</button>
 </form>
