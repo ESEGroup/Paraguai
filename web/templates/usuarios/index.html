@@ -1,4 +1,22 @@
 {% extends "layout.html" %}
 {% block body %}
-INDEX USUARIOS
+  <table class="table">
+    <th>
+      <tr>
+        <td>ID</td>
+        <td>Nome</td>
+        <td>E-mail</td>
+      </tr>
+    </th>
+    <tbody>
+      {% for usuario in usuarios %}
+        <tr>
+          <td>{{ usuario.id }}</td>
+          <td>{{ usuario.nome }}</td>
+          <td>{{ usuario.tipo.nome }}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  <a href="/usuarios/novo" class="btn btn-primary">Criar Usuário</a>
 {% endblock body %}
