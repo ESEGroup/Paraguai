@@ -38,7 +38,11 @@ class ServicoCRUDRecurso():
         return self.repositorio.criarOuSalvar(recurso)
 
     def obter(self,id):
-        return self.repositorio.obter(id)
+        recurso = self.repositorio.obter(id)
+        if not recurso:
+            raise ExcecaoRecursoInexistente
+
+        return recurso
 
     # UC01 - Buscar Recurso
     def buscar(self, dto):

@@ -1,0 +1,7 @@
+{% extends "forms.html" %}
+
+{% block body %}
+  {{ text_input("nome", dto_recurso.nome) }}
+  {{ select("tipo", tipos_recurso) }}
+  {{ text_input("local", dto_recurso.local) }}
+{% endblock body %}

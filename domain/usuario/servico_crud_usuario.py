@@ -67,7 +67,12 @@ class ServicoCRUDUsuario():
         parte do UC04 (Buscar Usuário).
         :param _id: Número inteiro que representa o ID do Usuário desejado."""
 
-        return self.repositorio.obter(_id)
+        usuario = self.repositorio.obter(_id)
+
+        if not usuario:
+            raise ExcecaoUsuarioInexistente
+
+        return usuario
 
 
     def remover(self, _id):
