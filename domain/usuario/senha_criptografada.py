@@ -20,5 +20,7 @@ class SenhaCriptografada():
         return self.digest == self.crypto(senha)
 
     def crypto(self, senha):
+        """Criptografa uma senha em hash SHA-1
+        :param senha: Senha a ser criptografada"""
         return hashlib.sha1(senha.encode('utf-8')).hexdigest()
 

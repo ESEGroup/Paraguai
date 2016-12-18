@@ -90,7 +90,8 @@ class ServicoCRUDUsuario():
         """Remove o Usuário que possui o ID fornecido e o retorna, além de
         cancelar todos os seus Agendamentos. Implementa o UCXXX (Remover Usuário).
         :param _id: Número inteiro que representa o ID do Usuário desejado."""
-        #busca por agendamentos associados ao Usuário com id _id
+        
+        #TODO: buscar por agendamentos associados ao Usuário com id _id
 
         if not self.repositorio.obter(_id):
             raise ExcecaoUsuarioInexistente

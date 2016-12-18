@@ -1,3 +1,5 @@
+"""Fornece dados de teste para os CRUDs de Usuário e Recurso."""
+
 from domain.recurso import Recurso, TipoRecurso
 from domain.usuario import Usuario
 from domain.usuario.nivel_acesso import *
