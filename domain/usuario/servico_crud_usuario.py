@@ -43,7 +43,7 @@ class ServicoCRUDUsuario():
         :param dados: Objeto de DTOUsuario com os dados a serem inseridos."""
 
         usuario = self.repositorio.obter(_id)
-        if usuario == None:
+        if not usuario:
             raise ExcecaoUsuarioInexistente
 
         usuario.nome = dados.nome
@@ -81,8 +81,9 @@ class ServicoCRUDUsuario():
         :param _id: Número inteiro que representa o ID do Usuário desejado."""
         #busca por agendamentos associados ao Usuário com id _id
 
-        #cancela todos os agendamentos da lista
-        if self.repositorio.obter(_id) == None:
+        if not self.repositorio.obter(_id):
             raise ExcecaoUsuarioInexistente
+
+        #TODO: cancela todos os agendamentos da lista
 
         return (self.repositorio.remover(_id), True)

@@ -19,17 +19,17 @@ class FiltroRecurso():
         )
 
     def atende_nome(self, recurso):
-        if self.nome == None:
+        if not self.nome:
             return True
         return recurso.nome == self.nome
 
     def atende_tipo(self, recurso):
-        if self.tipo == None:
+        if not self.tipo:
             return True
         return recurso.tipo == self.tipo
 
     def atende_local(self, recurso):
-        if self.local == None:
+        if not self.local:
             return True
         return recurso.local == self.local
 

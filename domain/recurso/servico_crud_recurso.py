@@ -24,7 +24,7 @@ class ServicoCRUDRecurso():
         Recebe um id e um dicionário com os dados a serem alterados
         """
         recurso = self.repositorio.obter(id)
-        if recurso == None:
+        if not recurso:
             raise ExcecaoRecursoInexistente
 
         if dto.tipo:
@@ -59,7 +59,7 @@ class ServicoCRUDRecurso():
         return self.repositorio.listar()
 
     def remover(self, id):
-        if self.repositorio.obter(id) == None:
+        if not self.repositorio.obter(id):
             raise ExcecaoRecursoInexistente
 
         self.repositorio.remover(id)
