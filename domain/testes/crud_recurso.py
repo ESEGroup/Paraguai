@@ -1,6 +1,6 @@
 #-*- coding: utf-8 -8-
 import unittest
-from domain.recurso import IDRecurso, Recurso, ServicoCRUDRecurso, TipoRecurso
+from domain.recurso import Recurso, ServicoCRUDRecurso, TipoRecurso
 from domain.excecoes import ExcecaoRecursoInexistente
 from repositorios_memoria import RepositorioRecursoEmMemoria
 

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from domain.usuario import RepositorioUsuario, IDUsuario
+from domain.usuario import RepositorioUsuario
 
 class RepositorioUsuarioEmMemoria(RepositorioUsuario):
     """Essa classe modela um Repositório de Usuários em memória, para 
@@ -12,21 +12,20 @@ class RepositorioUsuarioEmMemoria(RepositorioUsuario):
 
     def criar(self, usuario):
         novo_id = len(self.usuarios) + 1
-        usuario.id = IDUsuario(novo_id)
+        usuario.id = novo_id
         self.usuarios.append(usuario)
 
         return usuario
 
 
     def alterar(self, _id, usuario):
-        id = _id.id-1
-        self.usuarios[id] = usuario
+        self.usuarios[_id-1] = usuario
         return usuario
 
 
     def obter(self, _id):
         try:
-            return self.usuarios[_id.id-1]
+            return self.usuarios[_id-1]
         except IndexError:
             return None
 
@@ -40,5 +39,5 @@ class RepositorioUsuarioEmMemoria(RepositorioUsuario):
         return self.usuarios
 
     def remover(self, _id):
-        self.usuarios[_id.id-1] = None
+        self.usuarios[_id-1] = None
         return True

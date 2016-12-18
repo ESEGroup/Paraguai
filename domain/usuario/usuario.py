@@ -1,11 +1,6 @@
 # -*- coding: utf-8 -*-
 
 from .nivel_acesso import *
-from domain.support import ID
-
-class IDUsuario(ID):
-    "Value Object que armazena o ID de um Usuário."
-    pass
 
 class Usuario():
     """Modela os usuários do SAGR UFRJ.

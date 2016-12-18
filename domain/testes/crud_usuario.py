@@ -1,6 +1,6 @@
 #-*- coding: utf-8 -*-
 import unittest
-from domain.usuario import DTOUsuario, Usuario, IDUsuario
+from domain.usuario import DTOUsuario, Usuario
 from domain.usuario.nivel_acesso import *
 from domain.usuario import ServicoCRUDUsuario
 from domain.excecoes import *
@@ -8,7 +8,7 @@ from repositorios_memoria import RepositorioUsuarioEmMemoria
 
 class TesteCRUDUsuario(unittest.TestCase):
     def setUp(self):
-        self.repositorio = RepositorioUsuarioEmMemoria()
+        self.repositorio = RepositorioUsuarioEmMemoria([])
         self.servico = ServicoCRUDUsuario(self.repositorio)
 
     def dto(self):
@@ -61,7 +61,7 @@ class TesteCRUDUsuario(unittest.TestCase):
     def test_alterar_sem_senha(self):
         dto = self.dto()
         usuario = self.servico.criar(dto)
-        id = usuario.id.id
+        id = usuario.id
 
         dto = DTOUsuario("Novo Nome", "novo@email.com")
         self.servico.alterar(id, dto)
@@ -78,7 +78,7 @@ class TesteCRUDUsuario(unittest.TestCase):
     def test_alterar_senha(self):
         dto = self.dto()
         usuario = self.servico.criar(dto)
-        id = usuario.id.id
+        id = usuario.id
 
         dto = DTOUsuario(senha="novasenha")
         self.servico.alterar(id, dto)
@@ -113,11 +113,11 @@ class TesteCRUDUsuario(unittest.TestCase):
     def test_remover(self):
         usuario = self.servico.criar(self.dto())
 
-        self.servico.remover(usuario.id.id)
+        self.servico.remover(usuario.id)
         self.assertEqual(None, self.repositorio.obter(usuario.id))
 
     def test_remocao_dupla(self):
-        id = self.servico.criar(self.dto()).id.id
+        id = self.servico.criar(self.dto()).id
 
         self.servico.remover(id)
         with self.assertRaises(ExcecaoUsuarioInexistente):

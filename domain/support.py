@@ -8,10 +8,3 @@ class ValueObject():
 
     def __ne__(self, other):
         return not (self == other)
-
-class ID(ValueObject):
-    def __init__(self, id):
-        self.id = id
-
-    def __int__(self):
-        return self.id

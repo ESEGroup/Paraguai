@@ -1,5 +1,5 @@
 #-*- coding: utf-8 -*-
-from .usuario import Usuario, IDUsuario
+from .usuario import Usuario
 from .nivel_acesso import *
 from .senha_criptografada import *
 from domain.excecoes import *
@@ -41,9 +41,8 @@ class ServicoCRUDUsuario():
         """Atualiza os dados de um Usuário. Implementa o UC13 (Alterar Usuário).
         :param _id: Número inteiro que representa o ID do Usuário desejado.
         :param dados: Objeto de DTOUsuario com os dados a serem inseridos."""
-        id = IDUsuario(_id)
 
-        usuario = self.repositorio.obter(id)
+        usuario = self.repositorio.obter(_id)
         if usuario == None:
             raise ExcecaoUsuarioInexistente
 
@@ -53,7 +52,7 @@ class ServicoCRUDUsuario():
         if dados.senha != None:
             usuario.senhaCriptografada = SenhaCriptografada(dados.senha)
 
-        return self.repositorio.alterar(id, usuario)
+        return self.repositorio.alterar(_id, usuario)
 
 
     def listar(self):
@@ -68,7 +67,7 @@ class ServicoCRUDUsuario():
         parte do UC04 (Buscar Usuário).
         :param _id: Número inteiro que representa o ID do Usuário desejado."""
 
-        return self.repositorio.obter(IDUsuario(_id))
+        return self.repositorio.obter(_id)
 
 
     def remover(self, _id):
@@ -78,7 +77,7 @@ class ServicoCRUDUsuario():
         #busca por agendamentos associados ao Usuário com id _id
 
         #cancela todos os agendamentos da lista
-        if self.repositorio.obter(IDUsuario(_id)) == None:
+        if self.repositorio.obter(_id) == None:
             raise ExcecaoUsuarioInexistente
 
-        return (self.repositorio.remover(IDUsuario(_id)), True)
+        return (self.repositorio.remover(_id), True)
