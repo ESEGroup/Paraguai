@@ -1,12 +1,12 @@
 from domain.recurso import Recurso, TipoRecurso
-from domain.usuario import Usuario, IDUsuario
+from domain.usuario import Usuario
 from domain.usuario.nivel_acesso import *
 
 def email_para(nome):
     nome.lower + "@paraguai.com"
 
 def base_user(i, nome, email=None, pw=None, nivel=None):
-    return Usuario(nome, email or email_para(nome), pw or nome.lower(), nivel, IDUsuario(int(i)))
+    return Usuario(nome, email or email_para(nome), pw or nome.lower(), nivel, int(i))
 
 def adm(i, nome, email=None, pw=None):
     return base_user(i,nome,Administrador(),pw)

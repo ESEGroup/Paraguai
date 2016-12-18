@@ -1,22 +1,9 @@
 {% extends "layout.html" %}
 {% block body %}
 <form action="{{ url_for('recursos.criar') }}" method="POST">
-  <div class="form-group">
-    <label for="nome">Nome</label>
-    <input type="text" class="form-control" id="nome" name="nome" placeholder="Nome">
-  </div>
-  <div class="form-group">
-    <label for="categoria">Categoria</label><br>
-    <select class="selectpicker" data-width="100%" name="categoria">
-        {% for label, valor in tipos_recurso %}
-        <option value="{{valor}}">{{label}}</option>
-        {% endfor %}
-    </select>
-  </div>
-  <div class="form-group">
-    <label for="nome">Localização</label>
-    <input type="text" class="form-control" id="local" name="local" placeholder="Localização">
-  </div>
+  {{ text_input("nome", dto_recurso.nome) }}
+  {{ select("tipo", tipos_recurso) }}
+  {{ text_input("local", dto_recurso.local) }}
   <button type="submit" class="btn btn-primary">Criar</button>
 </form>
 {% endblock body %}
