@@ -21,12 +21,23 @@
         </a>
       </li>
 
-      <li>
-        <a href="{{url_for('usuarios.index')}}">
-          <i class="fa fa-fw fa-user"></i>
-          Usuários
-        </a>
-      </li>
+      {% if g.admin %}
+        <li>
+          <a href="{{url_for('usuarios.index')}}">
+            <i class="fa fa-fw fa-user"></i>
+            Usuários
+          </a>
+        </li>
+      {% endif %}
+
+      {% if g.usuario %}
+        <li>
+          <a href="{{url_for('sessoes.logout')}}">
+            <i class="fa fa-fw fa-sign-out"></i>
+            Sair
+          </a>
+        </li>
+      {% endif %}
     </ul>
   </nav>
   <!-- /#sidebar-wrapper -->
