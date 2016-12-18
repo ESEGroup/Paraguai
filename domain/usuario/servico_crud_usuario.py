@@ -62,6 +62,9 @@ class ServicoCRUDUsuario():
 
         if dados.senha:
             usuario.senhaCriptografada = SenhaCriptografada(dados.senha)
+        
+        if self.repositorio.obter_por_email(dados.email):
+            raise ExcecaoUsuarioJaExistente            
 
         return self.repositorio.alterar(_id, usuario)
 
