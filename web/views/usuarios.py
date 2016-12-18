@@ -21,8 +21,7 @@ def detalhes(id_usuario):
 def editar(id_usuario):
     usuario = current_app.crud_usuario.obter(id)
 
-    #a senha do usuário está criptografada, não dá pra recuperar em texto
-    #plano. Usando o digest para comparar
+    #usando digest para comparar senhas
     dto = DTOUsuario(usuario.nome, usuario.email, None, usuario.nivelAcesso)
     digest = usuario.senhaCriptografada.digest	
     return render_template("usuarios/editar.html", id_usuario=id_usuario, dto_usuario=dto, digest=digest)
@@ -31,10 +30,10 @@ def editar(id_usuario):
 def alterar(id_usuario):
     dto = DTOUsuario(request.form["nome"], request.form["email"], request.form["senha"], request.form["nivelAcesso"])
     current_app.crud_usuario.alterar(id_usuario, dto)
-    return redirect(url_for('recursos.index'))
+    return redirect(url_for('usuarios.index'))
 
 @view_usuarios.route("/", methods=["POST"])
 def criar():
     dto = DTOUsuario(request.form["nome"], request.form["email"], request.form["senha"], request.form["nivelAcesso"])
-    current_app.crud_recurso.criar(dto)
-    return redirect(url_for('recursos.index'))
+    current_app.crud_usuario.criar(dto)
+    return redirect(url_for('usuarios.index'))
