@@ -19,11 +19,15 @@ class ExcecaoUsuarioInexistente(ExcecaoEntidadeInexistente):
 class ExcecaoRecursoInexistente(ExcecaoEntidadeInexistente):
     pass
 
+# Não herda da ExcecaoEntidadeInexistente porque Agendamento é um ValueObject
+class ExcecaoAgendamentoInexistente(ExcecaoParaguai):
+    pass
+
 class ExcecaoAgendamentoRecursoOcupado(ExcecaoRegraDeNegocio):
     pass
 
 class ExcecaoAgendamentoUsuarioOcupado(ExcecaoRegraDeNegocio):
     pass
 
-class ExcecaoAgendamentoRecursoIndisponivel(ExcecaoRegraDeNegocio):
+class ExcecaoAgendamentoRecursoInutilizavel(ExcecaoRegraDeNegocio):
     pass

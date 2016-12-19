@@ -8,6 +8,7 @@ from repositorios_memoria import RepositorioRecursoEmMemoria
 from .suporte import ServicoEmailEmMemoria
 from domain.email import EmailRecursoInutilizavel
 from datetime import datetime, timedelta
+from . import fabricas
 
 class DummyRepoUsuario():
     def obter(self, id):
@@ -29,26 +30,15 @@ class TesteCRUDRecurso(unittest.TestCase):
             self.servico_email
         )
 
-    def recurso(self, utilizavel=True, agendamentos=[]):
-        now = datetime.now()
-        hour = timedelta(hours=1)
-        return Recurso(
-            nome = 'Recurso',
-            tipo = TipoRecurso('outros'),
-            local = 'local',
-            utilizavel = utilizavel,
-            agendamentos = [Agendamento(IntervaloDeTempo(now+delta, now+delta+hour), idUsuario) for (idUsuario, delta) in agendamentos]
-        )
-
     def test_alterar_inutilizavel(self):
-        recurso = self.recurso(
+        recurso = fabricas.recurso(
             True,
             [
-                (1, timedelta(weeks=1)),
-                (1, timedelta(weeks=2)),
-                (1, timedelta(weeks=-1)),
-                (2, timedelta(weeks=-1)),
-                (3, timedelta(weeks=1))
+                (1, 1),
+                (1, 2),
+                (1, -1),
+                (2, -1),
+                (3, 1)
             ]
         )
         _id = self.repo_recurso.inserir(recurso).id
@@ -73,7 +63,7 @@ class TesteCRUDRecurso(unittest.TestCase):
         self.assertEqual(1,len(email3.agendamentosCancelados))
 
     def test_alterar_utilizavel(self):
-        _id = self.repo_recurso.inserir(self.recurso(True)).id
+        _id = self.repo_recurso.inserir(fabricas.recurso(True)).id
 
         self.servico.alterar_estado(_id, True)
         novoRecurso = self.repo_recurso.obter(_id)
