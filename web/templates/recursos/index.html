@@ -1,5 +1,8 @@
 {% extends "layout.html" %}
 {% block body %}
+  <div>
+    <span style="font-size: small" align="center"><i class="fa fa-info-circle"></i> Clique sobre o código de um recurso para abri-lo</span>
+  </div>
   <table class="table">
     <th>
       <tr>
@@ -12,7 +15,7 @@
     <tbody>
       {% for recurso in recursos %}
         <tr>
-          <td>{{ recurso.id }}</td>
+          <td><a href="{{ url_for('recursos.editar', id = recurso.id)}}">{{ recurso.id }}</a></td>
           <td>{{ recurso.nome }}</td>
           <td>{{ recurso.tipo.nome.capitalize() }}</td>
           <td>{{ recurso.local }}</td>
