@@ -1,9 +1,26 @@
-from flask import Blueprint, render_template, current_app, request, url_for, redirect
+import json
+from flask import Blueprint, render_template, current_app, request, session, url_for, redirect, g
 from domain.recurso import Recurso, TipoRecurso, DTORecurso, DTOBuscaRecurso
-from domain.iso8601 import from_iso
+from domain.iso8601 import to_iso
+from domain.usuario.nivel_acesso import Administrador
 from ..excecoes import ExcecaoParaguaiWeb
 
 view_recursos = Blueprint('recursos', __name__)
+
+def agendamentos_to_cal(list_agendamentos, userID = None):
+    dict_agenda = [
+    {
+        "title" : current_app.crud_usuario.obter(int(agendamento.idResponsavel)).nome,
+        "start" : to_iso(agendamento.intervalo.inicio).replace("Z","",1),
+        "end" : to_iso(agendamento.intervalo.fim).replace("Z","",1),
+        "editable" : bool(
+            (g.nivelAcesso == Administrador()) or
+            (agendamento.idResponsavel == userID)
+        )
+    }
+    for agendamento in list_agendamentos
+    ]
+    return json.dumps(dict_agenda)
 
 def validar_datepicker(data_str):
     if not data_str:
@@ -43,7 +60,10 @@ def novo():
 
 @view_recursos.route("/<id>")
 def detalhes(id):
-    return render_template("recursos/detalhes.html")
+    recurso = current_app.crud_recurso.obter(int(id))
+    agendamentos = agendamentos_to_cal(recurso.agendamentos, session["id_usuario"])
+    print(agendamentos)
+    return render_template("recursos/detalhes.html", agendamentos = agendamentos)
 
 @view_recursos.route("/<id>/editar")
 def editar(id):
