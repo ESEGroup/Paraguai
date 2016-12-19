@@ -8,16 +8,15 @@
     <div class="row">
         <div id="search-by-id-box" class="col-sm-12 alert alert-info" align="center">
             Tamb&eacute;m &eacute; poss&iacute;vel <strong>filtrar</strong> a lista de usu&aacute;rios por:
-            <form class="form-inline" action="{{ url_for('usuarios.buscar', id_usuario = usuario.id) }}" method="POST">
+            <form class="form-inline" action="{{ url_for('usuarios.buscar') }}" method="POST">
                 <div class="form-group">
-                    <label class="sr-only">C&oacute;digo do Usu&aacute;rios</label>
-                    <input type="text" class="form-control" name="id-usuario" id="id-usuario" placeholder="C&oacute;digo do Usu&aacute;rio"/>
+                    <label class="sr-only">C&oacute;digo</label>
+                    <input type="text" class="form-control" name="id_usuario" id="id_usuario" placeholder="C&oacute;digo do Usu&aacute;rio"/>
                     <small>ou</small>
                 </div>
                 <div class="form-group">
-                    <label class="sr-only">E-mail do Usu&aacute;rio</label>
-                    <input type="text" class="form-control" name="nome-usuario" id="nome-usuario" placeholder="Nome do Usu&aacute;rio"/>
-                    <small>ou</small>
+                    <label class="sr-only">E-mail</label>
+                    <input type="text" class="form-control" name="email" id="email" placeholder="Nome do Usu&aacute;rio"/>
                 </div>
                 <button type="submit" class="btn btn-primary"><i class="fa fa-search" aria-hidden="true"></i></button>
             </form>
