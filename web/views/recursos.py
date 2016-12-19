@@ -5,15 +5,15 @@ from ..excecoes import ExcecaoParaguaiWeb
 
 view_recursos = Blueprint('recursos', __name__)
 
-def validar_datepicker(start,end):
-    if not start and not end:
+def validar_datepicker(data_str):
+    if not data_str:
         return
+    string_proc = data_str.strip().replace(" ","T",1) + "Z"
     try:
-        data_inicio = from_iso(start.replace(" ","T",1) + "Z")
-        data_fim = from_iso(start.replace(" ","T",1) + "Z")
-    except ValueError as error:
+        from_iso(string_proc)
+    except ValueError:
         raise ExcecaoParaguaiWeb("Data com formato inválido!")
-    return (start, end)
+    return string_proc
 
 @view_recursos.route("/")
 def index():
@@ -29,8 +29,9 @@ def pagina_busca():
 @view_recursos.route("/buscar", methods=["POST"])
 def buscar():
     dto = DTOBuscaRecurso(request.form["nome"], request.form["tipo"], request.form["local"])
-    intervalo = validar_datepicker(request.form["start"],request.form["end"])
-    if intervalo:
+    intervalo = (validar_datepicker(request.form["start"]),
+                 validar_datepicker(request.form["end"]))
+    if not None in intervalo:
         dto.intervalos.append(intervalo)
     recursos = current_app.crud_recurso.buscar(dto)
     return render_template("recursos/index.html", recursos=recursos)
