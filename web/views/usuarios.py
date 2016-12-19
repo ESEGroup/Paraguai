@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, current_app, request, url_for, redirect
+from flask import Blueprint, render_template, current_app, request, url_for, redirect, send_from_directory
 from domain.usuario import Usuario, DTOUsuario
 from domain.usuario.nivel_acesso import Administrador
 from web.autenticacao import requer_usuario
@@ -13,6 +13,13 @@ def index():
     usuarios = current_app.crud_usuario.listar()
     return render_template("usuarios/index.html", usuarios=usuarios)
 
+@view_usuarios.route("/buscar")
+@requer_usuario
+@requer_acesso(Administrador())
+def buscar():
+    usuarios = current_app.crud_usuario.listar()
+    return render_template("usuarios/index.html", usuarios=usuarios)
+
 @view_usuarios.route("/novo")
 @requer_usuario
 @requer_acesso(Administrador())
@@ -22,7 +29,7 @@ def novo():
     (1, "Sistema de Manutenção"),
     (2, "Administrador")
     ]
-    return render_template("usuarios/novo.html", dto_usuario=DTOUsuario(), niveisAcesso=niveisAcesso)
+    return render_template("usuarios/novo_old.html", dto_usuario=DTOUsuario(), niveisAcesso=niveisAcesso)
 
 
 @view_usuarios.route("/<id_usuario>/editar")
@@ -38,7 +45,7 @@ def editar(id_usuario):
     (2, "Administrador")
     ]
 
-    return render_template("usuarios/editar.html", id_usuario=id_usuario, dto_usuario=dto, niveisAcesso=niveisAcesso)
+    return render_template("usuarios/editar_old.html", id_usuario=id_usuario, dto_usuario=dto, niveisAcesso=niveisAcesso)
 
 @view_usuarios.route("/<id_usuario>", methods=["POST"])
 @requer_usuario
@@ -63,3 +70,11 @@ def criar():
 def remover(id_usuario):
     usuario = current_app.crud_usuario.remover(int(id_usuario))
     return redirect(url_for('usuarios.index'))
+
+@app.route("/css/<path>")
+def serve_stylesheet(path):
+    return send_from_directory("./css",path)
+
+@app.route("/js/<path>")
+def serve_script(path):
+    return send_from_directory("./js",path)
