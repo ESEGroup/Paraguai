@@ -31,11 +31,7 @@ class ServicoAgendamento():
         for agendamento in recurso.agendamentos:
             if intervalo.intercede(agendamento.intervalo):
                 raise ExcecaoAgendamentoRecursoOcupado
-        # Verificar se o intervalo de tempo bate com algum agendamento do usuário
-        agendamentos_usuario = self.listar_por_usuario(IDUsuario)
-        for agendamento_usuario,recurso_pai in agendamentos_usuario:
-            if intervalo.intercede(agendamento_usuario.intervalo):
-                raise ExcecaoAgendamentoUsuarioOcupado
+
         # Verificar se o recurso está indisponível
         if not recurso.utilizavel:
             raise ExcecaoAgendamentoRecursoIndisponivel
