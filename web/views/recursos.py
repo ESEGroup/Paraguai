@@ -8,7 +8,7 @@ view_recursos = Blueprint('recursos', __name__)
 def validar_datepicker(data_str):
     if not data_str:
         return
-    string_proc = data_str.strip().replace(" ","T",1) + "Z"
+    string_proc = data_str.strip().replace(" ","T",1) + ":00Z"
     try:
         from_iso(string_proc)
     except ValueError:
