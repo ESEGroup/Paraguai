@@ -1,5 +1,7 @@
 from datetime import datetime
-class IntervaloDeTempo():
+from domain.support import ValueObject
+
+class IntervaloDeTempo(ValueObject):
     def __init__(self,inicio=None, fim=None):
         if(type(inicio) is not datetime):
             raise ValueError("Inicio do intervalo de tempo inválido")

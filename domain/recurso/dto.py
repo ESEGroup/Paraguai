@@ -34,3 +34,12 @@ class DTOIntervaloDeTempo:
     def __init__(self, inicio, fim):
         self.inicio = inicio
         self.fim = fim
+
+class DTOAgendamento:
+    """DTO para Agendar Recurso
+       :param idResponsavel: Int com o id do responsável pelo agendamento
+       :param intervalo: DTOIntervaloDeTempo com o intervalo do agendamento"""
+
+    def __init__(self, idResponsavel, intervalo):
+        self.idResponsavel = idResponsavel
+        self.intervalo = intervalo

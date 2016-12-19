@@ -19,6 +19,18 @@ class EmailRecursoInutilizavel(ValueObject):
         self.recurso = recurso
         self.agendamentosCancelados = agendamentosCancelados
 
+class EmailAgendamento(ValueObject):
+    def __init__(self, usuario, recurso, agendamento):
+        self.usuario = usuario
+        self.recurso = recurso
+        self.agendamento = agendamento
+
+class EmailAgendamentoConfirmado(EmailAgendamento):
+    pass
+
+class EmailAgendamentoCancelado(EmailAgendamento):
+    pass
+
 class ServicoEmail():
     def enviar(self, destinatario, email):
         """Envia um email para um destinatario com um assunto e um corpo (texto)
