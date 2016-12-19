@@ -8,9 +8,6 @@ def formata(classe):
 
 @formata(EmailUsuarioCadastrado)
 def usuario_cadastrado(email):
-    usuario = email.usuario
-    senha = email.senha
-
     return """Prezado {},
 
     Você foi cadastrado com sucesso no Sistema de Agendamento UFRJ.
@@ -25,10 +22,41 @@ def usuario_cadastrado(email):
 
     Atenciosamente,
     Sistema de Agendamento UFRJ""".format(
-        usuario.nome,
-        usuario.nome,
-        usuario.email,
-        senha
+        email.usuario.nome,
+        email.usuario.nome,
+        email.usuario.email,
+        email.senha
+    )
+
+@formata(EmailUsuarioAlterado)
+def usuario_alterado(email):
+    return """Prezado {},
+
+    Seu cadastro foi alterado por um administrador do sistema.
+
+    Seguem abaixo as informações da sua conta após a alteração:
+
+    Nome completo: {}
+    Nome de usuário: {}
+
+    Atenciosamente,
+    Sistema de Agendamento UFRJ""".format(
+        email.usuario.nome,
+        email.usuario.nome,
+        email.usuario.email
+    )
+
+@formata(EmailUsuarioRemovido)
+def usuario_removido(email):
+    return """Prezado {},
+
+    Seu cadastro foi removido do sistema por um administrador.
+
+    Você não será mais capaz de acessar o sistema usando seus dados antigos.
+
+    Atenciosamente,
+    Sistema de Agendamento UFRJ""".format(
+        email.usuario.nome
     )
 
 FORMATADORES_PADRAO = [usuario_cadastrado]
