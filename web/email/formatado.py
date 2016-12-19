@@ -15,13 +15,11 @@ class ServicoEmailFormatado(ServicoEmail):
     def formatar(self, email):
         formatador = self.formatador(email)
         if not formatador:
-            return None
+            raise FormatadorEmailNaoExistente
 
         return formatador(email)
 
     def enviar(self, destino, email):
         assunto, corpo = self.formatar(email)
-        if not corpo:
-            raise FormatadorEmailNaoExistente
 
         self.enviar_formatado(destino, assunto, corpo)

@@ -1,5 +1,5 @@
 from flask import Flask
-from domain.recurso import ServicoCRUDRecurso
+from domain.recurso import ServicoCRUDRecurso, ServicoEstadoRecurso
 from domain.usuario import ServicoCRUDUsuario
 from domain.autenticacao import ServicoAutenticacao
 from repositorios_memoria.recurso import RepositorioRecursoEmMemoria
@@ -29,6 +29,7 @@ def create_app():
     # Instanciando serviço hexagonal
     app.crud_recurso = ServicoCRUDRecurso(app.repositorio_recurso)
     app.crud_usuario = ServicoCRUDUsuario(app.repositorio_usuario,app.servico_email)
+    app.estado_recurso = ServicoEstadoRecurso(app.repositorio_recurso, app.repositorio_usuario, app.servico_email)
 
     # Instanciando serviço de autenticacao
 
@@ -45,6 +46,9 @@ def create_app():
 
     from web.views.assets import assets
     app.register_blueprint(assets, url_prefix="/public")
+
+    from web.views.api import api
+    app.register_blueprint(api, url_prefix="/api")
 
     from web.views.sessoes import view_sessoes
     app.register_blueprint(view_sessoes)
