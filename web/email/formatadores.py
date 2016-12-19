@@ -1,38 +1,34 @@
 from domain.email import *
 
-class FormatadorEmail():
-    def atende(self, email):
-        email.__class__ == self.__class__.classe_atendida
+def formata(classe):
+    def decorador(f):
+        f.aceita = lambda email: email.__class__ == classe
+        return f
+    return decorador
 
-    def formatar(self, email):
-        pass
+@formata(EmailUsuarioCadastrado)
+def usuario_cadastrado(email):
+    usuario = email.usuario
+    senha = email.senha
 
-class FormatadorUsuarioCadastrado(FormatadorEmail):
-    classe_atendida = EmailUsuarioCadastrado
+    return """Prezado {},
 
-    def formatar(self, email):
-        usuario = email.usuario
-        senha = email.senha
+    Você foi cadastrado com sucesso no Sistema de Agendamento UFRJ.
 
-        """Prezado {},
+    Seguem abaixo os dados relacionados à sua conta:
 
-        Você foi cadastrado com sucesso no Sistema de Agendamento UFRJ.
+    Nome completo: {}
+    Nome de usuário: {}
 
-        Seguem abaixo os dados relacionados à sua conta:
+    A senha associada à sua conta é {}.
+    Solicitamos que você acesse o sistema e a altere assim que possível.
 
-        Nome completo: {}
-        Nome de usuário: {}
+    Atenciosamente,
+    Sistema de Agendamento UFRJ""".format(
+        usuario.nome,
+        usuario.nome,
+        usuario.email,
+        senha
+    )
 
-        A senha associada à sua conta é {}.
-        Solicitamos que você acesse o sistema e a altere assim que possível.
-
-        Atenciosamente,
-        Sistema de Agendamento UFRJ""".format(
-            usuario.nome,
-            usuario.nome,
-            usuario.email,
-            senha
-        )
-
-
-FORMATADORES_PADRAO = [FormatadorUsuarioCadastrado]
+FORMATADORES_PADRAO = [usuario_cadastrado]

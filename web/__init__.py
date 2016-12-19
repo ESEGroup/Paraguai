@@ -17,11 +17,10 @@ def create_app():
 
     app.secret_key = 'notthatsecret'
 
-    formatadores = [klasse() for klasse in FORMATADORES_PADRAO]
     # Instanciando adapters
     app.repositorio_recurso = RepositorioRecursoEmMemoria(recursos)
     app.repositorio_usuario = RepositorioUsuarioEmMemoria(usuarios)
-    app.servico_email = ServicoEmailConsole(formatadores)
+    app.servico_email = ServicoEmailConsole(FORMATADORES_PADRAO)
 
     # Instanciando serviço hexagonal
     app.crud_recurso = ServicoCRUDRecurso(app.repositorio_recurso)
