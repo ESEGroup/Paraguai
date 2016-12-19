@@ -1,7 +1,3 @@
-@import "//designmodo.github.io/Flat-UI/dist/css/flat-ui.min.css";
-@import "//maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css";
-@import "//daneden.github.io/animate.css/animate.min.css";
-
 /*-------------------------------*/
 /*           VARIABLES           */
 /*-------------------------------*/
@@ -272,7 +268,7 @@ html {
   right: 0;
   bottom: 0;
   background-color: rgba(0, 0, 0, 0.5);
-  z-index: 1;
+  z-index: 100;
 }
 /* SOME DEMO STYLES - NOT REQUIRED */
 body,
@@ -322,4 +318,14 @@ body a:hover {
 }
 .fc h2 {
   font-size: 25px;
+}
+
+
+.clickable-row:hover{
+  cursor: pointer;
+  opacity: 0.8;
+}
+
+.clickable-row:hover td{
+  background: rgba(0,0,0,0.1);
 }

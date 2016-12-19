@@ -1,7 +1,7 @@
 import json
 from flask import Blueprint, render_template, current_app, request, session, url_for, redirect, g
 from domain.recurso import Recurso, TipoRecurso, DTORecurso, DTOBuscaRecurso
-from domain.iso8601 import to_iso
+from domain.iso8601 import to_iso, from_iso
 from domain.usuario.nivel_acesso import Administrador
 from ..excecoes import ExcecaoParaguaiWeb
 
@@ -63,7 +63,7 @@ def detalhes(id):
     recurso = current_app.crud_recurso.obter(int(id))
     agendamentos = agendamentos_to_cal(recurso.agendamentos, session["id_usuario"])
     print(agendamentos)
-    return render_template("recursos/detalhes.html", agendamentos = agendamentos)
+    return render_template("recursos/detalhes.html", agendamentos = agendamentos, recurso=recurso)
 
 @view_recursos.route("/<id>/editar")
 def editar(id):
@@ -82,4 +82,9 @@ def alterar(id):
 def criar():
     dto = DTORecurso(request.form["nome"], request.form["tipo"], request.form["local"])
     current_app.crud_recurso.criar(dto)
+    return redirect(url_for('recursos.index'))
+
+@view_recursos.route("/<id>/remover")
+def remover(id):
+    current_app.crud_recurso.remover(int(id))
     return redirect(url_for('recursos.index'))

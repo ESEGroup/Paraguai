@@ -1,31 +1,20 @@
 $(document).ready(function () {
   var trigger = $('.hamburger'),
       overlay = $('.overlay'),
-     isClosed = false;
+      isOpen = false;
 
-    trigger.click(function () {
-      hamburger_cross();      
-    });
+  trigger.click(function () {
+    isOpen = !isOpen;
 
-    function hamburger_cross() {
-
-      if (isClosed == true) {          
-        overlay.hide();
-        trigger.removeClass('is-open');
-        trigger.addClass('is-closed');
-        isClosed = false;
-      } else {   
-        overlay.show();
-        trigger.removeClass('is-closed');
-        trigger.addClass('is-open');
-        isClosed = true;
-      }
-  }
+    $('#wrapper').toggleClass('toggled', isOpen);
+    trigger.toggleClass('is-open', isOpen);
+    trigger.toggleClass('is-closed', !isOpen);
+    overlay.toggle(isOpen);
+  })
 
   $('.datepicker').datetimepicker();
   $('select').select2();
-
-  $('[data-toggle="offcanvas"]').click(function () {
-        $('#wrapper').toggleClass('toggled');
-  });  
+  $('.clickable-row').click(function(){
+    window.location = $(this).data('href');
+  })
 });

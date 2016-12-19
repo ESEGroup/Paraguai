@@ -1,6 +1,32 @@
 
 {% extends "layout.html" %}
 {% block body %}
+<h2> Detalhes </h2>
+<table class="table">
+  <tbody>
+    <tr>
+      <th>Nome</th>
+      <td>{{recurso.nome}}</td>
+    </tr>
+    <tr>
+      <th>Categoria</th>
+      <td>{{recurso.tipo.nome}}</td>
+    </tr>
+    <tr>
+      <th>Local</th>
+      <td>{{recurso.local}}</td>
+    </tr>
+  </tbody>
+</table>
+
+
+{% if g.admin %}
+<a href="{{url_for('recursos.editar', id=recurso.id)}}">Editar</a>
+<a href="{{url_for('recursos.remover', id=recurso.id)}}">Remover</a>
+{% endif %}
+
+
+<h2>Agenda</h2>
 <div id="calendar">
 </div>
 <script>
@@ -11,7 +37,8 @@
 				center: 'title',
 				right: 'month,agendaWeek,agendaDay'
 			},
-      		defaultView: 'agendaWeek',
+      defaultView: 'agendaWeek',
+      height: 650,
 			navLinks: true, // can click day/week names to navigate views
 			selectable: true,
 			selectHelper: true,
