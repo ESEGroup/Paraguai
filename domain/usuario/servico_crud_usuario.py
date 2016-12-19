@@ -104,6 +104,19 @@ class ServicoCRUDUsuario():
         return usuario
 
 
+    def obter_por_email(self, email):
+        """Busca pelo Usuário que possui o endereço de e-mail e o retorna. Implementa
+        parte do UC04 (Buscar Usuário).
+       :param email: Endereço de e-mail do Usuário buscado"""
+
+        usuario = self.repositorio.obter_por_email(email)
+
+        if not usuario:
+            raise ExcecaoUsuarioInexistente
+
+        return usuario
+
+
     def remover(self, _id):
         """Remove o Usuário que possui o ID fornecido e o retorna, além de
         cancelar todos os seus Agendamentos. Implementa o UCXXX (Remover Usuário).

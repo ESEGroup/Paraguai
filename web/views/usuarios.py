@@ -13,11 +13,20 @@ def index():
     usuarios = current_app.crud_usuario.listar()
     return render_template("usuarios/index.html", usuarios=usuarios)
 
-@view_usuarios.route("/buscar")
+@view_usuarios.route("/buscar", methods=["POST"])
 @requer_usuario
 @requer_acesso(Administrador())
 def buscar():
-    usuarios = current_app.crud_usuario.listar()
+
+    if request.form["id_usuario"]:
+        usuarios = current_app.crud_usuario.obter(int(request.form["id_usuario"]))
+
+    elif request.form["email"]:
+        usuarios = current_app.crud_usuario.obter_por_email(request.form["email"])
+
+    else:
+        usuarios = current_app.crud_usuario.listar()
+
     return render_template("usuarios/index.html", usuarios=usuarios)
 
 @view_usuarios.route("/novo")
