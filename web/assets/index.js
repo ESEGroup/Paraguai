@@ -23,6 +23,7 @@ $(document).ready(function () {
   }
 
   $('.datepicker').datetimepicker();
+  $('select').select2();
 
   $('[data-toggle="offcanvas"]').click(function () {
         $('#wrapper').toggleClass('toggled');

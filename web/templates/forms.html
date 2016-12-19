@@ -8,7 +8,7 @@
 {% macro select(name, kv) %}
   <div class="form-group">
     <label for="{{ name }}">Categoria</label><br>
-    <select class="selectpicker" data-width="100%" name="{{ name }}">
+    <select class="selectpicker form-control select select-primary select-block" data-width="100%" name="{{ name }}">
         {% for valor, label in kv %}
         <option value="{{valor}}">{{label}}</option>
         {% endfor %}
