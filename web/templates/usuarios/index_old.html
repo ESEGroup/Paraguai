@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+{% block body %}
+  <table class="table">
+    <th>
+      <tr>
+        <td>ID</td>
+        <td>Nome</td>
+        <td>E-mail</td>
+        <td></td>
+      </tr>
+    </th>
+    <tbody>
+      {% for usuario in usuarios %}
+        <tr>
+          <td>{{ usuario.id }}</td>
+          <td>{{ usuario.nome }}</td>
+          <td>{{ usuario.email }}</td>
+          <td><a href="{{ url_for('usuarios.editar', id_usuario = usuario.id) }}" class="btn btn-primary">Editar Usuário</a></td>       
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  <a href="{{ url_for('usuarios.novo') }}" class="btn btn-primary">Criar Usuário</a>
+{% endblock body %}

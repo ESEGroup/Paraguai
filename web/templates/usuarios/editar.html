@@ -1,8 +1,20 @@
 {% extends "layout.html" %}
-{% block body %}
-<form action="{{ url_for('usuarios.alterar', id_usuario = id_usuario) }}" method="POST">
-  {% include "usuarios/campos.html" %}
-  <button type="submit" class="btn btn-primary">Alterar</button>
-  <a href="{{ url_for('usuarios.remover', id_usuario = id_usuario) }}" class="btn btn-primary">Deletar</a>
-</form>
-{% endblock body %}
+{% extends "forms.html" %}
+
+{% block content %}
+
+	<form action="{{ url_for('usuarios.alterar', id_usuario = id_usuario) }}" method="POST">
+	<!-- Form Name -->
+	<legend>Alterar Usuário</legend>
+
+      {{ text_input("nome", dto_usuario.nome) }}
+      {{ text_input("email", dto_usuario.email) }}
+      {{ password_input(dto_usuario.senha) }}
+      {{ select("nivelAcesso", niveisAcesso) }}
+
+        <!-- ESTUDAR BLOCK NESTING DO JINJA PARA VER SE É POSSÍVEL CRIAR BLOCK BUTTON E ESTENDER LAYOUT ACIMA -->
+        <button type="submit" class="btn btn-primary">Alterar</button>
+        <a href="{{ url_for('usuarios.remover', id_usuario = id_usuario) }}" class="btn btn-primary">Deletar</a>
+	</form>
+
+{% endblock content %}
