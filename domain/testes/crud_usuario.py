@@ -90,7 +90,8 @@ class TesteCRUDUsuario(unittest.TestCase):
         self.assertTrue(novo_usuario.senhaCriptografada.verificar("novasenha"))
 
     def test_inexistente(self):
-        self.assertEqual(None,self.servico.obter(1234))
+        with self.assertRaises(ExcecaoUsuarioInexistente):
+            self.assertEqual(None,self.servico.obter(1234))
 
         with self.assertRaises(ExcecaoUsuarioInexistente):
             self.servico.remover(1234)

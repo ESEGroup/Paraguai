@@ -58,17 +58,17 @@ class ServicoCRUDUsuario():
             2: Administrador(),
         }
 
+        print(dados.__dict__)
         try:
             usuario.nivelAcesso = escolha[dados.nivelAcesso]
         except KeyError:
-            raise ExcecaoNivelAcessoInvalido            
+            raise ExcecaoNivelAcessoInvalido
 
         usuario.nome = dados.nome
         usuario.email = dados.email
 
         if dados.senha:
             usuario.senhaCriptografada = SenhaCriptografada(dados.senha)
-              
 
         return self.repositorio.alterar(_id, usuario)
 
