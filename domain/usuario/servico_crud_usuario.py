@@ -78,8 +78,8 @@ class ServicoCRUDUsuario():
 
         self.repositorio.atualizar(usuario)
 
-        email = EmailUsuarioAlterado(novoUsuario)
-        self.servico_email.enviar(novoUsuario.email, email)
+        email = EmailUsuarioAlterado(usuario)
+        self.servico_email.enviar(usuario.email, email)
 
         return usuario
 

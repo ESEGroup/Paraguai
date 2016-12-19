@@ -11,7 +11,7 @@ class Usuario():
     :param id: ID do Usuário (objeto de IDUsuario)
     """
 
-    def __init__(self, nome, email, senhaCriptografada, nivelAcesso, id_usuario=None):
+    def __init__(self, nome, email, senhaCriptografada, nivelAcesso, id=None):
         self.nome = nome
         self.email = email
         self.nivelAcesso = nivelAcesso
@@ -19,4 +19,4 @@ class Usuario():
         #criptografa a senha passada na criação
         self.senhaCriptografada = senhaCriptografada
 
-        self.id = id_usuario
+        self.id = id

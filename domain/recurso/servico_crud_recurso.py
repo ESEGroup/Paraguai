@@ -1,7 +1,7 @@
 from .recurso import Recurso
 from .tipo import TipoRecurso
 from .filtro import FiltroRecurso
-from domain import IntervaloDeTempo
+from domain.intervalo import IntervaloDeTempo
 from domain.excecoes import ExcecaoRecursoInexistente
 from domain.iso8601 import from_iso
 
