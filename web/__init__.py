@@ -7,21 +7,28 @@ from repositorios_memoria.usuario import RepositorioUsuarioEmMemoria
 from web.mocks import recursos, usuarios
 from web.tratamento_excecoes import registrar_capturas
 from web.autenticacao import registrar_precarregar_usuario
+from web.email import ServicoEmailConsole, ServicoEmailGmail, formatadores
 
 def create_app():
     app = Flask(__name__)
+    app.config.from_object('config.Config')
     registrar_capturas(app)
     registrar_precarregar_usuario(app)
 
-    app.secret_key = 'notthatsecret'
+    print(app.config['EMAIL_ADAPTER'])
 
     # Instanciando adapters
     app.repositorio_recurso = RepositorioRecursoEmMemoria(recursos)
     app.repositorio_usuario = RepositorioUsuarioEmMemoria(usuarios)
 
+    if app.config['EMAIL_ADAPTER'] == 'gmail':
+        app.servico_email = ServicoEmailGmail(app.config['GMAIL_USER'], app.config['GMAIL_PASS'])
+    else:
+        app.servico_email = ServicoEmailConsole(formatadores)
+
     # Instanciando serviço hexagonal
     app.crud_recurso = ServicoCRUDRecurso(app.repositorio_recurso)
-    app.crud_usuario = ServicoCRUDUsuario(app.repositorio_usuario)
+    app.crud_usuario = ServicoCRUDUsuario(app.repositorio_usuario,app.servico_email)
 
     # Instanciando serviço de autenticacao
 

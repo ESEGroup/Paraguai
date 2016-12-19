@@ -6,3 +6,6 @@ class ExcecaoNaoAutenticado(Exception):
 
 class ExcecaoNaoAutorizado(Exception):
     pass
+
+class FormatadorEmailNaoExistente(Exception):
+    pass

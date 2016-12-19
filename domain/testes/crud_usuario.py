@@ -5,11 +5,14 @@ from domain.usuario.nivel_acesso import *
 from domain.usuario import ServicoCRUDUsuario
 from domain.excecoes import *
 from repositorios_memoria import RepositorioUsuarioEmMemoria
+from .suporte import ServicoEmailEmMemoria
+from domain.email import *
 
 class TesteCRUDUsuario(unittest.TestCase):
     def setUp(self):
         self.repositorio = RepositorioUsuarioEmMemoria([])
-        self.servico = ServicoCRUDUsuario(self.repositorio)
+        self.servico_email = ServicoEmailEmMemoria()
+        self.servico = ServicoCRUDUsuario(self.repositorio, self.servico_email)
 
     def dto(self):
         return DTOUsuario("Bernardo", "contato@bamorim.com", "12345678", 0)
@@ -34,6 +37,14 @@ class TesteCRUDUsuario(unittest.TestCase):
         # Verificar que inseriu no repositorio
         self.assertEqual(total_anterior + 1, len(self.repositorio.usuarios))
         self.assertEqual(usuario, self.repositorio.obter(usuario.id))
+
+        # Verifica que um email foi enviado ao novo usuário
+        self.assertEqual(1,len(self.servico_email.emails))
+        ultimoDestinatario, ultimoEmail = self.servico_email.emails[-1]
+        self.assertEqual(usuario.email, ultimoDestinatario)
+        self.assertIsInstance(ultimoEmail, EmailUsuarioCadastrado)
+        self.assertEqual(dto.senha, ultimoEmail.senha)
+        self.assertEqual(usuario, ultimoEmail.usuario)
 
     def test_nivel_acesso(self):
         dto = self.dto()
@@ -75,6 +86,12 @@ class TesteCRUDUsuario(unittest.TestCase):
         # Senha continua igual
         self.assertTrue(novo_usuario.senhaCriptografada.verificar("12345678"))
 
+        # Um email foi enviado
+        ultimoDestinatario, ultimoEmail = self.servico_email.emails[-1]
+        self.assertEqual("novo@email.com", ultimoDestinatario)
+        self.assertIsInstance(ultimoEmail, EmailUsuarioAlterado)
+        self.assertEqual(usuario.id, ultimoEmail.usuario.id)
+
     def test_alterar_senha(self):
         dto = self.dto()
         usuario = self.servico.criar(dto)
@@ -90,7 +107,8 @@ class TesteCRUDUsuario(unittest.TestCase):
         self.assertTrue(novo_usuario.senhaCriptografada.verificar("novasenha"))
 
     def test_inexistente(self):
-        self.assertEqual(None,self.servico.obter(1234))
+        with self.assertRaises(ExcecaoUsuarioInexistente):
+            self.assertEqual(None,self.servico.obter(1234))
 
         with self.assertRaises(ExcecaoUsuarioInexistente):
             self.servico.remover(1234)
@@ -115,6 +133,12 @@ class TesteCRUDUsuario(unittest.TestCase):
 
         self.servico.remover(usuario.id)
         self.assertEqual(None, self.repositorio.obter(usuario.id))
+
+        # Um email foi enviado
+        ultimoDestinatario, ultimoEmail = self.servico_email.emails[-1]
+        self.assertEqual(usuario.email, ultimoDestinatario)
+        self.assertIsInstance(ultimoEmail, EmailUsuarioRemovido)
+        self.assertEqual(usuario.id, ultimoEmail.usuario.id)
 
     def test_remocao_dupla(self):
         id = self.servico.criar(self.dto()).id
