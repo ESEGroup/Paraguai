@@ -9,6 +9,11 @@ def index():
     print(recursos)
     return render_template("recursos/index.html", recursos=recursos)
 
+@view_recursos.route("/buscar")
+def buscar():
+    tipos = [(tipo, tipo.capitalize()) for tipo in TipoRecurso.TIPOS]
+    return render_template("recursos/buscar.html", dto_recurso=DTORecurso(), tipos_recurso=tipos)
+
 @view_recursos.route("/novo")
 def novo():
     tipos = [(tipo, tipo.capitalize()) for tipo in TipoRecurso.TIPOS]

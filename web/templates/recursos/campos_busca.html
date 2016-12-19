@@ -1,0 +1,13 @@
+{% extends "forms.html" %}
+
+{% block body %}
+  {{ text_input("nome") }}
+  {{ select("tipo", tipos_recurso) }}
+  {{ text_input("local", dto_recurso.local) }}
+  <hr>
+  <span> Agendamento desejado </span>
+  <div class="form-group">
+  {{ datepicker("startdate","Início") }}
+  {{ datepicker("enddate","Fim") }}
+  </div>
+{% endblock body %}
