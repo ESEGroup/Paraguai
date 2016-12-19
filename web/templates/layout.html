@@ -40,12 +40,15 @@
                         </a>
                     </li>
 
-                    <li>
-                        <a href="/buscar/usuario">
-                          <i class="fa fa-fw fa-user"></i>
-                          Usuários
-                        </a>
-                    </li>
+                    {% if g.admin %}
+                        <li>
+                            <a href="/buscar/usuario">
+                                <i class="fa fa-fw fa-user"></i>
+                                Usuários
+                            </a>
+                        </li>
+                    {% endif %}
+
                     <li>
                         <a href="#">
                             <i class="fa fa-fw fa-file-text-o"></i>
@@ -58,6 +61,15 @@
                             Sobre o projeto
                         </a>
                     </li>
+
+                    {% if g.usuario %}
+                        <li>
+                            <a href="{{url_for('sessoes.logout')}}">
+                            <i class="fa fa-fw fa-sign-out"></i>
+                            Sair
+                          </a>
+                        </li>
+                    {% endif %}
                 </ul>
             </nav> <!-- sidebar wrapper -->
 

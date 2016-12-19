@@ -90,10 +90,10 @@ def remover(id_usuario):
     usuario = current_app.crud_usuario.remover(int(id_usuario))
     return redirect(url_for('usuarios.index'))
 
-@app.route("/css/<path>")
+@view_usuarios.route("/css/<path>")
 def serve_stylesheet(path):
     return send_from_directory("./css",path)
 
-@app.route("/js/<path>")
+@view_usuarios.route("/js/<path>")
 def serve_script(path):
     return send_from_directory("./js",path)

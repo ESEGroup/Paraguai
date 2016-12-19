@@ -35,7 +35,7 @@
             </thead>
             <tbody class='clickable-row'>
                 {% for usuario in usuarios %}
-                <tr data-url=''>
+                <tr data-url="{{ url_for('usuarios.detalhar', id_usuario = id_usuario) }}">
                     <td>{{ usuario.id }}</td>
                     <td>{{ usuario.nome }}</td>
                     <td>{{ usuario.email }}</td>
