@@ -1,7 +1,7 @@
 from .recurso import Recurso
 from .tipo import TipoRecurso
 from .filtro import FiltroRecurso
-from domain import IntervaloDeTempo
+from domain.intervalo import IntervaloDeTempo
 from domain.excecoes import ExcecaoRecursoInexistente
 from domain.iso8601 import from_iso
 
@@ -16,7 +16,7 @@ class ServicoCRUDRecurso():
                       nome = dto.nome,
                       local = dto.local,
                       tipo = tipo)
-        return self.repositorio.criar(novoRecurso)
+        return self.repositorio.inserir(novoRecurso)
 
     # UC08 - Alterar recurso
     def alterar(self, id, dto):
@@ -35,7 +35,8 @@ class ServicoCRUDRecurso():
         if dto.local:
             recurso.local = dto.local
 
-        return self.repositorio.criarOuSalvar(recurso)
+        self.repositorio.atualizar(recurso)
+        return True
 
     def obter(self,id):
         recurso = self.repositorio.obter(id)

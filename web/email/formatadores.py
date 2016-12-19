@@ -1,4 +1,5 @@
 from domain.email import *
+from datetime import datetime
 
 def formata(classe):
     def decorador(f):
@@ -67,3 +68,50 @@ def usuario_removido(email):
     )
 
     return (assunto,corpo)
+
+@formata(EmailRecursoInutilizavel)
+def recurso_inutilizavel(email):
+    plural = len(email.agendamentosCancelados) > 1
+    if plural:
+        assunto = "Seus agendamentos do recurso {} foram cancelados"
+    else:
+        assunto = "Seu agendamento do recurso {} foi cancelado"
+
+    assunto = assunto.format(email.recurso.nome)
+
+    corpo_por_agendamento = [
+        "{} até {}".format(
+            datetime.strftime(a.intervalo.inicio, "%d/%m/%Y das %H:%M"),
+            datetime.strftime(a.intervalo.fim, "as %H:%M")
+        ) for a in email.agendamentosCancelados
+    ]
+    corpo_agendamentos = str.join('\n', corpo_por_agendamento)
+
+    s = "s" if plural else ""
+    corpo = """Prezado {},
+
+    {}
+    {} apresentou inconformidade e se encontra em reparo.
+
+    Seguem abaixo os dados relacionados ao{} agendamento{} cancelado{}:
+
+    Recurso: {}
+    Categoria: {}
+
+    Período{}:
+    {}
+
+    Atenciosamente,
+    Sistema de Agendamento UFRJ
+    """.format(
+        email.usuario.nome,
+        assunto,
+        email.recurso.nome,
+        s,s,s,
+        email.recurso.nome,
+        email.recurso.tipo.nome,
+        s,
+        corpo_agendamentos
+    )
+
+    return (assunto, corpo)

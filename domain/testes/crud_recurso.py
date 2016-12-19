@@ -23,7 +23,7 @@ class TesteCRUDRecurso(unittest.TestCase):
         # Verificar que foi salvo no repositorio
 
         self.assertEqual(total_anterior + 1, len(self.repositorio.recursos))
-        self.assertEqual(recurso, self.repositorio.obter(recurso.id))
+        self.assertEqual(recurso.id, self.repositorio.obter(recurso.id).id)
 
     def test_alterar(self):
         dto = DTORecurso("Projetor 1", "projetor", "h201")

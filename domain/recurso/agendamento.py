@@ -1,5 +1,5 @@
-from domain import IntervaloDeTempo
+from domain.intervalo import IntervaloDeTempo
 class Agendamento():
-    def __init__(self, intervalo, IDUsuario = None):
+    def __init__(self, intervalo, idResponsavel):
         self.intervalo = intervalo
-        self.responsavel = IDUsuario
+        self.idResponsavel = idResponsavel

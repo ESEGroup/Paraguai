@@ -7,10 +7,11 @@ class IntervaloDeTempo():
         if(type(fim) is not datetime):
             raise ValueError("Fim do intervalo de tempo inválido")
 
-        if (self.inicio >= self.fim):
-            print(inicio)
-            print(fim)
+        if (inicio >= fim):
             raise ValueError("Fim antes do Início")
+
+        self.inicio = inicio
+        self.fim = fim
 
     def intercede(self,outro):
         if (self.inicio <= outro.inicio):

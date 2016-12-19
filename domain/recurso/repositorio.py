@@ -1,11 +1,11 @@
 class RepositorioRecurso():
-    def criarOuSalvar(self, recurso):
-        """
-        Adiciona um recurso ao repositório
-        """
+    def inserir(self, recurso):
+        """ Insere um recurso e associa um id a ele """
+
+    def atualizar(self, recurso):
         pass
 
-    def todos(self):
+    def listar(self):
         pass
 
     def obter(self,RecursoID):
@@ -15,10 +15,4 @@ class RepositorioRecurso():
         pass
 
     def buscar(self, recurso):
-        pass
-
-    def metadados(self):
-        """
-        Retorna a lista de objetos TipoRecurso contendo todos os tipos de recurso.
-        """
         pass

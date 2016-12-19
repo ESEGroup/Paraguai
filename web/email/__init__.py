@@ -5,7 +5,8 @@ from .formatadores import *
 formatadores = [
     usuario_cadastrado,
     usuario_alterado,
-    usuario_removido
+    usuario_removido,
+    recurso_inutilizavel
 ]
 
 class ServicoEmailConsole(ServicoEmailFormatado):

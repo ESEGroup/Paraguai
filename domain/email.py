@@ -13,6 +13,12 @@ class EmailUsuarioRemovido(ValueObject):
     def __init__(self, usuario):
         self.usuario = usuario
 
+class EmailRecursoInutilizavel(ValueObject):
+    def __init__(self, usuario, recurso, agendamentosCancelados):
+        self.usuario = usuario
+        self.recurso = recurso
+        self.agendamentosCancelados = agendamentosCancelados
+
 class ServicoEmail():
     def enviar(self, destinatario, email):
         """Envia um email para um destinatario com um assunto e um corpo (texto)
