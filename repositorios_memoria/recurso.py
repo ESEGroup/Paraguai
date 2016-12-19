@@ -1,6 +1,7 @@
 from difflib import SequenceMatcher
 from itertools import product
 from domain.recurso import RepositorioRecurso
+import copy
 
 class RepositorioRecursoEmMemoria(RepositorioRecurso):
     def __init__(self, recursos=[]):
@@ -11,6 +12,13 @@ class RepositorioRecursoEmMemoria(RepositorioRecurso):
         self.recursos.append(recurso)
         return recurso
 
+    def salvar(self, recurso):
+        try:
+            self.recursos[int(recurso.id)-1] = recurso
+            return True
+        except IndexError:
+            return False
+
     def remover(self, id):
         try:
             self.recursos[int(id)-1] = None
@@ -20,7 +28,7 @@ class RepositorioRecursoEmMemoria(RepositorioRecurso):
 
     def obter(self, identificador):
         try:
-            return self.recursos[int(identificador)-1]
+            return copy.deepcopy(self.recursos[int(identificador)-1])
         except:
             return None
 
@@ -28,4 +36,4 @@ class RepositorioRecursoEmMemoria(RepositorioRecurso):
         return list(filter(lambda r: recursoFiltro.atende(r), self.recursos))
 
     def listar(self):
-        return self.recursos
+        return copy.deepcopy(self.recursos)
