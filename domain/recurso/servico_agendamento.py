@@ -24,10 +24,6 @@ class ServicoAgendamento():
           if agendamento.responsavel == IDUsuario
         ]
 
-    def listar_por_recurso(self, IDRecurso):
-        recurso = self.repositorio.obter(IDRecurso)
-        return recurso.agendamentos
-
     def agendar(self, IDRecurso, IDUsuario, intervalo):
         recurso = self.repositorio.obter(IDRecurso)
 
