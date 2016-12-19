@@ -1,7 +1,20 @@
 from flask import Blueprint, render_template, current_app, request, url_for, redirect
-from domain.recurso import Recurso, TipoRecurso, DTORecurso
+from domain.recurso import Recurso, TipoRecurso, DTORecurso, DTOBuscaRecurso
+from domain.iso8601 import from_iso
+from ..excecoes import ExcecaoParaguaiWeb
 
 view_recursos = Blueprint('recursos', __name__)
+
+def validar_datepicker(start,end):
+    if not start and not end:
+        return
+    try:
+        print(start," ",end)
+        data_inicio = from_iso(start)
+        data_fim = from_iso(end)
+    except ValueError as error:
+        raise ExcecaoParaguaiWeb("Data com formato inválido!")
+    return (start, end)
 
 @view_recursos.route("/")
 def index():
@@ -10,9 +23,18 @@ def index():
     return render_template("recursos/index.html", recursos=recursos)
 
 @view_recursos.route("/buscar")
-def buscar():
+def pagina_busca():
     tipos = [(tipo, tipo.capitalize()) for tipo in TipoRecurso.TIPOS]
     return render_template("recursos/buscar.html", dto_recurso=DTORecurso(), tipos_recurso=tipos)
+
+@view_recursos.route("/buscar", methods=["POST"])
+def buscar():
+    dto = DTOBuscaRecurso(request.form["nome"], request.form["tipo"], request.form["local"])
+    intervalo = validar_datepicker(request.form["start"],request.form["end"])
+    if intervalo:
+        dto.intervalos.append(intervalo)
+    recursos = current_app.crud_recurso.buscar(dto)
+    return render_template("recursos/index.html", recursos=recursos)
 
 @view_recursos.route("/novo")
 def novo():
