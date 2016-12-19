@@ -9,9 +9,8 @@ def validar_datepicker(start,end):
     if not start and not end:
         return
     try:
-        print(start," ",end)
-        data_inicio = from_iso(start)
-        data_fim = from_iso(end)
+        data_inicio = from_iso(start.replace(" ","T",1) + "Z")
+        data_fim = from_iso(start.replace(" ","T",1) + "Z")
     except ValueError as error:
         raise ExcecaoParaguaiWeb("Data com formato inválido!")
     return (start, end)
