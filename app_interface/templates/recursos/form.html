@@ -1,0 +1,39 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+	<form>
+	<!-- Form Name -->
+	<legend>Criar Recurso</legend>
+
+        <div class="form-group">
+            <label>C&oacute;digo</label>
+            <input type="text" class="form-control" id="nome" placeholder="001" disabled="true">
+        </div>
+
+        <div class="form-group">
+            <label>Nome</label>
+            <input type="text" class="form-control" id="nome" placeholder="Nome do Recurso">
+        </div>
+
+        <div class="form-group">
+            <label>Localiza&ccedil;&atilde;o</label>
+            <input type="text" class="form-control" id="loc" placeholder="Localiza&ccedil;&atilde;o do Recurso">
+        </div>
+
+        <div class="form-group">
+            <label>Categoria</label>
+            <select class="form-control" id="">
+                <option>Escolha a categoria</option>
+                <option>Sala</option>
+                <option>Projetor</option>
+                <option>Computador</option>
+                <option>Acess&oacute;rios de aula</option>
+            </select>
+        </div>
+
+        <!-- ESTUDAR BLOCK NESTING DO JINJA PARA VER SE É POSSÍVEL CRIAR BLOCK BUTTON E ESTENDER LAYOUT ACIMA -->
+        <button type="submit" class="btn btn-primary">Criar</button>
+	</form>
+
+{% endblock content %}

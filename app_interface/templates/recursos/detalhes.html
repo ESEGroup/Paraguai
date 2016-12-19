@@ -1,0 +1,79 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+    <!-- CONTEUDO ESPECIFICO DA PAGINA -->
+    <h2 class="page-header">Detalhes do recurso</h2>
+    
+    <!-- TABELA DE EXIBICAO DE RESULTADOS -->
+    <div class="row">
+        <div class="col-sm-4">
+            <table class="table table-bordered table-responsive">
+                <tr>
+                    <td class="attribute-ufrj">C&oacute;digo:</td>
+                    <td class="value-ufrj">001</td>
+                </tr>
+                <tr>
+                    <td class="attribute-ufrj">Nome:</td>
+                    <td class="value-ufrj">H-214</td>
+                </tr>
+                <tr>
+                    <td class="attribute-ufrj">Categoria:</td>
+                    <td class="value-ufrj">Sala</td>
+                </tr>
+                <tr>
+                    <td class="attribute-ufrj">Localiza&ccedil;&atilde;o:</td>
+                    <td class="value-ufrj">Bloco H</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    
+    <!-- NAO ESTA FUNCIONANDO ----- EXIBICAO DO DATEPICKER INLINE -->
+    <div style="overflow:hidden;">
+        <div class="form-group">
+            <div class="row">
+                <div class="col-md-8">
+                    <div id="datetimepicker12"></div>
+                </div>
+            </div>
+        </div>
+        <script type="text/javascript">
+            $(function () {
+                $('#datetimepicker12').datetimepicker({
+                    inline: true,
+                    sideBySide: true
+                });
+            });
+        </script>
+    </div>
+    
+    <!-- FORM PARA AGENDAR RECURSO -->
+    <form class="form-inline">
+        <div class="form-group">
+            <label class="sr-only">Data inicial</label>
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="Data inicial">
+                <div class="input-group-addon">
+                    <i class="fa fa-calendar" aria-hidden="true"></i>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="sr-only">Data final</label>
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="Data final">
+                <div class="input-group-addon">
+                    <i class="fa fa-calendar" aria-hidden="true"></i>
+                </div>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-info"></i> Agendar</button>
+    </form>
+    
+    <br>
+    <button type="submit" class="btn btn-warning"><i class="fa fa-pencil" aria-hidden="true"></i> Alterar</button>
+    <button type="submit" class="btn btn-danger"><i class="fa fa-times" aria-hidden="true"></i> Remover</button>
+    <!-- FIM DO CONTEUDO ESPECIFICO -->
+
+{% endblock content %}

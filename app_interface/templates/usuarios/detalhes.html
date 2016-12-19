@@ -1,0 +1,36 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+    <!-- CONTEUDO ESPECIFICO DA PAGINA -->
+    <h2 class="page-header">Detalhes do usu&aacute;rio</h2>
+    
+    <!-- TABELA DE EXIBICAO DE RESULTADOS -->
+    <div class="row">
+        <div class="col-sm-4">
+            <table class="table table-bordered table-responsive">
+                <tr>
+                    <td class="attribute-ufrj">C&oacute;digo:</td>
+                    <td class="value-ufrj">001</td>
+                </tr>
+                <tr>
+                    <td class="attribute-ufrj">Nome:</td>
+                    <td class="value-ufrj">José</td>
+                </tr>
+                <tr>
+                    <td class="attribute-ufrj">E-mail:</td>
+                    <td class="value-ufrj">jose@del.ufrj.br</td>
+                </tr>
+                <tr>
+                    <td class="attribute-ufrj">Departamento:</td>
+                    <td class="value-ufrj">DEL</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <button type="submit" class="btn btn-warning"><i class="fa fa-pencil" aria-hidden="true"></i> Alterar</button>
+    <button type="submit" class="btn btn-danger"><i class="fa fa-times" aria-hidden="true"></i> Remover</button>
+    <!-- FIM DO CONTEUDO ESPECIFICO -->
+
+{% endblock content %}
