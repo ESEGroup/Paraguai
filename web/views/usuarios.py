@@ -11,7 +11,6 @@ view_usuarios = Blueprint('usuarios', __name__)
 @requer_acesso(Administrador())
 def index():
     usuarios = current_app.crud_usuario.listar()
-    print(usuarios)
     return render_template("usuarios/index.html", usuarios=usuarios)
 
 @view_usuarios.route("/novo")
