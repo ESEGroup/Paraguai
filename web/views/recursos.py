@@ -47,7 +47,7 @@ def detalhes(id):
 
 @view_recursos.route("/<id>/editar")
 def editar(id):
-    recurso = current_app.crud_recurso.obter(id)
+    recurso = current_app.crud_recurso.obter(int(id))
     tipos = [(tipo, tipo.capitalize()) for tipo in TipoRecurso.TIPOS]
     dto = DTORecurso(recurso.nome, recurso.tipo.nome, recurso.local)
     return render_template("recursos/editar.html", dto_recurso=dto, tipos_recurso=tipos, id_recurso=id)
@@ -55,7 +55,7 @@ def editar(id):
 @view_recursos.route("/<id>", methods=["POST"])
 def alterar(id):
     dto = DTORecurso(request.form["nome"], request.form["tipo"], request.form["local"])
-    current_app.crud_recurso.alterar(id, dto)
+    current_app.crud_recurso.alterar(int(id), dto)
     return redirect(url_for('recursos.index'))
 
 @view_recursos.route("/", methods=["POST"])
