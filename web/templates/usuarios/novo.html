@@ -1,7 +1,19 @@
 {% extends "layout.html" %}
-{% block body %}
-<form action="{{ url_for('usuarios.criar') }}" method="POST">
-  {% include "usuarios/campos.html" %}
-  <button type="submit" class="btn btn-primary">Criar</button>
-</form>
-{% endblock body %}
+{% extends "forms.html" %}
+
+{% block content %}
+
+	<form action="{{ url_for('usuarios.criar') }}" method="POST">
+	<!-- Form Name -->
+	<legend>Criar Usu&aacute;rio</legend>
+
+      {{ text_input("nome", dto_usuario.nome) }}
+      {{ text_input("email", dto_usuario.email) }}
+      {{ password_input(dto_usuario.senha) }}
+      {{ select("nivelAcesso", niveisAcesso) }}
+
+        <!-- ESTUDAR BLOCK NESTING DO JINJA PARA VER SE É POSSÍVEL CRIAR BLOCK BUTTON E ESTENDER LAYOUT ACIMA -->
+        <button type="submit" class="btn btn-primary">Criar</button>
+	</form>
+
+{% endblock content %}

@@ -1,0 +1,46 @@
+_OK_ sessoes/login
+    - UC09 (realizar autenticação)
+
+_OK_ pages/index
+
+_OK_ recursos/index
+TODO - Colocar templates do Jinja na tabela
+    - UC01 (buscar recurso)
+    - UC02 (agendar recurso)
+    - UC03 (cancelar agendamento)
+    - UC07 (cadastrar recurso)
+    - UC08 (alterar recurso)
+    - UC11 (buscar agendamento)
+    - UC15 (remover recurso)
+    
+_ _ recursos/detalhes
+    - UC02 (agendar recurso)
+    - UC03 (cancelar agendamento) * apresentar botão junto ao grid lateral ao datepicker inline
+    - UC08 (alterar recurso)
+    - UC11 (buscar agendamento)
+    - UC15 (remover recurso)
+    
+_SEMI_ recursos/form
+    - UC07 (cadastrar recurso) * com legenda do botão = "Criar" - Pronto
+    - UC08 (alterar recurso) * com legenda do botão = "Alterar" - Falta trocar a legenda do botão
+
+_OK_ usuario/index
+TODO - Colocar templates do Jinja na tabela
+    - UC04 (buscar usuario)
+    - UC12 (cadastrar usuario)
+    - UC13 (alterar usuario)
+    - UC14 (remover usuario)
+    
+_ _ usuario/detalhes
+    - UC13 (alterar usuario)
+    - UC14 (remover usuario)
+    
+_SEMI_ usuario/form
+    - UC12 (cadastrar usuario) * com legenda do botão = "Criar" - Pronto
+    - UC13 (alterar usuario) * com legenda do botão = "Alterar" - Falta trocar a legenda do botão
+
+sem tela
+    - UC10 (alterar disponibilidade de recurso) * via API
+
+OBS:
+    - "UC05 (alterar agendamento) não será implementado"

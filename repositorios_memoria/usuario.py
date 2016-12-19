@@ -11,7 +11,8 @@ class RepositorioUsuarioEmMemoria(RepositorioEmMemoria, RepositorioUsuario):
     def obter_por_email(self, email):
         """Busca e retorna um objeto de Usuario associado a um endereço de e-mail
         fornecido. Pode levantar uma exceção do tipo IndexError caso não seja
-        encontrado nenhum Usuário associado ao e-mail dado."""
+        encontrado nenhum Usuário associado ao e-mail dado.
+        :param email: Endereço de e-mail do Usuário buscado"""
         try:
             return list(filter(lambda u: u.email == email, self.listar()))[0]
         except IndexError:
