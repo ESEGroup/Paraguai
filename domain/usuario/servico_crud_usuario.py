@@ -65,7 +65,6 @@ class ServicoCRUDUsuario():
             2: Administrador(),
         }
 
-        print(dados.__dict__)
         try:
             usuario.nivelAcesso = escolha[dados.nivelAcesso]
         except KeyError:
