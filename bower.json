@@ -1,0 +1,28 @@
+{
+  "name": "SIAR",
+  "homepage": "https://github.com/ESEGroup/Paraguai",
+  "authors": [
+    "Bernardo",
+    "Felipe",
+    "Lucas",
+    "Olavo",
+    "Varlen"
+  ],
+  "description": "Projeto da discilina de Engenharia de Software na UFRJ",
+  "main": "",
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^3.3.7",
+    "eonasdan-bootstrap-datetimepicker": "^4.17.43",
+    "jquery": "^3.1.1",
+    "fullcalendar": "^3.1.0"
+  }
+}

@@ -1,0 +1,79 @@
+
+{% extends "layout.html" %}
+{% block body %}
+<div id="calendar">
+</div>
+<script>
+ $(function(){
+		$('#calendar').fullCalendar({
+			header: {
+				left: 'prev,next today',
+				center: 'title',
+				right: 'month,agendaWeek,agendaDay'
+			},
+      defaultView: 'agendaWeek',
+			navLinks: true, // can click day/week names to navigate views
+			selectable: true,
+			selectHelper: true,
+			select: function(start, end) {
+				var title = prompt('Event Title:');
+				var eventData;
+				if (title) {
+					eventData = {
+						title: title,
+						start: start,
+						end: end
+					};
+					$('#calendar').fullCalendar('renderEvent', eventData, true); // stick? = true
+				}
+				$('#calendar').fullCalendar('unselect');
+			},
+			editable: false,
+			eventLimit: false, // allow 0"more" link when too many events
+      locale: "pt-br",
+			events: [
+				{
+					title: 'Lunch',
+					start: '2016-12-12T12:11:00',
+          end: '2016-12-12T12:30:00'
+				},
+				{
+					title: 'Lunch',
+					start: '2016-12-12T12:30:00',
+          end: '2016-12-12T13:00:00'
+				},
+				{
+					title: 'Lunch',
+					start: '2016-12-12T13:00:00',
+          end: '2016-12-12T13:30:00'
+				},
+				{
+					title: 'Lunch',
+					start: '2016-12-12T13:30:00',
+          end: '2016-12-12T14:00:00'
+				},
+				{
+					title: 'Lunch',
+					start: '2016-12-12T14:00:00',
+          end: '2016-12-12T14:30:00'
+				},
+				{
+					title: 'Lunch',
+					start: '2016-12-12T14:30:00',
+          end: '2016-12-12T15:00:00'
+				},
+				{
+					title: 'Lunch',
+					start: '2016-12-12T15:00:00',
+          end: '2016-12-12T15:30:00'
+				},
+				{
+					title: 'Lunch',
+					start: '2016-12-12T15:30:00',
+          end: '2016-12-12T16:00:00'
+				},
+			]
+		});
+ })
+</script>
+{% endblock body %}

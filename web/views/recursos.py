@@ -14,6 +14,10 @@ def novo():
     tipos = [(tipo, tipo.capitalize()) for tipo in TipoRecurso.TIPOS]
     return render_template("recursos/novo.html", dto_recurso=DTORecurso(), tipos_recurso=tipos)
 
+@view_recursos.route("/<id>")
+def detalhes(id):
+    return render_template("recursos/detalhes.html")
+
 @view_recursos.route("/<id>/editar")
 def editar(id):
     recurso = current_app.crud_recurso.obter(id)

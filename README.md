@@ -12,6 +12,10 @@ Primeiro, instale o Python 3 e o virtualenv.
 4. Inicie o ambiente virtual usando `source ./env/bin/activate`
 5. Instale as dependencias usando `pip install -r requirements.txt`
 
+## Instalando o bower e dependencias front-end
+1. Instale o bower (precisa do Node, NPM e git): https://bower.io/
+2. No diretório do projeto, rode `bower install`
+
 # Rodando o servidor
 
 1. Vá para a pasta do projeto
