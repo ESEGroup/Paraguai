@@ -1,6 +1,6 @@
 from datetime import datetime
 
-isoformat = "%Y-%m-%d%H:%M:%SZ"
+isoformat = "%Y-%m-%d %H:%M:%SZ"
 def from_iso(string):
     return datetime.strptime(string, isoformat)
 
