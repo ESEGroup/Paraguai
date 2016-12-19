@@ -26,6 +26,8 @@ class ServicoAgendamento():
 
     def agendar(self, IDRecurso, IDUsuario, intervalo):
         recurso = self.repositorio.obter(IDRecurso)
+        if not recurso:
+            raise ExcecaoRecursoInexistente
 
         # Verificar se o recurso já tem um agendamento sobreposto
         for agendamento in recurso.agendamentos:
@@ -43,6 +45,8 @@ class ServicoAgendamento():
 
     def remover(self, IDRecurso, intervalo):
         recurso = self.repositorio.obter(IDRecurso)
+        if not recurso:
+            raise ExcecaoRecursoInexistente
         recurso.agendamentos = [
             agendamento
             for agendamento in recurso.agendamentos
