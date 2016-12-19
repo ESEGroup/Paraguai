@@ -6,6 +6,7 @@
         <td>Código</td>
         <td>Nome</td>
         <td>Categoria</td>
+        <td>Local</td>
       </tr>
     </th>
     <tbody>
@@ -13,7 +14,8 @@
         <tr>
           <td>{{ recurso.id }}</td>
           <td>{{ recurso.nome }}</td>
-          <td>{{ recurso.tipo.nome }}</td>
+          <td>{{ recurso.tipo.nome.capitalize() }}</td>
+          <td>{{ recurso.local }}</td>
         </tr>
       {% endfor %}
     </tbody>
