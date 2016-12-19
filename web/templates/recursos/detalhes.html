@@ -1,6 +1,14 @@
 
 {% extends "layout.html" %}
 {% block body %}
+<div id="resource-info">
+	<ul class="resource-info-list">
+		<li><h4>{{ recurso.nome }}</h4></li>
+		<li><i class="fa fa-tag fa-fw" aria-hidden="true"></i>  {{ recurso.tipo.nome.capitalize() }}</li>
+		<li><i class="fa fa-map-marker fa-fw" aria-hidden="true"></i>  {{ recurso.local }}</li>
+	</ul>
+</div>
+<hr>
 <div id="calendar">
 </div>
 <script>

@@ -323,3 +323,12 @@ body a:hover {
 .fc h2 {
   font-size: 25px;
 }
+#resource-info {
+  margin-top:-3em;
+  border-bottom-style: groove;
+  margin-bottom: -1em;
+}
+.resource-info-list {
+  list-style-type: none;
+  margin-left:-1.5em;
+}
