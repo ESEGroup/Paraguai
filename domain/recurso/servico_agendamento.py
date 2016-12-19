@@ -3,6 +3,7 @@ from .tipo import TipoRecurso
 from .filtro import FiltroRecurso
 from domain.IntervaloDeTempo import IntervaloDeTempo
 from domain.agendamento import Agendamento
+from domain.excecoes import *
 
 class ServicoAgendamento():
     def __init__(self, repositorio):
@@ -40,10 +41,13 @@ class ServicoAgendamento():
             if intervalo.intercede(agendamento_usuario.intervalo):
                 raise ExcecaoAgendamentoUsuarioOcupado
         # Verificar se o recurso está indisponível
-        if recurso.indisponivel:
+        if not recurso.utilizavel:
             raise ExcecaoAgendamentoRecursoIndisponivel
+
         novo_agendamento = Agendamento(intervalo, IDUsuario)
         recurso.agendamentos.append(novo_agendamento)
+        self.repositorio.atualizar(recurso)
+
 
     def remover(self, IDRecurso, intervalo):
         recurso = self.repositorio.obter(IDRecurso)
@@ -52,3 +56,4 @@ class ServicoAgendamento():
             for agendamento in recurso.agendamentos
             if not agendamento.intervalo.intercede(intervalo)
         ]
+        self.repositorio.atualizar(recurso)
