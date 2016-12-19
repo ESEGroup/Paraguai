@@ -315,3 +315,11 @@ body a:hover {
     background-color: #2a2a2a;
     color: #cecece;
 }
+
+/* Fix para a fonte no calendário */
+.fc table {
+  font-size:initial;
+}
+.fc h2 {
+  font-size: 25px;
+}
