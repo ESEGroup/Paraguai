@@ -8,7 +8,8 @@ def formata(classe):
 
 @formata(EmailUsuarioCadastrado)
 def usuario_cadastrado(email):
-    return """Prezado {},
+    assunto = "Você foi cadastrado no Sistema de Agendamento UFRJ!"
+    corpo = """Prezado {},
 
     Você foi cadastrado com sucesso no Sistema de Agendamento UFRJ.
 
@@ -28,9 +29,12 @@ def usuario_cadastrado(email):
         email.senha
     )
 
+    return (assunto, corpo)
+
 @formata(EmailUsuarioAlterado)
 def usuario_alterado(email):
-    return """Prezado {},
+    assunto = "Seu cadastro foi alterado por um administrador do sistema"
+    corpo = """Prezado {},
 
     Seu cadastro foi alterado por um administrador do sistema.
 
@@ -46,9 +50,12 @@ def usuario_alterado(email):
         email.usuario.email
     )
 
+    return (assunto, corpo)
+
 @formata(EmailUsuarioRemovido)
 def usuario_removido(email):
-    return """Prezado {},
+    assunto = "Seu cadastro foi removido do sistema"
+    corpo = """Prezado {},
 
     Seu cadastro foi removido do sistema por um administrador.
 
@@ -59,4 +66,4 @@ def usuario_removido(email):
         email.usuario.nome
     )
 
-FORMATADORES_PADRAO = [usuario_cadastrado]
+    return (assunto,corpo)
