@@ -23,4 +23,14 @@
   </div>
 {% endmacro %}
 
+{% macro datepicker(name, label) %}
+  <label for="{{ name }}">{{ label }}</label>
+  <div class="input-group datepicker {{name}}">
+    <input type="text" class="form-control" data-date-format='YYYY/MM/DD hh:mm a' name="{{name}}" id="datepicker_{{name}}">
+    <span class="input-group-addon">
+        <span class="glyphicon glyphicon-calendar"></span>
+    </span>
+  </div>
+{% endmacro %}
+
 {% block body %} {% endblock body %}

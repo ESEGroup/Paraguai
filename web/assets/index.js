@@ -21,7 +21,9 @@ $(document).ready(function () {
         isClosed = true;
       }
   }
-  
+
+  $('.datepicker').datetimepicker();
+
   $('[data-toggle="offcanvas"]').click(function () {
         $('#wrapper').toggleClass('toggled');
   });  
