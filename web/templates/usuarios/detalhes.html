@@ -3,7 +3,7 @@
 {% block content %}
 
     <!-- CONTEUDO ESPECIFICO DA PAGINA -->
-    <h2 class="page-header">Detalhes do usu&aacute;rio</h2>
+    <h2 class="page-header">Detalhes do Usu&aacute;rio</h2>
     
     <!-- TABELA DE EXIBICAO DE RESULTADOS -->
     <div class="row">
@@ -11,26 +11,22 @@
             <table class="table table-bordered table-responsive">
                 <tr>
                     <td class="attribute-ufrj">C&oacute;digo:</td>
-                    <td class="value-ufrj">001</td>
+                    <td class="value-ufrj">{{ usuario.id }}</td>
                 </tr>
                 <tr>
                     <td class="attribute-ufrj">Nome:</td>
-                    <td class="value-ufrj">José</td>
+                    <td class="value-ufrj">{{ usuario.nome }}</td>
                 </tr>
                 <tr>
                     <td class="attribute-ufrj">E-mail:</td>
-                    <td class="value-ufrj">jose@del.ufrj.br</td>
-                </tr>
-                <tr>
-                    <td class="attribute-ufrj">Departamento:</td>
-                    <td class="value-ufrj">DEL</td>
+                    <td class="value-ufrj">{{ usuario.email }}</td>
                 </tr>
             </table>
         </div>
     </div>
 
-    <button type="submit" class="btn btn-warning"><i class="fa fa-pencil" aria-hidden="true"></i> Alterar</button>
-    <button type="submit" class="btn btn-danger"><i class="fa fa-times" aria-hidden="true"></i> Remover</button>
+    <a href="{{ url_for('usuarios.editar', id_usuario = usuario.id) }}" class="btn btn-warning"><i class="fa fa-pencil" aria-hidden="true"></i>Alterar</a>
+    <a href="{{ url_for('usuarios.remover', id_usuario = usuario.id) }}" class="btn btn-danger"><i class="fa fa-times" aria-hidden="true">Deletar</a>
     <!-- FIM DO CONTEUDO ESPECIFICO -->
 
 {% endblock content %}

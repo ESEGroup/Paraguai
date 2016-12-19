@@ -29,16 +29,26 @@ def buscar():
 
     return render_template("usuarios/index.html", usuarios=usuarios)
 
+@view_usuarios.route("/<id_usuario>")
+@requer_usuario
+@requer_acesso(Administrador())
+def detalhar(id_usuario):
+    usuario = current_app.crud_usuario.obter(int(id_usuario))
+
+    return render_template("usuarios/detalhes.html", usuario=usuario)
+
 @view_usuarios.route("/novo")
 @requer_usuario
 @requer_acesso(Administrador())
 def novo():
+
     niveisAcesso = [
     (0, "Usuário Comum"),
     (1, "Sistema de Manutenção"),
     (2, "Administrador")
     ]
-    return render_template("usuarios/novo_old.html", dto_usuario=DTOUsuario(), niveisAcesso=niveisAcesso)
+
+    return render_template("usuarios/novo.html", dto_usuario=DTOUsuario(), niveisAcesso=niveisAcesso)
 
 
 @view_usuarios.route("/<id_usuario>/editar")
@@ -54,7 +64,7 @@ def editar(id_usuario):
     (2, "Administrador")
     ]
 
-    return render_template("usuarios/editar_old.html", id_usuario=id_usuario, dto_usuario=dto, niveisAcesso=niveisAcesso)
+    return render_template("usuarios/editar.html", id_usuario=id_usuario, dto_usuario=dto, niveisAcesso=niveisAcesso)
 
 @view_usuarios.route("/<id_usuario>", methods=["POST"])
 @requer_usuario
