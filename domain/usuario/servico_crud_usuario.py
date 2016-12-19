@@ -36,7 +36,7 @@ class ServicoCRUDUsuario():
         if self.repositorio.obter_por_email(dados.email):
             raise ExcecaoUsuarioJaExistente
 
-        usuario = self.repositorio.criar(usuario)
+        usuario = self.repositorio.inserir(usuario)
 
         email = EmailUsuarioCadastrado(usuario, dados.senha)
         self.servico_email.enviar(usuario.email, email)
@@ -77,20 +77,19 @@ class ServicoCRUDUsuario():
         if dados.senha:
             usuario.senhaCriptografada = SenhaCriptografada(dados.senha)
 
-        novoUsuario = self.repositorio.alterar(_id, usuario)
+        self.repositorio.atualizar(usuario)
 
         email = EmailUsuarioAlterado(novoUsuario)
         self.servico_email.enviar(novoUsuario.email, email)
 
-        return novoUsuario
+        return usuario
 
 
     def listar(self):
         """Lista todos os Usuários, retornando uma lista de objetos de Usuario.
         Implementa parte do UC04 (Buscar Usuário)."""
-        
-        #Não lista Usuários vazios (removidos)
-        return list( filter( lambda r: r, self.repositorio.listar() ) )
+
+        return self.repositorio.listar()
 
 
     def obter(self, _id):
@@ -110,7 +109,7 @@ class ServicoCRUDUsuario():
         """Remove o Usuário que possui o ID fornecido e o retorna, além de
         cancelar todos os seus Agendamentos. Implementa o UCXXX (Remover Usuário).
         :param _id: Número inteiro que representa o ID do Usuário desejado."""
-        
+
         #TODO: buscar por agendamentos associados ao Usuário com id _id
 
         usuario = self.repositorio.obter(_id)

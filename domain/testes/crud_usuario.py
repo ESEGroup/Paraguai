@@ -19,7 +19,7 @@ class TesteCRUDUsuario(unittest.TestCase):
 
     def test_criar_ok(self):
         dto = self.dto()
-        total_anterior = len(self.repositorio.usuarios)
+        total_anterior = len(self.repositorio.listar())
         usuario = self.servico.criar(dto)
 
         # Verificar que foi criado um Usuario
@@ -35,8 +35,8 @@ class TesteCRUDUsuario(unittest.TestCase):
         self.assertFalse(usuario.senhaCriptografada.verificar("outrasenha"))
 
         # Verificar que inseriu no repositorio
-        self.assertEqual(total_anterior + 1, len(self.repositorio.usuarios))
-        self.assertEqual(usuario, self.repositorio.obter(usuario.id))
+        self.assertEqual(total_anterior + 1, len(self.repositorio.listar()))
+        self.assertEqual(usuario.id, self.repositorio.obter(usuario.id).id)
 
         # Verifica que um email foi enviado ao novo usuário
         self.assertEqual(1,len(self.servico_email.emails))

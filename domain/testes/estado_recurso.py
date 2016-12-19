@@ -18,14 +18,14 @@ class TesteCRUDRecurso(unittest.TestCase):
         )
 
     def test_alterar_inutilizavel(self):
-        _id = self.repositorio.criar(self.recurso(True)).id
+        _id = self.repositorio.inserir(self.recurso(True)).id
 
         self.servico.alterar_estado(_id, False)
         novoRecurso = self.repositorio.obter(_id)
         self.assertEqual(False, novoRecurso.utilizavel)
 
-    def test_alterar_utilizavel
-        _id = self.repositorio.criar(self.recurso(True)).id
+    def test_alterar_utilizavel(self):
+        _id = self.repositorio.inserir(self.recurso(True)).id
 
         self.servico.alterar_estado(_id, True)
         novoRecurso = self.repositorio.obter(_id)

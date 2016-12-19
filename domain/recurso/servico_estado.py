@@ -13,4 +13,4 @@ class ServicoEstadoRecurso():
         if not recurso:
             raise ExcecaoRecursoInexistente
         recurso.utilizavel = utilizavel
-        self.repositorio.salvar(recurso)
+        self.repositorio.atualizar(recurso)
