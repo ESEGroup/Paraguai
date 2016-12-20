@@ -63,7 +63,7 @@ def detalhes(id):
     recurso = current_app.crud_recurso.obter(int(id))
     agendamentos = agendamentos_to_cal(recurso.agendamentos, session["id_usuario"])
     print(agendamentos)
-    return render_template("recursos/detalhes.html", agendamentos = agendamentos, recurso = recurso)
+    return render_template("recursos/detalhes.html", agendamentos = agendamentos, recurso = recurso, admin = g.admin, username = g.usuario.nome)
 
 @view_recursos.route("/<id>/editar")
 def editar(id):

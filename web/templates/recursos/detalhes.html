@@ -3,7 +3,14 @@
 {% block body %}
 <div id="resource-info">
 	<ul class="resource-info-list">
-		<li><h4>{{ recurso.nome }}</h4></li>
+		<li><h4>{{ recurso.nome }}</h4>
+		{% if admin %}
+		<div style="margin-top:1em" class="btn-group push-right">
+			<a type="button" class="btn btn-primary" href="{{url_for('recursos.editar', id = recurso.id)}}"><i class="fa fa-paint-brush fa-fw"></i>  Editar</a>
+  			<button type="button" class="btn btn-primary"><i class="fa fa-lock"></i>  Desabilitar</button>
+		</div>
+		{% endif %}
+		</li>
 		<li><i class="fa fa-tag fa-fw" aria-hidden="true"></i>  {{ recurso.tipo.nome.capitalize() }}</li>
 		<li><i class="fa fa-map-marker fa-fw" aria-hidden="true"></i>  {{ recurso.local }}</li>
 	</ul>

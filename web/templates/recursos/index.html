@@ -15,7 +15,7 @@
     <tbody>
       {% for recurso in recursos %}
         <tr>
-          <td><a href="{{ url_for('recursos.editar', id = recurso.id)}}">{{ recurso.id }}</a></td>
+          <td><a href="{{ url_for('recursos.detalhes', id = recurso.id)}}">{{ recurso.id }}</a></td>
           <td>{{ recurso.nome }}</td>
           <td>{{ recurso.tipo.nome.capitalize() }}</td>
           <td>{{ recurso.local }}</td>
