@@ -6,6 +6,7 @@ from .recurso import Recurso
 from .tipo import TipoRecurso
 from .filtro import FiltroRecurso
 from .agendamento import Agendamento
+import pprint
 
 def dto_to_intervalo(dto):
     return IntervaloDeTempo(from_iso(dto.inicio), from_iso(dto.fim))
@@ -70,3 +71,4 @@ class ServicoAgendamento():
             recurso,
             agendamentoARemover
         ))
+

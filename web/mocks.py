@@ -5,6 +5,7 @@ from domain.intervalo import IntervaloDeTempo
 from domain.usuario import Usuario, SenhaCriptografada
 from domain.usuario.nivel_acesso import *
 from domain.usuario.senha_criptografada import SenhaCriptografada
+from domain.iso8601 import *
 
 from datetime import datetime, timedelta
 
@@ -54,15 +55,15 @@ recursos = [
         Agendamento(
             idResponsavel = usuarios[0].id,
             intervalo = IntervaloDeTempo(
-                inicio = datetime.now()+timedelta(weeks=1),
-                fim = datetime.now()+timedelta(weeks=1)+timedelta(hours=2)
+                inicio = from_iso(to_iso(datetime.now()+timedelta(weeks=1))),
+                fim = from_iso(to_iso(datetime.now()+timedelta(weeks=1)+timedelta(hours=2)))
             )
         ),
         Agendamento(
             idResponsavel = usuarios[1].id,
             intervalo = IntervaloDeTempo(
-                inicio = datetime.now()+timedelta(weeks=-1),
-                fim = datetime.now()+timedelta(weeks=-1)+timedelta(hours=2)
+                inicio = from_iso(to_iso(datetime.now()+timedelta(weeks=-1))),
+                fim = from_iso(to_iso(datetime.now()+timedelta(weeks=-1)+timedelta(hours=2)))
             )
         )
     ]),

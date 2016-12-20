@@ -26,7 +26,7 @@ def agendamento_to_dict(agendamento):
 def intervalo_to_dict(intervalo):
     return {
         'inicio': to_iso(intervalo.inicio),
-        'fim': to_iso(intervalo.inicio)
+        'fim': to_iso(intervalo.fim)
     }
 
 def return_recurso(id):

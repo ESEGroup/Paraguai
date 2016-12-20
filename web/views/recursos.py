@@ -7,16 +7,19 @@ from ..excecoes import ExcecaoParaguaiWeb
 
 view_recursos = Blueprint('recursos', __name__)
 
-def agendamentos_to_cal(list_agendamentos, userID = None):
+def agendamentos_to_cal(list_agendamentos):
     dict_agenda = [
     {
         "title" : current_app.crud_usuario.obter(int(agendamento.idResponsavel)).nome,
         "start" : to_iso(agendamento.intervalo.inicio).replace("Z","",1),
         "end" : to_iso(agendamento.intervalo.fim).replace("Z","",1),
-        "editable" : bool(
-            (g.nivelAcesso == Administrador()) or
-            (agendamento.idResponsavel == userID)
-        )
+        "json" : {
+            'idResponsavel': agendamento.idResponsavel,
+            'intervalo': {
+                'inicio': to_iso(agendamento.intervalo.inicio),
+                'fim': to_iso(agendamento.intervalo.fim)
+            }
+        }
     }
     for agendamento in list_agendamentos
     ]
@@ -61,7 +64,7 @@ def novo():
 @view_recursos.route("/<id>")
 def detalhes(id):
     recurso = current_app.crud_recurso.obter(int(id))
-    agendamentos = agendamentos_to_cal(recurso.agendamentos, session["id_usuario"])
+    agendamentos = agendamentos_to_cal(recurso.agendamentos)
     print(agendamentos)
     return render_template("recursos/detalhes.html", agendamentos = agendamentos, recurso = recurso)
 
