@@ -11,20 +11,23 @@ from datetime import datetime, timedelta
 def email_para(nome):
     return nome.lower() + "@paraguai.com"
 
-def base_user(i, nome, email=None, pw=None, nivel=None):
+def base_user(i, nome, email, pw=None, nivel=None):
     return Usuario(
         nome = nome,
-        email = email or email_para(nome),
+        email = email,
         senhaCriptografada = SenhaCriptografada(pw or nome.lower()),
         nivelAcesso = nivel,
         id = int(i)
     )
 
-def adm(i, nome, email=None, pw=None):
-    return base_user(i,nome,email,pw,Administrador())
+def adm(i, nome):
+    return base_user(i, nome, email_para(nome), nome.lower(), Administrador())
 
-def usr(i, nome, email=None, pw=None):
-    return base_user(i,nome,email,pw,UsuarioComum())
+def usr(i, nome):
+    return base_user(i, nome, email_para(nome), nome.lower(), UsuarioComum())
+
+def sis(i, nome, pw):
+    return base_user(i, nome, None, pw, SistemaManutencao())
 
 usuarios = [
     adm(1, "Bernardo"),
@@ -32,7 +35,8 @@ usuarios = [
     adm(3, "Olavo"),
     adm(4, "Varlen"),
     adm(5, "Felipe"),
-    usr(6, "Plebeu")
+    usr(6, "Plebeu"),
+    sis(7, "Sistema de Manutencao", "019j3elkda")
 ]
 
 # ---- RECURSO ----
