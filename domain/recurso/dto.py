@@ -25,7 +25,7 @@ class DTOBuscaRecurso:
         self.local = local
         self.intervalos = intervalos
 
-class DTOIntervaloDeTempo:
+class DTOIntervalo:
     """DTO para Intervalo de tempo, usado em agendamento e busca
        :param inicio: String contendo data no formato ISO8601
        :param fim: String contendo data no formato ISO8601

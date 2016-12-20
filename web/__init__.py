@@ -1,5 +1,5 @@
 from flask import Flask
-from domain.recurso import ServicoCRUDRecurso, ServicoEstadoRecurso
+from domain.recurso import ServicoCRUDRecurso, ServicoEstadoRecurso, ServicoAgendamento
 from domain.usuario import ServicoCRUDUsuario
 from domain.autenticacao import ServicoAutenticacao
 from repositorios_memoria.recurso import RepositorioRecursoEmMemoria
@@ -30,6 +30,11 @@ def create_app():
     app.crud_recurso = ServicoCRUDRecurso(app.repositorio_recurso)
     app.crud_usuario = ServicoCRUDUsuario(app.repositorio_usuario,app.servico_email)
     app.estado_recurso = ServicoEstadoRecurso(app.repositorio_recurso, app.repositorio_usuario, app.servico_email)
+    app.agendamento = ServicoAgendamento(
+        app.repositorio_recurso,
+        app.servico_email,
+        app.repositorio_usuario
+    )
 
     # Instanciando serviço de autenticacao
 

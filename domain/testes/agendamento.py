@@ -1,12 +1,13 @@
 #-*- coding: utf-8 -8-
 import unittest
-from domain.recurso import DTOAgendamento, ServicoAgendamento
+from domain.recurso import DTOAgendamento, ServicoAgendamento, DTOIntervalo
 from domain.excecoes import ExcecaoAgendamentoRecursoOcupado, ExcecaoAgendamentoRecursoInutilizavel
 from repositorios_memoria import RepositorioRecursoEmMemoria, RepositorioUsuarioEmMemoria
 from . import fabricas
 from .suporte import ServicoEmailEmMemoria
 from datetime import timedelta
 from domain.email import *
+from domain.iso8601 import from_iso
 
 class TesteAgendamento(unittest.TestCase):
     def setUp(self):
@@ -25,12 +26,16 @@ class TesteAgendamento(unittest.TestCase):
         return self.repo_recursos.obter(self.recurso.id)
 
     def test_ok(self):
-        intervalo = fabricas.intervalo(1)
-        self.servico.agendar(self.recurso.id, DTOAgendamento(self.usuario.id, intervalo))
+        intervalo = DTOIntervalo(
+            "2016-12-19T12:00:00Z",
+            "2016-12-19T13:00:00Z"
+        )
+        dto = DTOAgendamento(self.usuario.id, intervalo)
+        self.servico.agendar(self.recurso.id, dto)
 
         novoRecurso = self.get_recurso()
         self.assertEqual(1, len(novoRecurso.agendamentos))
-        self.assertEqual(intervalo, novoRecurso.agendamentos[-1].intervalo)
+        self.assertEqual(from_iso(intervalo.inicio), novoRecurso.agendamentos[-1].intervalo.inicio)
 
         self.assertEqual(1, len(self.servico_email.emails))
         ultimoDest, ultimoEmail = self.servico_email.emails[-1]
@@ -38,7 +43,10 @@ class TesteAgendamento(unittest.TestCase):
         self.assertEqual(EmailAgendamentoConfirmado, ultimoEmail.__class__)
 
     def test_conflito(self):
-        dto = DTOAgendamento(self.usuario.id, fabricas.intervalo(1))
+        dto = DTOAgendamento(self.usuario.id, DTOIntervalo(
+            "2016-12-19T12:00:00Z",
+            "2016-12-19T13:00:00Z"
+        ))
         self.servico.agendar(self.recurso.id, dto)
 
         total = len(self.get_recurso().agendamentos)
@@ -51,12 +59,19 @@ class TesteAgendamento(unittest.TestCase):
         self.recurso.utilizavel = False
         self.repo_recursos.atualizar(self.recurso)
 
+        dto = DTOAgendamento(self.usuario.id, DTOIntervalo(
+            "2016-12-19T12:00:00Z",
+            "2016-12-19T13:00:00Z"
+        ))
         with self.assertRaises(ExcecaoAgendamentoRecursoInutilizavel):
-            self.servico.agendar(self.recurso.id, DTOAgendamento(self.usuario.id, fabricas.intervalo(1)))
+            self.servico.agendar(self.recurso.id, dto)
 
     def test_remover(self):
-        intervalo = fabricas.intervalo(1)
-        dto = DTOAgendamento(1, intervalo)
+        intervalo = DTOIntervalo(
+            "2016-12-19T12:00:00Z",
+            "2016-12-19T13:00:00Z"
+        )
+        dto = DTOAgendamento(self.usuario.id, intervalo)
         self.servico.agendar(self.recurso.id, dto)
 
         agendamentosAntes = len(self.get_recurso().agendamentos)
