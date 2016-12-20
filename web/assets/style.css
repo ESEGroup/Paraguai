@@ -320,7 +320,6 @@ body a:hover {
   font-size: 25px;
 }
 
-
 .clickable-row:hover{
   cursor: pointer;
   opacity: 0.8;
@@ -328,4 +327,14 @@ body a:hover {
 
 .clickable-row:hover td{
   background: rgba(0,0,0,0.1);
+}
+
+#resource-info {
+  margin-top:-3em;
+  border-bottom-style: groove;
+  margin-bottom: -1em;
+}
+.resource-info-list {
+  list-style-type: none;
+  margin-left:-1.5em;
 }
