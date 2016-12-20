@@ -8,7 +8,7 @@ class ServicoAutenticacao():
 
     def autenticar(self, email, senha):
         usuario = self.repositorio.obter_por_email(email)
-        return self.autenticar_usuario(usuario)
+        return self.autenticar_usuario(usuario, senha)
 
     def autenticar_usuario(self, usuario, senha):
         if not usuario:
