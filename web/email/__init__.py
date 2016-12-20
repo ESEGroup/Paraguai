@@ -6,7 +6,9 @@ formatadores = [
     usuario_cadastrado,
     usuario_alterado,
     usuario_removido,
-    recurso_inutilizavel
+    recurso_inutilizavel,
+    agendamento_confirmado,
+    agendamento_cancelado
 ]
 
 class ServicoEmailConsole(ServicoEmailFormatado):

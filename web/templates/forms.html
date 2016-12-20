@@ -8,7 +8,7 @@
 {% macro select(name, kv) %}
   <div class="form-group">
     <label for="{{ name }}">Categoria</label><br>
-    <select class="selectpicker" data-width="100%" name="{{ name }}">
+    <select class="selectpicker form-control select select-primary select-block" data-width="100%" name="{{ name }}">
         {% for valor, label in kv %}
         <option value="{{valor}}">{{label}}</option>
         {% endfor %}
@@ -20,6 +20,17 @@
   <div class="form-group">
     <label for="senha">Senha</label>
     <input type="password" class="form-control" name="senha" value="{{ value or "" }}">
+  </div>
+{% endmacro %}
+
+{% macro datepicker(name, label) %}
+  <label for="{{ name }}">{{ label }}</label>
+  <div class="input-group datepicker {{name}}">
+  <!--data-date-format='YYYY/MM/DD hh:mm a'-->
+    <input type="text" class="form-control" name="{{name}}" data-date-format='YYYY-MM-DD HH:mm' id="datepicker_{{name}}">
+    <span class="input-group-addon">
+        <span class="glyphicon glyphicon-calendar"></span>
+    </span>
   </div>
 {% endmacro %}
 

@@ -1,27 +1,40 @@
 from flask import Blueprint, render_template, current_app, request, url_for, redirect
 from domain.usuario import Usuario, DTOUsuario
-from domain.usuario.nivel_acesso import Administrador
+from domain.usuario.nivel_acesso import *
 from web.autenticacao import requer_usuario
 from web.autorizacao import requer_acesso
 
 view_usuarios = Blueprint('usuarios', __name__)
+
+niveisAcesso = [
+    (0, "Usuário Comum"),
+    (2, "Administrador")
+]
+
+def nivelAcessoToStr(nivel):
+    if nivel == Administrador():
+        return "Administrador"
+    if nivel == UsuarioComum():
+        return "Usuário Comum"
 
 @view_usuarios.route("/")
 @requer_usuario
 @requer_acesso(Administrador())
 def index():
     usuarios = current_app.crud_usuario.listar()
+    usuarios = [u for u in usuarios if u.nivelAcesso != SistemaManutencao()]
+    usuarios = [{
+        'id': u.id,
+        'nome': u.nome,
+        'email': u.email,
+        'nivel': nivelAcessoToStr(u.nivelAcesso)
+    } for u in usuarios]
     return render_template("usuarios/index.html", usuarios=usuarios)
 
 @view_usuarios.route("/novo")
 @requer_usuario
 @requer_acesso(Administrador())
 def novo():
-    niveisAcesso = [
-    (0, "Usuário Comum"),
-    (1, "Sistema de Manutenção"),
-    (2, "Administrador")
-    ]
     return render_template("usuarios/novo.html", dto_usuario=DTOUsuario(), niveisAcesso=niveisAcesso)
 
 
@@ -31,12 +44,6 @@ def novo():
 def editar(id_usuario):
     usuario = current_app.crud_usuario.obter(int(id_usuario))
     dto = DTOUsuario(usuario.nome, usuario.email, None, None)
-
-    niveisAcesso = [
-    (0, "Usuário Comum"),
-    (1, "Sistema de Manutenção"),
-    (2, "Administrador")
-    ]
 
     return render_template("usuarios/editar.html", id_usuario=id_usuario, dto_usuario=dto, niveisAcesso=niveisAcesso)
 

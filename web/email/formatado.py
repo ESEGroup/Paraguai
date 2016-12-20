@@ -20,6 +20,10 @@ class ServicoEmailFormatado(ServicoEmail):
         return formatador(email)
 
     def enviar(self, destino, email):
+        if not destino:
+            print("Email sem destino - pulando")
+            return
+
         assunto, corpo = self.formatar(email)
 
         self.enviar_formatado(destino, assunto, corpo)

@@ -13,3 +13,9 @@ def registrar_capturas(app):
         response = make_response("Nao Autorizado")
         response.status_code = 403
         return response
+
+    @app.errorhandler(ExcecaoEntidadeInexistente)
+    def notfound(erro):
+        response = make_response("Nao Encontrado")
+        response.status_code = 404
+        return response
