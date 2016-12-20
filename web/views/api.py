@@ -26,6 +26,11 @@ def intervalo_to_dict(intervalo):
         'fim': to_iso(intervalo.inicio)
     }
 
+@api.route("/recursos/<id>/agendar", methods=["POST"])
+def agendamento(id):
+    print(request.form)
+    return jsonify({ 'test' : 'ok'})
+
 @api.route("/recursos/<id>")
 @requer_acesso(SistemaManutencao(), Administrador())
 def obter_recurso(id):

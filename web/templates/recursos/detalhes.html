@@ -19,6 +19,19 @@
 <div id="calendar">
 </div>
 <script>
+var agendar_via_api = function agendar(data,ok_cb,fail_cb) {
+ 			$.ajax("{{ url_for('api.agendamento', id = recurso.id) | safe }}",
+ 			{
+ 				method: "POST",
+ 				data: data
+ 			})
+ 			.done(function (data) {
+ 				ok_cb(data);
+ 			})
+ 			.fail(function (data){
+ 				fail_cb(data);
+ 			});
+ 		};
  $(function(){
 		$('#calendar').fullCalendar({
 			header: {
@@ -26,22 +39,43 @@
 				center: 'title',
 				right: 'month,agendaWeek,agendaDay'
 			},
+			eventOverlap: false,
       		defaultView: 'agendaWeek',
 			navLinks: true, // can click day/week names to navigate views
 			selectable: true,
 			selectHelper: true,
+			// eventDrop: function (event, delta, minuteDelta, allDay, revertFunc) {
+			// 	if (!confirm("Are you sure about this change?")) {
+   //              	revertFunc();
+   //          	}
+			// },
 			select: function(start, end) {
-				var title = prompt('Event Title:');
-				var eventData;
-				if (title) {
-					eventData = {
-						title: title,
-						start: start,
-						end: end
-					};
-					$('#calendar').fullCalendar('renderEvent', eventData, true); // stick? = true
-				}
+			// 	//var title = prompt('Event Title:');
+			// 	console.log("Select");
+			// 	// agendar_via_api(start,end,
+			// 	// 	function ok () {
+			var eventData;
+			// 	// 		if (title) {
+			eventData = {
+				title: "{{ username }}",
+				start: start,
+				end: end
+			};
+			agendar_via_api(
+			{
+				initial_time: start.toISOString(),
+				final_time: end.toISOString()
+ 			},
+			function renderEvent (data) {
+				$('#calendar').fullCalendar('renderEvent', eventData, true);
 				$('#calendar').fullCalendar('unselect');
+				console.log(data);
+			},
+			function fail(data) {
+				console.error(data);
+				$('#calendar').fullCalendar('unselect');
+			});
+
 			},
 			editable: true,
 			eventLimit: true, // allow 0"more" link when too many events
